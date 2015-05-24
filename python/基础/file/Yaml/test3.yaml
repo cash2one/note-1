@@ -1,0 +1,33 @@
+---
+Tracy:
+    family:
+        name: McGrady
+        parents:
+        - John
+        - Jane
+        children:
+        - Paul
+        - Mark
+        - Simone
+    address:
+        number: 1207
+        street: Main Street
+        city: Chicago
+        zipcode: 14834501
+
+Vince:
+    family:
+        name: Cart
+        parents:
+        - John
+        - Jane
+        children:
+        - Paul
+        - Mark
+        - Simone
+    address:
+        number: 3573
+        street: Main Street
+        city: New Youk
+        zipcode: 637912
+...

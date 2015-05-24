@@ -1,0 +1,12 @@
+Tracy:
+  address: {city: Chicago, number: 1207, street: Main Street, zipcode: 14834501}
+  family:
+    children: [Paul, Mark, Simone]
+    name: McGrady
+    parents: [John, Jane]
+Vince:
+  address: {city: New Youk, number: 3573, street: Main Street, zipcode: 637912}
+  family:
+    children: [Paul, Mark, Simone]
+    name: Cart
+    parents: [John, Jane]

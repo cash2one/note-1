@@ -1,0 +1,33 @@
+串口通信可以连接两个设备， 当使用9芯线路时: 1) 地(GND)   2)接受数据(RX data) 3)传输数据 (TX data) 4) 数据终端准备(DTR)  5) GND  6)数据准备 (DSR) 7) 请求发送(RTS)    8)允许发送(CTS)  9)振铃指示(RI)
+
+我举 PC 和Modem之间的通信为例子：
+
+RTS/CTS 提供的是一种PC 和Modem 之间控制数据流的方法，当Modem 准备接收数据时， 使CTS为ON(1), 当Modem 不能接收更多数据时， 使CTS为OFF(0), 类似的， 当PC 可以接收数据时，RTS 为ON (1),   不能接收数据时，RTS 为OFF(0). DTR/DSR : PC开启DTR信号告诉MODEN, PC 机已经准备通信, Modem通常开启DSR来应答，让PC机知道 Modem 准备应答.
+
+RTS/CTS 属于是硬件流量控制， 而XON/XOFF则是软件流量控制。
+
+XON/XOFF分别对应于(Ctrl-q)和(Crtl-s)字符，如果你选择软件流量控制，你的Modem 将不能传递Ctrl-q 和 Crtl-s字符，因为这些字符被解释成为流控请求。
+  DCD　　:载波检测。主要用于Modem通知计算机其处于在线状态，即Modem检测到拨号音， 处于在线状态。 
+  RXD　　:此引脚用于接收外部设备送来的数据；在你使用Modem时，你会发现RXD指示灯在闪烁，说明RXD引脚上有数据 进入。
+  TXD　　:此引脚将计算机的数据发送给外部设备；在你使用Modem时，你会发现TXD指示灯在闪烁，说明计算机正在通过TXD引脚发送数据。 
+  DTR　　:数据终端就绪；当此引脚高电平时，通知Modem可以进行数据传输，计算机已经准备好。
+  GND　　:信号地；此位不做过多解释。 
+  DSR　　:数据设备就绪；此引脚高电平时，通知计算机Modem已经准备好，可以进行数据通讯了。 
+  RTS　　:请求发送；此脚有计算机来控制，用以通知Modem马上传送数据至计算机；否则，Modem将收到的数据暂时放入缓冲区中。 
+  CTS　　:清除发送；此脚由Modem控制，用以通知计算机将欲传的数据送至Modem。 
+  RI　　　:Modem通知计算机有呼叫进来，是否接听呼叫由计算机决定
+
+
+
+RS-232C接口定义(DB9)
+ 
+引脚  定义  符号
+1  载波检测  DCD（Data Carrier Detect）
+2  接收数据  RXD（Received Data）
+3  发送数据  TXD（Transmit Data）
+4  数据终端准备好  DTR（Data Terminal Ready）
+5  信号地  SG（Signal Ground）
+6  数据准备好  DSR（Data Set Ready）
+7  请求发送  RTS（Request To Send）
+8  清除发送  CTS（Clear To Send）
+9  振铃提示  RI（Ring Indicator）
