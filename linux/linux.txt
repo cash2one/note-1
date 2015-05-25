@@ -1,0 +1,163 @@
+#----------------常用-----------------
+$ command --help  => 查看command的帮助
+
+$ info command    => 查看command的信息
+
+$ man command     => command 手册
+
+# tab          =>  命令不全
+# ctrl + H     =>  显示隐藏文件
+# ctrl + z     =>  退出
+# ctrl + A     =>  命令行下，光标称动到开头
+# ctrl + E     =>  命令行下，光标移动结尾
+
+
+$ which  command  =>  查看命令的完整路径
+
+
+$ apt-cache search package_name   => apt搜索包
+$ sudo apt-get remove --purge package_name   => 卸载
+
+$ sudo nautilus     =>  以root权限打开一个窗口，来管理文件
+$ sudo   => 以系统管理者的身份执行指令
+$ top    =>  资源管理
+
+$ shutdown  => 关机
+    shutdown -h now  # 现在关机
+    shutdown -h hours:minutes # 按预定时间关闭系统 
+    shutdown -c #取消按预定时间关闭系统
+
+$ login
+$ logout
+$ reboot  => 重启机
+$ free  =>  查看内存情况
+$ kill  => 杀进程
+$ su    => 变更使用者身份
+    su root
+    su username # 切换用户
+$ export  =>  查看所有环境变量
+$ echo $PATH  => 查看单个变量
+
+
+$ date    =>  显示日期
+$ cal     =>  显示一个日历
+$ uptime  =>  显示系统运行了多长时间
+$ bc      =>  一个简单计算器
+$ df -h   =>  显示已挂载的分区列表
+
+$ chmod   =>
+    三种基本权限
+    R:读  数值表示为4
+    W:写  数值表示为2
+    X：可执行  数值表示为1
+
+    chmod abc file
+    r=4, w=2, x=1
+    其中a,b,c各为一个数字，分别表示User、Group、及Other的权限
+    若要rwx属性则4+2+1=7
+    若要rw-属性则4+2=6
+    若要r-x属性则4+1=5
+
+    例：chmod a=rwx file 和 chmod 777 file
+
+#添加可执行权限
+sudo chmod +x nginx
+
+
+$ uname -r  => 查看内核版本
+
+
+$ gcc
+    gcc -o test test.c
+
+#----------------常用-----------------
+$ cd
+    cd .. # 返回上级目录
+    cd /  # 进入根目录
+    cd -  # 返回上次的目录
+    cd    # 进入个人主目录
+    ~     # 代表/home/用户名目录
+    cd ~/.local  # 表示用户主目录下有个.local的目录，"."表示这是个隐藏文件
+
+$ cat filename  => 查看文件
+$ more filename  => 分页查看 space下一页, b上一页
+$ nl filename   => 带行号查看文件
+$ file          => 查看文件类型
+$ wc            => 统计文本中函数、字数、字符数
+$ grep          => 在指定文件中搜索特定内容 
+
+    Global Regular Expression Print
+    
+$ diff          => 分析两个文件的不同
+$ pwd           => 显示工作目录完整路径
+
+$ du            =>    显示目录或文件的大小
+
+    -b:以byte为单位
+    -h: 以K，M，G为单位
+    -m: 以M为单位
+
+$ tree          =>  显示目录树
+
+    $ tree -D -L 1
+    -d:只显示目录
+    -L:选择显示的目录深度
+    1：只显示一层深度，即不递归子目录
+
+
+$ mkdir 目录名        => 创建一个目录
+
+    mkdir name1 name2...
+
+$ rmdir 空目录名      => 删除一个空目录
+
+$ ls                  =>  列出目录下的文件
+
+    ls -F  # 查看文件
+    ls -l  # 显示文件和目录的详细信息($ ll)
+    ls -a  # 显示隐藏文件
+
+$ find    =>
+
+$ locate  => 用于查找文件，它比find命令的搜索速度快
+
+$ touch 文件名        => 创建一个空文件
+
+$ rename             =>  重命名一个或多个文件(使用有问题，用mv实现同样的功能)
+
+$ mv source destination  =>  移动或重命名目录或文件
+    # 可以用来重命名文件或目录
+
+$ cp source destination  => 复制
+　　-a 尽可能将档案状态、权限等资料都照原状予以复制.
+　　-r 若 source 中含有目录名，则将目录下之档案亦皆依序拷贝至目的地.
+　　-f 若目的地已经有相同档名的档案存在，则在复制前先予以删除再行复制.
+　　范例： 
+　　将档案 aaa 复制(已存在)，并命名为 bbb : 
+　　 cp aaa bbb 
+　　 
+　　将所有的C语言程序拷贝至 Finished 子目录中 : 
+　　 cp *.c Finished
+
+
+$ rm                             =>  删除档案及目录(慎用删除不好恢复)
+    & rm [options] name... 
+　　参数:
+    -i 删除前逐一询问确认.
+    -f 即使原档案属性设为唯读，亦直接删除，无需逐一确认.
+    -r 将目录及以下之档案亦逐一删除.
+　　范例:
+　　删除所有C语言程序档；删除前逐一询问确认:
+　　  rm -i *.c
+　　将 Finished 子目录及子目录中所有档案删除:
+　　  rm -r Finished
+
+$ iptraf    =>  查看网络流量
+$ ifconfig -a  =>  显示网络配置
+$ ip address => 查看ip
+$ sudo ethstatus -i eth0  =>  查看网络流量
+# netstat    => 查看端口使用情况
+$ tar       =>  压缩解压
+    $ tar -zcvf filename.tar.gz #压缩
+    $ tar -zxvf filename.tar.gz #解压
+
