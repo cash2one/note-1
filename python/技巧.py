@@ -1,27 +1,40 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''toolkits'''
+'''技巧'''
 
 __author__ = 'baixue'
 
 
+# 用可迭代对象创建列表
+lst = ['a', 'b', 'c', 'd']
+iterobj = enumerate(lst)
+lista = list(iterobj)
+
+# 用可迭代对象的前N个元素创建list
 import itertools
+y = list(itertools.islice(lst, N))
 
+# 并行地循环多个可迭代对象
+a = ['a1', 'a2', 'a3', 'a4', 'a5']
+b = ['b1', 'b2', 'b3']
+import itertools
+for x, y in itertools.izip(a, b):
+    print x, y
 
-def listget(lst, idx, default=None):
-    '''若列表中某索引存在则返回之'''
-    if -len(lst) <= idx < len(lst):return lst[idx]
-    else:return default
+# 内建函数zip是个备选方案，缺点是它可能会损害性能
+for x, y in zip(a, b):
+    print x, y
 
-def list_get(lst, idx, default=None):
-    '如果传递的索引绝大多数都是有效索引，那么用这个函数'
-    try:return lst(idx)
-    except IndexError:return default
+# 如果迭代多个不同长度的可迭代对象，最短的可迭代对象耗尽时，zip和itertools.izip都会停止
+# 在较短的可迭代对象中填充None，直到和最长的相等
+for x, y in map(None, a, b):
+    print x, y
 
-
+# 用None之外的值填充
+# 如果只有两序列用这个函数
+import itertools
 def par_two(a, b, padding_item=None):
-    '''并行地循环两个可迭代对象, 短的用padding_item补充'''
     a, b = iter(a), iter(b)
     # 首先，对两者用izip处理，直达其中一个耗尽
     for x in itertools.izip(a, b):
@@ -33,8 +46,8 @@ def par_two(a, b, padding_item=None):
     for x in b:
         yield padding_item, x
 
+# 通用的，任意数目的序列
 def par_loop(padding_item, *sequences):
-    '''并行地循环多个可迭代对象, 短的用padding_item补充'''
     iterators = map(iter, sequences)
     num_remaining = len(iterators)
     result = [padding_item] * num_remaining
@@ -58,14 +71,13 @@ def smallmerge(*sequences):
 
 
 
+# 无需过多援引 ，创建字典
+dt = dict(zip(keys, values))
+dt = dict(itertools.izip(keys, values))
 
-
-
-
-
-
-
-
+dt = dict(map(None, a, range(3)))
+import string
+count_by_letter = dict.fromkeys(string.ascii_lowercase, 0)
 
 
 if __name__ == "__main__":
