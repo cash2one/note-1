@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+<<<<<<< HEAD
 '''Doc String'''
+=======
+'''技巧'''
+>>>>>>> 87cd5fc8c684b51f543467748142c51d380bf404
 
 __author__ = 'baixue'
 
 
+<<<<<<< HEAD
 
 
 
@@ -15,3 +20,81 @@ __author__ = 'baixue'
 
 if __name__ == "__main__":
     pass
+=======
+# 用可迭代对象创建列表
+lst = ['a', 'b', 'c', 'd']
+iterobj = enumerate(lst)
+lista = list(iterobj)
+
+# 用可迭代对象的前N个元素创建list
+import itertools
+y = list(itertools.islice(lst, N))
+
+# 并行地循环多个可迭代对象
+a = ['a1', 'a2', 'a3', 'a4', 'a5']
+b = ['b1', 'b2', 'b3']
+import itertools
+for x, y in itertools.izip(a, b):
+    print x, y
+
+# 内建函数zip是个备选方案，缺点是它可能会损害性能
+for x, y in zip(a, b):
+    print x, y
+
+# 如果迭代多个不同长度的可迭代对象，最短的可迭代对象耗尽时，zip和itertools.izip都会停止
+# 在较短的可迭代对象中填充None，直到和最长的相等
+for x, y in map(None, a, b):
+    print x, y
+
+# 用None之外的值填充
+# 如果只有两序列用这个函数
+import itertools
+def par_two(a, b, padding_item=None):
+    a, b = iter(a), iter(b)
+    # 首先，对两者用izip处理，直达其中一个耗尽
+    for x in itertools.izip(a, b):
+        yield x
+    # 下面两个循环最多只有一个能够执行
+    # 因为此时a或b至少有一个是耗尽的
+    for x in a:
+        yield x, padding_item
+    for x in b:
+        yield padding_item, x
+
+# 通用的，任意数目的序列
+def par_loop(padding_item, *sequences):
+    iterators = map(iter, sequences)
+    num_remaining = len(iterators)
+    result = [padding_item] * num_remaining
+    while num_remaining:
+        for i, it in enumerate(iterators):
+            try:
+                result[i] = it.next()
+            except StopIteration:
+                iterators[i] = itertools.repeat(padding_item)
+                num_remaining -= 1
+                result[i] = padding_item
+        if num_remaining:
+            yield tuple(result)
+
+
+def smallmerge(*sequences):
+    '''合并有序序列'''
+    result = []
+    for subseq in sequences:result.extend(subseq)
+    return result
+
+
+
+# 无需过多援引 ，创建字典
+dt = dict(zip(keys, values))
+dt = dict(itertools.izip(keys, values))
+
+dt = dict(map(None, a, range(3)))
+import string
+count_by_letter = dict.fromkeys(string.ascii_lowercase, 0)
+
+
+if __name__ == "__main__":
+    pass
+>>>>>>> 87cd5fc8c684b51f543467748142c51d380bf404
