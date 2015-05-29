@@ -71,7 +71,7 @@ def smallmerge(*sequences):
 
 
 
-# 无需过多援引 ，创建字典
+#-------------------无需过多援引 ，创建字典---------------------#
 dt = dict(zip(keys, values))
 dt = dict(itertools.izip(keys, values))
 
@@ -80,5 +80,62 @@ import string
 count_by_letter = dict.fromkeys(string.ascii_lowercase, 0)
 
 
-if __name__ == "__main__":
-    pass
+#-------------------字典操作技巧---------------------#
+import itertools
+
+HEADER = ('name', 'id', 'cell', 'mail')
+
+lines = [[i for x in range(4)] for i in range(10000)]
+print len(lines)
+
+def tansform_user_data(user_data):
+    '''将列表构建成和字段对应的字典'''
+##    line = ['' for i in range(len(HEADER))]
+##    dict_data = dict(zip(HEADER, line))
+    # 字典推导式
+    # dict_data = { h:'' for h in HEADER }
+    dict_data = dict.fromkeys(HEADER, '')
+    dict_list = []
+    for data in user_data:
+        dt = dict_data.copy()
+        for idx, field in enumerate(HEADER):
+            dt[field] = data[idx]
+        dict_list.append(dt)
+    return dict_list
+
+
+def tansform_user_data10(user_data):
+    '''将列表构建成和字段对应的字典'''
+    dict_data = dict.fromkeys(HEADER, '')
+    dict_list = []
+    for data in user_data:
+        dt = dict_data.copy()
+        for h, d in itertools.izip(HEADER, data):
+            dt[h] = d
+        dict_list.append(dt)
+    return dict_list
+
+
+def tansform_user_data2(user_data):
+    '''将列表构建成和字段对应的字典'''
+    dict_list = []
+    for data in user_data:
+        dt = dict(zip(HEADER, data))
+        dict_list.append(dt)
+    return dict_list
+
+
+def tansform_user_data3(lines):
+    '''将列表构建成和字段对应的字典'''
+    return [dict(itertools.izip(HEADER, line)) for line in lines]
+
+
+def tansform_user_data4(user_data):
+    '''将列表构建成和字段对应的字典'''
+    dict_list = []
+    for data in user_data:
+        dt = dict({'id':'', 'name':''})
+        for idx, field in enumerate(HEADER):
+            dt[field] = data[idx]
+        dict_list.append(dt)
+    return dict_list
