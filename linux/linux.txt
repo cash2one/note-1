@@ -84,11 +84,12 @@ $ more filename  => 分页查看 space下一页, b上一页
 $ nl filename   => 带行号查看文件
 $ file          => 查看文件类型
 $ wc            => 统计文本中函数、字数、字符数
-$ grep          => 在指定文件中搜索特定内容 
+$ grep          => 在指定文件中搜索特定内容
 
     Global Regular Expression Print
     
 $ diff          => 分析两个文件的不同
+$ patch         => 应用补丁
 $ pwd           => 显示工作目录完整路径
 
 $ du            =>    显示目录或文件的大小
@@ -115,7 +116,7 @@ $ ls                  =>  列出目录下的文件
 
     ls -F  # 查看文件
     ls -l  # 显示文件和目录的详细信息($ ll)
-    ls -a  # 显示隐藏文件
+    ls -a  # 显示隐藏文件($ la)
 
 $ find    =>
 
