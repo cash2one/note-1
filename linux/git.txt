@@ -1,196 +1,175 @@
 一.安装GIT和配置GIT
 
 1.安装GIT
-
-apt-get install git
+$ apt-get install git
 
 2.配置GIT
 
 ##配置用户信息
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+
+##设置别名
+git config --global alias.ci commit
+git config --global alias.st status
+
 ##文本编辑器
-git config --global core.editor emacs
+$ git config --global core.editor emacs
+
 ##差异分析工具
-git config --global merge.tool vimdiff
+$ git config --global merge.tool vimdiff
+
+##颜色显示
+$ git config --global color.ui true
+
+##编辑器
+$ git config --global core.editor vim
+
+##独立忽略文件
+$ git config --global core.excludesfile /home/linzhenjie/.gitignore
+
 ##查看配置信息
-git config --list
+$ git config --list
+
 ##获取帮助
-git help config
+$ git help config
+
 
 二、创建GIT仓库和远程仓库的使用
 
 1.在工作目录中初始化新仓库
-
-##切换到工作目录
-mkdir test
-cd test
-git init
-##初始化后可以看到这些文件
-ls ./.git/
-branches config description HEAD hooks info objects refs
+$ git init
 
 2.从现有仓库克隆出来
-
-git clone git://192.168.1.1/var/www/test.git
+$ git clone git://192.168.1.1/var/www/test.git
 
 3.克隆到本地
-
-git clone /var/www/test test_new
+$ git clone /var/www/test test_new
 
 4.远程仓库的克隆
+$ git clone root@192.168.1.1:/var/www/test
 
-git clone root@192.168.1.1:/var/www/test
 5.查看当前的远程库
-
-git remote -v
+$ git remote -v
 
 6.添加远程仓库和推送
 
 ##添加远程仓库分支
-git remote add test root@192.168.1.1:/var/www/test
+$ git remote add test root@192.168.1.1:/var/www/test
 ##从远程仓库抓取数据
-git fetch test
+$ git fetch test
 ##推送数据到远程仓库
-git push origin master
+$ git push origin master
 ##查看远程仓库信息
-git remote show origin
+$ git remote show origin
 
 
 7.远程仓库的删除和重命名
 
 ##重命名
-git remote rename test test_new
+$ git remote rename test test_new
 ##删除
-git remote rm paul
+$ git remote rm paul
 
 
-三、GIT全局配置
-
-1.配置当前用户名和邮箱
-
-git config --global user.name "linzhenjie"
-git config --global user.email linzhenjie@live.com
-
-
-2.设置别名
-
-git config --global alias.ci commit
-git config --global alias.st status
-
-
-3.其他配置
-
-##颜色显示
-git config --global color.ui true
-##编辑器
-git config --global core.editor vim
-##独立忽略文件
-git config --global core.excludesfile /home/linzhenjie/.gitignore
-
-
-四、GIT中相关命令
+三、GIT中相关命令
 
 1.检查当前文件状态
+$ git status
 
-git status
 2.往暂存库中添加新的文件
-
-git add test.php
+$ git add test.php
 
 3.提交更新
 
 ##提交更新
-git commit -m "add test file for my test"
+$ git commit -m "add test file for my test"
 ##添加并提交更新
-git commit -a -m 'added new benchmarks'
+$ git commit -a -m 'added new benchmarks'
 ##执行一次空白提交
-git commit --allow-empty -m "who does commit?"
+$ git commit --allow-empty -m "who does commit?"
 
 
 4.比较差异
 
 ##暂存库与版本库比较
-git diff
+$ git diff
 ##本地库与暂存库比较
-git diff HEAD
+$ git diff HEAD
 ##暂存库与版本库比较
-git diff --cached
-git diff --staged
+$ git diff --cached
+$ git diff --staged
 
+##冲突标记
+<<<<<<< （7个<）与=======之间的内容是我的修改
+=======与>>>>>>>之间的内容是别人的修改
 
 5.修改最后一次提交
 
-git commit -m 'initial commit'
-git add test.php
-git commit --amend
-
+$ git commit -m 'initial commit'
+$ git add test.php
+$ git commit --amend
 
 6. 查看提交历史
 
 ##查看所有日志
-git log
+$ git log
 ##查看所有日志（包含重置的日志）
-git reflog show master
-
+$ git reflog show master
 
 7.重置/回退暂存区和版本库
 
 ##重置/回退版本库
-git reset --soft 
+$ git reset --soft 
 ##重置/回退版本库、暂存库
-git reset
+$ git reset
 ##重置/回退版本库、暂存区、工作区
-git reset --hard
-
+$ git reset --hard
 
 8.清理工作区
 
 ##查看不在暂存区的工作区文件
-git clean -nd
+$ git clean -nd
 ##清理工作区多余文件
-git clean –fd
-
+$ git clean –fd
 
 9.删除暂存区和版本库
 
 ##删除暂存库和版本库的文件
-git rm test.php
+$ git rm test.php
 ##删除版本库的文件
 $ git rm --cached test.php
 
-
 10.移动文件
 
-git mv test.php test_new.php
-
+$ git mv test.php test_new.php
 
 11.进度的存储和恢复
 
 ##保存当前进度
-git stash save
+$ git stash save
 ##查看当前进度列表
-git stash list
+$ git stash list
 ##弹出恢复工作区进度
-git stash pop
+$ git stash pop
 ##弹出恢复工作区和暂存区进度
-git stash pop --index
+$ git stash pop --index
 ##应用工作区进度
-git stash apply
+$ git stash apply
 ##删除一个进度
-git stash drop
+$ git stash drop
 ##删除所有存储进度
-git stash clear
+$ git stash clear
 ##存储分支进度
-git stash branch
+$ git stash branch
 
 
-五、忽略文件语法
+四、忽略文件语法
 
-.gitignore 
+.gitignore
 *.a            ##忽略以.a为节结尾的文件
-!lib.a        ##不会忽略lib.a的文件或目录
-/DIR          ##忽略当前目录下文件（不包括子目录）
-DIR/          ##忽略当前目录下所有文件
-DIR/*.txt     ##忽略DIR下的txt文件（不包括子目录）
+!lib.a         ##不会忽略lib.a的文件或目录
+/DIR           ##忽略当前目录下文件（不包括子目录）
+DIR/           ##忽略当前目录下所有文件
+DIR/*.txt      ##忽略DIR下的txt文件（不包括子目录）
 
