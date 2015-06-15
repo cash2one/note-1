@@ -76,6 +76,7 @@ $ git remote rm paul
 
 1.检查当前文件状态
 $ git status
+$ git status -s
 
 2.往暂存库中添加新的文件
 $ git add test.php
@@ -89,8 +90,28 @@ $ git commit -a -m 'added new benchmarks'
 ##执行一次空白提交
 $ git commit --allow-empty -m "who does commit?"
 
+4.branch分支
 
-4.比较差异
+## 列出分支
+$ git branch
+
+## 创建新分支
+$ git branch branchname
+
+## 删除分支
+$ git branch -d branchname
+
+## 创建新分支，并立即切换到它
+$ git checkout -b branchname
+
+## 切换分支
+$ git checkout master
+$ git checkout branchname
+
+## 将分支合并到当前的分支
+$ git merge branchname
+
+5.比较差异
 
 ##暂存库与版本库比较
 $ git diff
@@ -104,20 +125,20 @@ $ git diff --staged
 <<<<<<< （7个<）与=======之间的内容是我的修改
 =======与>>>>>>>之间的内容是别人的修改
 
-5.修改最后一次提交
+6.修改最后一次提交
 
 $ git commit -m 'initial commit'
 $ git add test.php
 $ git commit --amend
 
-6. 查看提交历史
+7. 查看提交历史
 
 ##查看所有日志
 $ git log
 ##查看所有日志（包含重置的日志）
 $ git reflog show master
 
-7.重置/回退暂存区和版本库
+8.重置/回退暂存区和版本库
 
 ##重置/回退版本库
 $ git reset --soft 
@@ -126,25 +147,25 @@ $ git reset
 ##重置/回退版本库、暂存区、工作区
 $ git reset --hard
 
-8.清理工作区
+9.清理工作区
 
 ##查看不在暂存区的工作区文件
 $ git clean -nd
 ##清理工作区多余文件
 $ git clean –fd
 
-9.删除暂存区和版本库
+10.删除暂存区和版本库
 
 ##删除暂存库和版本库的文件
 $ git rm test.php
 ##删除版本库的文件
 $ git rm --cached test.php
 
-10.移动文件
+11.移动文件
 
 $ git mv test.php test_new.php
 
-11.进度的存储和恢复
+12.进度的存储和恢复
 
 ##保存当前进度
 $ git stash save
