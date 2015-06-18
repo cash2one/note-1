@@ -162,3 +162,7 @@ $ tar       =>  压缩解压
     $ tar -zcvf filename.tar.gz #压缩
     $ tar -zxvf filename.tar.gz #解压
 
+#----------------系统管理-----------------
+$ ps aux =>查看进程
+$ ps aux|grep nginx
+

@@ -98,9 +98,6 @@ $ git branch
 ## 创建新分支
 $ git branch branchname
 
-## 将新建分支push到远端
-$ git push origin branchname
-
 ## 删除分支
 $ git branch -d branchname
 
