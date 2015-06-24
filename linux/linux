@@ -24,7 +24,7 @@ $ top    =>  资源管理
 
 $ shutdown  => 关机
     shutdown -h now  # 现在关机
-    shutdown -h hours:minutes # 按预定时间关闭系统 
+    shutdown -h hours:minutes # 按预定时间关闭系统
     shutdown -c #取消按预定时间关闭系统
 
 $ login
@@ -86,8 +86,8 @@ $ file          => 查看文件类型
 $ wc            => 统计文本中函数、字数、字符数
 $ grep          => 在指定文件中搜索特定内容
 
-    Global Regular Expression Print
-    
+    Global Regular Expression
+
 $ diff          => 分析两个文件的不同
 $ patch         => 应用补丁
 $ pwd           => 显示工作目录完整路径
@@ -133,9 +133,9 @@ $ cp source destination  => 复制
 　　-a 尽可能将档案状态、权限等资料都照原状予以复制.
 　　-r 若 source 中含有目录名，则将目录下之档案亦皆依序拷贝至目的地.
 　　-f 若目的地已经有相同档名的档案存在，则在复制前先予以删除再行复制.
-　　范例： 
+　　范例:
 　　将档案 aaa 复制(已存在)，并命名为 bbb : 
-　　 cp aaa bbb 
+　　 cp aaa bbb
 　　 
 　　将所有的C语言程序拷贝至 Finished 子目录中 : 
 　　 cp *.c Finished
@@ -174,4 +174,5 @@ $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
 $ ps -aux|grep <进程号>   =>  找到进程号后可以用此命令查看详细信息
 
 $ killall 进程别名    =>   结束进程
+    killall -s INT 进程名
 
