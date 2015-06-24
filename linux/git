@@ -5,33 +5,33 @@ $ apt-get install git
 
 2.配置GIT
 
-##配置用户信息
+# 配置用户信息
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 
-##设置别名
+# 设置别名
 git config --global alias.ci commit
 git config --global alias.st status
 
-##文本编辑器
+# 文本编辑器
 $ git config --global core.editor emacs
 
-##差异分析工具
+# 差异分析工具
 $ git config --global merge.tool vimdiff
 
-##颜色显示
+# 颜色显示
 $ git config --global color.ui true
 
-##编辑器
+# 编辑器
 $ git config --global core.editor vim
 
-##独立忽略文件
+# 独立忽略文件
 $ git config --global core.excludesfile /home/linzhenjie/.gitignore
 
-##查看配置信息
+# 查看配置信息
 $ git config --list
 
-##获取帮助
+# 获取帮助
 $ git help config
 
 
@@ -54,21 +54,21 @@ $ git remote -v
 
 6.添加远程仓库和推送
 
-##添加远程仓库分支
+# 添加远程仓库分支
 $ git remote add test root@192.168.1.1:/var/www/test
-##从远程仓库抓取数据
+# 从远程仓库抓取数据
 $ git fetch test
-##推送数据到远程仓库
+# 推送数据到远程仓库
 $ git push origin master
-##查看远程仓库信息
+# 查看远程仓库信息
 $ git remote show origin
 
 
 7.远程仓库的删除和重命名
 
-##重命名
+# 重命名
 $ git remote rename test test_new
-##删除
+# 删除
 $ git remote rm paul
 
 
@@ -83,48 +83,48 @@ $ git add test.php
 
 3.提交更新
 
-##提交更新
+# 提交更新
 $ git commit -m "add test file for my test"
-##添加并提交更新
+# 添加并提交更新
 $ git commit -a -m 'added new benchmarks'
-##执行一次空白提交
+# 执行一次空白提交
 $ git commit --allow-empty -m "who does commit?"
 
 4.branch分支
 
-## 列出分支
+#  列出分支
 $ git branch
 
-## 创建新分支
+#  创建新分支
 $ git branch branchname
 
-## 将新建分支push到远端
+#  将新建分支push到远端
 $ git push origin branchname
 
-## 删除分支
+#  删除分支
 $ git branch -d branchname
 
-## 创建新分支，并立即切换到它
+#  创建新分支，并立即切换到它
 $ git checkout -b branchname
 
-## 切换分支
+#  切换分支
 $ git checkout master
 $ git checkout branchname
 
-## 将分支合并到当前的分支
+#  将分支合并到当前的分支
 $ git merge branchname
 
 5.比较差异
 
-##暂存库与版本库比较
+# 暂存库与版本库比较
 $ git diff
-##本地库与暂存库比较
+# 本地库与暂存库比较
 $ git diff HEAD
-##暂存库与版本库比较
+# 暂存库与版本库比较
 $ git diff --cached
 $ git diff --staged
 
-##冲突标记
+# 冲突标记
 <<<<<<< （7个<）与=======之间的内容是我的修改
 =======与>>>>>>>之间的内容是别人的修改
 
@@ -136,32 +136,32 @@ $ git commit --amend
 
 7. 查看提交历史
 
-##查看所有日志
+# 查看所有日志
 $ git log
-##查看所有日志（包含重置的日志）
+# 查看所有日志（包含重置的日志）
 $ git reflog show master
 
 8.重置/回退暂存区和版本库
 
-##重置/回退版本库
+# 重置/回退版本库
 $ git reset --soft 
-##重置/回退版本库、暂存库
+# 重置/回退版本库、暂存库
 $ git reset
-##重置/回退版本库、暂存区、工作区
+# 重置/回退版本库、暂存区、工作区
 $ git reset --hard
 
 9.清理工作区
 
-##查看不在暂存区的工作区文件
+# 查看不在暂存区的工作区文件
 $ git clean -nd
-##清理工作区多余文件
+# 清理工作区多余文件
 $ git clean –fd
 
 10.删除暂存区和版本库
 
-##删除暂存库和版本库的文件
+# 删除暂存库和版本库的文件
 $ git rm test.php
-##删除版本库的文件
+# 删除版本库的文件
 $ git rm --cached test.php
 
 11.移动文件
@@ -170,21 +170,21 @@ $ git mv test.php test_new.php
 
 12.进度的存储和恢复
 
-##保存当前进度
+# 保存当前进度
 $ git stash save
-##查看当前进度列表
+# 查看当前进度列表
 $ git stash list
-##弹出恢复工作区进度
+# 弹出恢复工作区进度
 $ git stash pop
-##弹出恢复工作区和暂存区进度
+# 弹出恢复工作区和暂存区进度
 $ git stash pop --index
-##应用工作区进度
+# 应用工作区进度
 $ git stash apply
-##删除一个进度
+# 删除一个进度
 $ git stash drop
-##删除所有存储进度
+# 删除所有存储进度
 $ git stash clear
-##存储分支进度
+# 存储分支进度
 $ git stash branch
 
 13.软件发布时创建标签
@@ -192,19 +192,19 @@ $ git stash branch
 # 查看标记
 $ git tag
 
-## 将提交ID为“1b2e1d63ff.....”的提交标记为v1.0.0
+#  将提交ID为“1b2e1d63ff.....”的提交标记为v1.0.0
 $ git tag v1.0.0 1b2e1d63ff
 
-## 将最新提交打上“v1.0”的标签
+#  将最新提交打上“v1.0”的标签
 $ git tag -a v1.0
 
 
 四、忽略文件语法
 
 .gitignore
-*.a            ##忽略以.a为节结尾的文件
-!lib.a         ##不会忽略lib.a的文件或目录
-/DIR           ##忽略当前目录下文件（不包括子目录）
-DIR/           ##忽略当前目录下所有文件
-DIR/*.txt      ##忽略DIR下的txt文件（不包括子目录）
+*.a            # 忽略以.a为节结尾的文件
+!lib.a         # 不会忽略lib.a的文件或目录
+/DIR           # 忽略当前目录下文件（不包括子目录）
+DIR/           # 忽略当前目录下所有文件
+DIR/*.txt      # 忽略DIR下的txt文件（不包括子目录）
 
