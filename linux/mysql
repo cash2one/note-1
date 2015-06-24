@@ -1,0 +1,14 @@
+1.终端启动MySQL：/etc/init.d/mysql start；（stop ，restart。）
+2.登录MySQL：mysql -u root -p (用root账户登录),然后输入密码；
+3.查看所有的数据库名字：show databases;
+4.选择一个数据库操作： use database_name;
+5.查看当前数据库下所有的表名：show tables;
+6.创建一个数据库：create database database_name;
+7.删除一个数据库：drop database database_name;
+8.创建一个表: create table mytest( uid bigint(20) not null, uname varchar(20) not null);
+9.删除一个表: drop table mytest;
+10.设置创建的数据库的编码
+ALTER DATABASE <db-name> DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+11.查看数据库编码
+show variables like 'character%';
+12.查看数据库信息 \s
