@@ -1,27 +1,26 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 '''create a new python module file'''
 
 __author__ = "baixue"
 
-import os
-import sys
+import os, sys
 
 
 fname = raw_input("file name:")
 
-if fname=='':
+if not fname:
     sys.exit()
 
 # check if the file exists already
 fname = '%s.py' % fname
 if os.path.exists(fname):
-    raw_input("ERROR:'%s' already exists" % fname)
+    print "ERROR:'%s' already exists" % fname
     sys.exit()
 
 linelist = [
-    '#!/usr/bin/env python',
+    '#!/usr/bin/python',
     '# -*- coding: utf-8 -*-\n',
     '\'\'\'Doc String\'\'\'\n',
     '__author__ = \'baixue\'',
