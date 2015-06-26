@@ -1,5 +1,5 @@
 一.安装GIT和配置GIT
-
+##################################################
 1.安装GIT
 $ apt-get install git
 
@@ -84,9 +84,9 @@ $ git add test.php
 3.提交更新
 
 # 提交更新
-$ git commit -m "add test file for my test"
+$ git commit -m "message"
 # 添加并提交更新
-$ git commit -a -m 'added new benchmarks'
+$ git commit -a -m 'message'
 # 执行一次空白提交
 $ git commit --allow-empty -m "who does commit?"
 
@@ -96,23 +96,23 @@ $ git commit --allow-empty -m "who does commit?"
 $ git branch
 
 #  创建新分支
-$ git branch branchname
+$ git branch branch-name
 
 #  将新建分支push到远端
-$ git push origin branchname
+$ git push origin branch-name
 
 #  删除分支
-$ git branch -d branchname
+$ git branch -d branch-name
 
 #  创建新分支，并立即切换到它
-$ git checkout -b branchname
+$ git checkout -b branch-name
 
 #  切换分支
 $ git checkout master
-$ git checkout branchname
+$ git checkout branch-name
 
 #  将分支合并到当前的分支
-$ git merge branchname
+$ git merge branch-name
 
 5.比较差异
 
@@ -138,7 +138,7 @@ $ git commit --amend
 
 # 查看所有日志
 $ git log
-# 查看所有日志（包含重置的日志）
+# 查看所有日志(包含重置的日志)
 $ git reflog show master
 
 8.重置/回退暂存区和版本库
