@@ -15,6 +15,16 @@ def get_basename(path):
     return os.path.splitext(os.path.basename(path))[0]
 
 
+def getfile(dirs, ext=None):
+    '''获取给目录内的所有文件(不包括子目录里的文件), 可以指定文件扩展名来获取指定类型的文件'''
+    if not os.path.isdir(dirs):
+        return
+    files =  os.listdir(dirs)
+    files =  filter(lambda x:os.path.isfile(os.path.join(dirs, x)), files)
+    if ext:files = filter(lambda x:os.path.splitext(x)[1]==ext, files)
+    return files
+
+
 def listget(lst, idx, default=None):
     '''若列表中某索引存在则返回之'''
     if -len(lst) <= idx < len(lst):return lst[idx]
@@ -39,6 +49,7 @@ def par_two(a, b, padding_item=None):
         yield x, padding_item
     for x in b:
         yield padding_item, x
+
 
 def par_loop(padding_item, *sequences):
     '''并行地循环多个可迭代对象, 短的用padding_item补充'''
