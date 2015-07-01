@@ -10,7 +10,7 @@ $ svn add [path]
 在提交前，你也可以用svn revert撤销新增的文件。
 访问库：否
 eg: svn add file.cpp
- 
+
 $ svn blame Target[@REV]
 别名：praise,annotate,ann
 描述：显示某个已受控文件的每一行的最后修改版本和作者

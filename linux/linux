@@ -21,16 +21,25 @@ $ sudo apt-get remove --purge package_name   => 卸载
 $ sudo nautilus     =>  以root权限打开一个窗口，来管理文件
 $ sudo   => 以系统管理者的身份执行指令
 $ top    =>  资源管理
-
+$ reboot  => 重启机
 $ shutdown  => 关机
     shutdown -h now  # 现在关机
     shutdown -h hours:minutes # 按预定时间关闭系统
-    shutdown -c #取消按预定时间关闭系统
+    shutdown -c # 取消按预定时间关闭系统
+    shutdown -r now # 重启计算机，停止服务后重新启动计算机
 
 $ login
 $ logout
-$ reboot  => 重启机
+$ w   =>  显示登录用户的详细信息
+$ who  =>  显示登录用户
+$ last  =>  查看最近哪些用户登录系统
 $ free  =>  查看内存情况
+$ vmstat  =>  监视虚拟内存使用情况
+$ ps     => 显示进程信息
+    ps ux  # 显示当前用户的进程
+    ps uxwww  # 显示当前用户的进程的详细信息
+    ps aux  # 显示当前用户的进程
+    ps ef  # 显示系统所有进程信息
 $ kill  => 杀进程
 $ su    => 变更使用者身份
     su root
@@ -40,6 +49,7 @@ $ echo $PATH  => 查看单个变量
 
 
 $ date    =>  显示日期
+$ uptime  =>  现在时间，系统开机运转到现在经过的时间，连线的使用者数量，最近的系统负载
 $ cal     =>  显示一个日历
 $ uptime  =>  显示系统运行了多长时间
 $ bc      =>  一个简单计算器
@@ -72,15 +82,20 @@ $ gcc
 
 #----------------常用-----------------
 $ cd
-    cd .. # 返回上级目录
-    cd /  # 进入根目录
-    cd -  # 返回上次的目录
-    cd    # 进入个人主目录
-    ~     # 代表/home/用户名目录
+    cd ..     # 返回上级目录
+    cd ../..  # 返回上两级目录
+    cd /      # 进入根目录
+    cd -      # 返回上次的目录
+    cd        # 进入个人主目录
+    ~         # 代表/home/用户名目录
     cd ~/.local  # 表示用户主目录下有个.local的目录，"."表示这是个隐藏文件
 
 $ cat filename  => 查看文件
 $ more filename  => 分页查看 space下一页, b上一页
+
+    ps ux|more
+    ls|more
+
 $ nl filename   => 带行号查看文件
 $ file          => 查看文件类型
 $ wc            => 统计文本中函数、字数、字符数
@@ -89,8 +104,19 @@ $ grep          => 在指定文件中搜索特定内容
     Global Regular Expression
 
 $ diff          => 分析两个文件的不同
+
+    diff dir1 dir2  # 比较目录1和目录2的文件列表是否相同,不比较文件，不同则列出
+    diff file2 file2  # 比较文件
+    comm file1 file2  # 比较文件，显示不同的内容
+    
 $ patch         => 应用补丁
+
 $ pwd           => 显示工作目录完整路径
+
+$ ln      => 建立链接
+
+    ln source_path target_path  # 硬链接
+    ln -s source_path target_path  # 软链接
 
 $ du            =>    显示目录或文件的大小
 
@@ -140,6 +166,8 @@ $ cp source destination  => 复制
 　　 
 　　将所有的C语言程序拷贝至 Finished 子目录中 : 
 　　 cp *.c Finished
+　　 
+　　 cp /root/source .  #将/root下的文件source复制到当前目录
 
 
 $ rm                             =>  删除档案及目录(慎用删除不好恢复)
