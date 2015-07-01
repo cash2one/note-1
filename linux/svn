@@ -74,6 +74,7 @@ $ svn diff
 描述：用来比较并显示修改点。
 访问库：
 eg：svn diff   ##最常用的方式，用来显示WC基于最近一次更新以后的所有的本地修改点。
+eg: svn diff -r 192680  # 比较当前副本和版本192680的差异
 eg：svn diff -r 301 bin ## 比较WC和版本301中的bin目录的修改点
 eg：svn diff -r 3000:3500 file:///var/svn/repos/myProject/trunk   ##比较库里主干3000版和3500版的差异。
 eg：svn diff --summarize --xml http://svn.red-bean.com/repos/test@r2 http://svn.red-bean.com/repos/test  ##--summarize --xml 参数将差异情况以xml文档的方式显示出来。
