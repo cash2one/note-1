@@ -6,13 +6,20 @@
 __author__ = 'baixue'
 
 
+import os, sys
 import itertools
+
+
+def get_basename(path):
+    '''获取一个文件的名字，不包括扩展名'''
+    return os.path.splitext(os.path.basename(path))[0]
 
 
 def listget(lst, idx, default=None):
     '''若列表中某索引存在则返回之'''
     if -len(lst) <= idx < len(lst):return lst[idx]
     else:return default
+
 
 def list_get(lst, idx, default=None):
     '如果传递的索引绝大多数都是有效索引，那么用这个函数'
@@ -62,11 +69,3 @@ def smallmerge(*sequences):
 
 
 
-
-
-
-
-
-
-if __name__ == "__main__":
-    pass

@@ -10,13 +10,12 @@ import os, sys
 
 fname = raw_input("file name:")
 
-if not fname:
-    sys.exit()
+if not fname:sys.exit()
 
 # check if the file exists already
 fname = '%s.py' % fname
 if os.path.exists(fname):
-    print "ERROR:'%s' already exists" % fname
+    print "ERROR:<%s> already exists" % fname
     sys.exit()
 
 linelist = [
