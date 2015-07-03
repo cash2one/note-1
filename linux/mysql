@@ -1,8 +1,10 @@
 1.终端启动MySQL
 $ /etc/init.d/mysql start(stop, restart)
+$ sudo service mysql start(stop, restart)
 
-2.登录MySQL
+2.登录退出MySQL
 $ mysql -u root -p (用root账户登录), 然后输入密码
+$ mysql>quit
 
 3.查看所有的数据库名字
 mysql> show databases;
