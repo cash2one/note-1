@@ -1,28 +1,27 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''Doc String'''
+'''gevnet demo'''
 
-__author__ = 'baixue'
 
-from gevent import monkey; monkey.patch_socket()
 import gevent
 
 
-def f(n):
-    for i in range(n):
-        print gevent.getcurrent(), i
-
-g1 = gevent.spawn(f, 5)
-g2 = gevent.spawn(f, 5)
-g3 = gevent.spawn(f, 5)
-g1.join()
-g2.join()
-g3.join()
+def foo():
+    print('Running in foo')
+    gevent.sleep(0)
+    print('Explicit context switch to foo again')
 
 
+def bar():
+    print('Explicit context to bar')
+    gevent.sleep(0)
+    print('Implicit context switch back to bar')
 
 
+gevent.joinall([
+    gevent.spawn(foo),
+    gevent.spawn(bar),
+])
 
-if __name__ == "__main__":
-    pass
+
