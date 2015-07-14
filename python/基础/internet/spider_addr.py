@@ -8,6 +8,7 @@ import datetime
 from win32clipboard import *
 from win32con import CF_TEXT
 
+
 def get_Clipboard():
          OpenClipboard()
          text = GetClipboardData(CF_TEXT)
