@@ -46,13 +46,13 @@ $ svn cleanup [PATH...]
 描述：递归的清理WC中过期的锁和未完成的操作。
 访问库：否
 eg：svn cleanup
- 
+
 $ svn commit [PATH...]
 别名：ci
 描述：把你WC的更改提交到仓库
 访问库：是
 eg：svn commit -m "added howto section." ##默认情况下提交必须提供log message 
- 
+
 $ svn copy SRC[@REV]... DST
 别名：cp
 描述:copy操作可以从WC到WC；WC到URL；URL到WC；URL到URL。现在SVN只支持同一个仓库内文件的拷贝，不允许跨仓库操作。
@@ -61,14 +61,14 @@ eg：svn copy -r 11 file:///var/svn/repos/test/trunk \
            file:///var/svn/repos/test/tags/0.6.32-prerelease \
            -m "Forgot to tag at rev 11"
 ##copy命令是创建分支和标记的常用方式。copy到url的操作隐含了提交动作，所以需要提供log messages。
- 
+
 $ svn delete PATH...
 别名：del，remove，rm
 描述：删除
 访问库：如果PATH是库地址时会，删除WC内的文件不会。
 eg：svn del localfile.cpp    ##删除WC里的文件，在下一次提交WC的时候才会真正在仓库里将对应文件删除。
 eg: svn del file:///var/svn/repos/test/yourfile  ##删除仓库里的文件
- 
+
 $ svn diff
 别名：di
 描述：用来比较并显示修改点。
@@ -85,12 +85,12 @@ svn export [-r REV] PATH1[@PEGREV] [PATH2]
 描述：导出一个干净的目录树，不包含所有的受控信息。可以选择从URL或WC中导出。
 访问库：如果访问的是URL则会。
 eg：svn export file:///var/svn/repos my-export   ##导出到my-export目录。
- 
+
 $ svn help — Help!
 别名：?,h
 描述：不用解释了
 访问库：否。
- 
+
 $ svn import [PATH] URL
 别名：无
 描述：导入本地一个目录到库中。但是导入后，本地的目录并不会处于受控状态。
@@ -102,19 +102,19 @@ $ svn info [TARGET[@REV]...]
 描述：显示指定WC和URL信息。
 访问库：仅当访问的是库路径时。
 eg：svn info --xml http://svn.myProject.com/repos/test  ##将信息以xml格式显示。
- 
+
 $ svn list [TARGET[@REV]...]
 别名：ls
 描述：显示目标下的文件和目录列表。
 访问库：如果访问的是库地址就会。
 eg：svn list --verbose file:///var/svn/repos   ##--verbose参数表示显示详细信息。
- 
+
 $ svn lock TARGET...
 别名：无
 描述：对目标获得修改锁。如果目标已被其他用户锁定，则会抛出警告信息。用--force参数强制从其他用户那里获得锁。
 访问库：是
 eg：svn lock --force tree.jpg
- 
+
 $ svn log [PATH]
 $ svn log URL[@REV] [PATH...]
 别名：无
@@ -219,7 +219,7 @@ $ svn status [PATH...]
 '!'  丢失，一般是将受控文件直接删除导致
 访问库：加上--show-updates参数时会
 eg：svn status wc
- 
+
 $ svn switch URL[@PEGREV] [PATH]
 $ svn switch --relocate FROM TO [PATH...]
 别名：sw

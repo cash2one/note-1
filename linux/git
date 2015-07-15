@@ -12,17 +12,14 @@ $ git config --global user.email johndoe@example.com
 git config --global alias.ci commit
 git config --global alias.st status
 
-# 文本编辑器
-$ git config --global core.editor emacs
+# 编辑器
+$ git config --global core.editor vim
 
 # 差异分析工具
 $ git config --global merge.tool vimdiff
 
 # 颜色显示
 $ git config --global color.ui true
-
-# 编辑器
-$ git config --global core.editor vim
 
 # 独立忽略文件
 $ git config --global core.excludesfile /home/linzhenjie/.gitignore
@@ -62,7 +59,6 @@ $ git push origin master
 # 查看远程仓库信息
 $ git remote show origin
 
-
 7.远程仓库的删除和重命名
 
 # 重命名
@@ -79,6 +75,7 @@ $ git status -s
 
 2.往暂存库中添加新的文件
 $ git add test.php
+$ git add -A
 
 3.提交更新
 
@@ -124,7 +121,7 @@ $ git diff --cached
 $ git diff --staged
 
 # 冲突标记
-<<<<<<< （7个<）与=======之间的内容是我的修改
+<<<<<<<与=======之间的内容是我的修改
 =======与>>>>>>>之间的内容是别人的修改
 
 6.修改最后一次提交
