@@ -1,10 +1,8 @@
 1.终端启动MySQL
 $ /etc/init.d/mysql start(stop, restart)
-$ sudo service mysql start(stop, restart)
 
-2.登录退出MySQL
-$ mysql -u root -p (用root账户登录), 然后输入密码
-$ mysql>quit
+2.登录MySQL
+$ mysql -h hostname -u root -p (用root账户登录), 然后输入密码
 
 3.查看所有的数据库名字
 mysql> show databases;
@@ -35,3 +33,10 @@ mysql> show variables like 'character%';
 
 12.查看数据库信息
 mysql> \s
+
+13.备份与还原
+$mysqldump -h hostname -u username -p password databasename > backupfile.sql
+$mysqldump -h hostname -u username -p password databasename | gzip > backupfile.sql.gz
+还原MySQL数据库的命令
+$mysql -h hostname -u username -p password databasename < backupfile.sql
+$gunzip < backupfile.sql.gz | mysql -u username -p password databasename
