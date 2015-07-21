@@ -126,7 +126,7 @@ eg：##如果版本号不连续，只能采用如下方式。
 $ svn log -r 14 > mylog
 $ svn log -r 19 >> mylog
 $ svn log -r 27 >> mylog
- 
+$ svn log -r 13716 -v dir  ##显示指定版本号的修改信息
 $ svn merge sourceURL1[@N] sourceURL2[@M] [WCPATH]
 $ svn merge sourceWCPATH1@N sourceWCPATH2@M [WCPATH]
 $ svn merge [[-c M]... | [-r N:M]...] [SOURCE[@REV] [WCPATH]]
