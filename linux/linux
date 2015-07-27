@@ -186,7 +186,10 @@ $ iptraf       =>  查看网络流量
 $ ifconfig -a  =>  显示网络配置
 $ ip address   =>  查看ip
 $ sudo ethstatus -i eth0  =>  查看网络流量
+
 # netstat    => 查看端口使用情况
+    $ netstat –ntlp|grep 6379  =>  查看xxxx端口的占用情况
+    $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
 $ tar        =>  压缩解压
     $ tar -zcvf filename.tar.gz #压缩
     $ tar -zxvf filename.tar.gz #解压
@@ -199,7 +202,6 @@ $ ps aux|grep nginx
 S lsof -i    =>  查看端口占用情况
 $ lsof -i:xxxx    =>  查看xxxx端口的占用情况
 
-$ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
 $ ps -aux|grep <进程号>   =>  找到进程号后可以用此命令查看详细信息
 
 $ killall 进程别名    =>   结束进程
