@@ -137,6 +137,12 @@ $ git log
 # 查看所有日志(包含重置的日志)
 $ git reflog show master
 
+# 查看某个文件某次的修改
+$ git show <某次提交的哈希值> 文件名
+
+# 查看那几个文件改变了
+$ git whatchanged
+
 8.重置/回退暂存区和版本库
 
 # 重置/回退版本库
