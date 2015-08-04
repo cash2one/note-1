@@ -1,9 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 '''create a new python module file'''
 
-__author__ = "baixue"
+__author__ = "Pysaoke"
 
 import os, sys
 
@@ -19,10 +19,10 @@ if os.path.exists(fname):
     sys.exit()
 
 linelist = [
-    '#!/usr/bin/python',
+    '#!/usr/bin/env python',
     '# -*- coding: utf-8 -*-\n',
-    '\'\'\'Doc String\'\'\'\n',
-    '__author__ = \'baixue\'',
+    '\'\'\'doc string\'\'\'\n',
+    '__author__ = \'Pysaoke\'',
     '\n\n\n\n\n\n\n\n',
     r'if __name__ == "__main__":',
     '    pass'
