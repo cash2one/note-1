@@ -106,6 +106,7 @@ $ git checkout -b branch-name
 #  切换分支
 $ git checkout master
 $ git checkout branch-name
+$ git checkout branch-name -- filename # 将xxx分支的xxx文件替换当前分支的文件,解决冲突时有用.
 
 #  将分支合并到当前的分支
 $ git merge branch-name
