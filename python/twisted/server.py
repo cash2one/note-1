@@ -8,7 +8,6 @@ from time import ctime
 
 PORT = 5001
 
-
 class TSServerProtocol(Protocol):
 
     def connectionMade(self):
