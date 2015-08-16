@@ -8,7 +8,7 @@ __doc__变量;在模块，类和函数声明中第一个没有赋值的字符串
 """template.py -- sample module demonstrating documentation strings"""
 在导入模块时，可以通过模块、类和函数的__doc__属性来访问它的docstirng
 
-"\"--继续上一行
+"\"--继续上一行"
 ";"--同一行书写过个语句可以用";"分隔
 "_"--在解释器中有特别含义，表示最后一个表达式的值
 
@@ -447,6 +447,10 @@ class myClass(object):
     def staticFoo():
         suit
 
+    @classmethod
+    def classFoo(cls):
+        suit
+
 #函数式编程
 lambda [arg1,[,arg2,....argn]} : expression
 
@@ -492,7 +496,7 @@ decimal----十进制浮点运算类
 array----高效数值数组(字符、整型、浮点型等)
 math/cmath----标准c库数学运算函数,常用数学运算在math模块，复数运算在cmath模块
 operator----数字操作符的函数实现
-#random----多种伪随机数生成器
+random----多种伪随机数生成器
 
 
 #---------------------------文件对象----------------------------
