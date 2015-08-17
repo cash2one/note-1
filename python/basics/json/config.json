@@ -1,0 +1,92 @@
+{
+
+  "Global_Settings":
+  {
+    "DEPTH_LIMIT": 1,
+
+    "DOWNLOAD_TIMEOUT": 30,
+
+    "DOWNLOAD_DELAY": 1,
+    "RANDOMIZE_DOWNLOAD_DELAY": true,
+
+    "CONCURRENT_REQUESTS": 16,
+
+    "CONCURRENT_REQUESTS_PER_DOMAIN": 16,
+    "CONCURRENT_REQUESTS_PER_IP": 16,
+
+    "CONCURRENT_ITEMS": 100,
+
+    "COOKIES_ENABLED": true,
+
+    "TELNETCONSOLE_ENABLED": false,
+
+    "REACTOR_THREADPOOL_MAXSIZE": 10,
+
+    "REDIRECT_MAX_TIMES":20,
+
+    "DEFAULT_REQUEST_HEADERS":
+    {
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "Accept-Language": "zh-CN,zh;q=0.8"
+    }
+  },
+
+
+  "Redis_Settings":
+  {
+    "REDIS_HOST": "localhost",
+    "REDIS_PORT": 6379,
+
+    "REDIS_URL": "redis://user:pass@hostname:9001"
+  },
+
+
+  "Store_Settings":
+  {
+    "SERVER": "localhost",
+    "PORT": 27017,
+    "DB": ""
+  },
+
+
+  "Spider_Settings":
+  {
+    "name": "easy-spider",
+    "allowed_domains": ["58.com"],
+    "start_urls": ["http://bj.58.com/ershouche/"],
+    "rule_list":
+    {
+      "allow": [],
+      "deny": []
+    },
+    "rule_detail":
+    {
+      "allow": [],
+      "deny": []
+    }
+  },
+
+  "Item_Order": ["item1", "item2", "item3"],
+
+  "Item_Define":
+  {
+    "item1":
+    {
+      "xpath":"",
+      "re":""
+    },
+
+    "item2":
+    {
+      "xpath":"",
+      "re":""
+    },
+
+    "item3":
+    {
+      "xpath":"",
+      "re":""
+    }
+  }
+
+}

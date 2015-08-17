@@ -3,8 +3,6 @@
 
 '''json test'''
 
-__author__ = 'baixue'
-
 import json
 
 
@@ -40,6 +38,7 @@ info = {'Personal':{'name':u'郑国文', 'phone':'15901095956', 'sex':u'男'},
                        }
         }
 
+
 json_obj = json.dumps(info)
 print json_obj
 res = json.loads(info)
@@ -47,11 +46,3 @@ print
 print
 print res
 
-
-
-
-
-
-
-if __name__ == "__main__":
-    pass
