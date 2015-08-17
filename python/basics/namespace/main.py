@@ -1,17 +1,14 @@
-#/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''doc string'''
+import var
 
-__author__ = 'baixue'
+print var.CONF
 
+var.CONF = 120
 
+print var.CONF
 
+import var
 
-
-
-
-
-
-if __name__ == "__main__":
-    pass
+print var.CONF
