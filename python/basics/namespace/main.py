@@ -9,6 +9,6 @@ var.CONF = 120
 
 print var.CONF
 
-import var
+import foo
 
-print var.CONF
+print foo.ITEM
