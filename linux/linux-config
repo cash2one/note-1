@@ -28,7 +28,18 @@ sudo apt-get install nautilus-open-terminal
 
 
 # 线缆被拔出的问题
+##关闭了网卡的自动协商功能，设置网卡在100M下工作，设置全双工的工作模式
 sudo ethtool -s eth0 autoneg off speed 100 duplex full
+
+在/etc/init.d/rc.local里添加
+/sbin/ethtool -s eth0 autoneg off speed 100 duplex full
+
+auto eth0
+iface eth0 inet dhcp
+
+sudo service network-manager stop
+sudo rm /var/lib/Network-Manager/Network-Manager.state
+sudo service network-manager start
 
 # 多版本gcc切换
 ## 配置
