@@ -13,6 +13,9 @@ mysql> use database_name;
 5.查看当前数据库下所有的表名
 mysql> show tables;
 
+查看表结构
+mysql> show columns from table
+
 6.创建一个数据库
 mysql> create database database_name;
 
