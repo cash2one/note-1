@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''create a new python module file'''
+'''
+    new a python module file
+'''
 
-__author__ = "Pysaoke"
+__author__ = 'Pysaoke'
 
 import os, sys
 
 
-fname = raw_input("file name:")
-
-if not fname:sys.exit()
+try:
+    fname = sys.argv[1]
+except IndexError:
+    fname = raw_input("please enter the filename:")
+    if not fname:sys.exit()
 
 # check if the file exists already
 fname = '%s.py' % fname
@@ -29,6 +33,6 @@ linelist = [
     ]
 
 # write lines to file
-fobj = file(fname, 'w')
+fobj = open(fname, 'w')
 fobj.writelines('\n'.join(linelist))
 fobj.close()

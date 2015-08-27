@@ -112,6 +112,7 @@ mesg：允许vi显示其他用户用write写到自己终端上的信息
 :n1,n2 m n3:将n1行到n2行之间的内容移至到第n3行下
 :n1,n2 d :将n1行到n2行之间的内容删除
 :w :保存当前文件
+:w !sudo tee %  # vim sudo权限保存
 :e filename:打开文件filename进行编辑
 :x:保存当前文件并退出
 :q:退出vi
