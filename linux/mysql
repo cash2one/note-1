@@ -28,6 +28,10 @@ mysql> create table mytest( uid bigint(20) not null, uname varchar(20) not null)
 9.删除一个表
 mysql> drop table mytest;
 
+清空表数据
+delete from 表名;
+truncate table 表名;
+
 10.设置创建的数据库的编码
 mysql> ALTER DATABASE <db-name> DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
