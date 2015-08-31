@@ -108,6 +108,7 @@ $ svn list [TARGET[@REV]...]
 描述：显示目标下的文件和目录列表。
 访问库：如果访问的是库地址就会。
 eg：svn list --verbose file:///var/svn/repos   ##--verbose参数表示显示详细信息。
+eg:svn list svn://192.168.162.101/finance
 
 $ svn lock TARGET...
 别名：无
@@ -142,6 +143,7 @@ $ svn mkdir URL...
 描述：在WC或库路径创建目录
 访问库：只有当访问库地址时。
 eg：svn mkdir newdir
+eg: svn mkdir svn://192.168.162.101/finance/EasySpider
  
 $ svn move SRC... DST
 别名：mv, rename, ren
