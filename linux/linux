@@ -204,7 +204,15 @@ $ sudo ethstatus -i eth0  =>  查看网络流量
     $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
     
 $ tar        =>  压缩解压
-    $ tar -zcvf filename.tar.gz #压缩
+    $ tar -zcvf filename.tar.gz dirname  #压缩
+	    -c 建立压缩档案的参数指令(create的意思)
+		-x 解开一个参数档案
+		-t 查看tarfile里的档案
+		c/x/t只能存在一个
+		-z 是否同时具有gzip属性,即用gzip压缩
+		-j 用bzip2压缩
+		-v 压缩的过程中显示档案
+		-f 使用档案名 注意:f之后要立即接档案名，不能再加参数
     $ tar -zxvf filename.tar.gz #解压
 $ zip/unzip
     $ zip -r mydata.zip mydata  #压缩mydata目录
