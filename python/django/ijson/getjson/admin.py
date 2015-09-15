@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import ImpApply
 
-# Register your models here.
+
+@admin.register(ImpApply)
+class ImpApplyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'timestamp')
