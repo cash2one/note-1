@@ -3,8 +3,6 @@
 
 '''学习Django的url设置'''
 
-__author__ = 'baixue'
-
 
 from django.conf.urls.defaults import *
 
@@ -90,11 +88,3 @@ urlpatterns += patterns('myproject.catalog.views',
 
 
 
-
-
-
-
-
-
-if __name__ == "__main__":
-    pass
