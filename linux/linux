@@ -115,6 +115,7 @@ $ cd
     cd ~/.local  # 表示用户主目录下有个.local的目录，"."表示这是个隐藏文件
 
 $ cat filename   => 查看文件
+$ stat filename  => 查看文件状态
 $ more filename  => 分页查看 space下一页, b上一页
 
     ps ux|more
