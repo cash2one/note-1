@@ -146,6 +146,8 @@ $ git whatchanged
 
 8.重置/回退暂存区和版本库
 
+# 回退未提交的修改
+$ git checkout .
 # 重置/回退版本库
 $ git reset --soft 
 # 重置/回退版本库、暂存库
