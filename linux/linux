@@ -252,4 +252,12 @@ $ ps -aux|grep <进程号>   =>  找到进程号后可以用此命令查看详�
 
 $ killall 进程别名    =>   结束进程
     killall -s INT 进程名
-
+#----------------ssh----------------------
+# 登录
+ssh xue.bai@192.168.162.101 -p 3222  # enter ==> password
+# 传文件
+# 从服务器上下载文件
+scp username@servername:/path/filename /var/www/local_dir（本地目录）
+# 上传本地文件到服务器
+scp /path/filename username@servername:/path 
+# 传目录加 -r
