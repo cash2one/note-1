@@ -1,0 +1,43 @@
+***********************************************************************************************************************
+
+Python 升级到 2.7.9 之后引入了一个新特性，当使用urllib.urlopen打开一个 https 链接时， 会验证一次 SSL 证书.
+
+而当目标网站使用的是自签名的证书时:
+
+就会抛出一个 urllib2.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:581)> 的错误消息
+
+***********************************************************************************************************************
+
+解决方案包括下列两种方式：
+
+1、使用ssl创建未经验证的上下文，在urlopen中传入上下文参数
+
+import ssl
+import urllib2
+
+context = ssl._create_unverified_context()
+print urllib2.urlopen("https://www.12306.cn/mormhweb/", context=context).read()
+
+2. 全局取消证书验证
+
+import ssl
+import urllib2
+ 
+ssl._create_default_https_context = ssl._create_unverified_context
+ 
+print urllib2.urlopen("https://www.12306.cn/mormhweb/").read()
+
+
+
+HTTPS认证：
+
+"""https协议需要到 CA 申请证书 是付费的"""
+
+它的主要作用可以分为两种：
+
+一、建立一个信息安全通道，来保证数据传输的安全；
+
+二、确认网站的真实性，凡是使用了 https 的网站，都可以通过点击浏览器地址栏的锁头标志来查看网站认证之后的真实信息，也可以通过 CA 机构颁发的安全签章来查询
+
+1． 一般意义上的https，就是服务器有一个证书。
+2． 少许对客户端有要求的情况下，会要求客户端也必须有一个证书。例如U盾
