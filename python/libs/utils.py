@@ -21,7 +21,8 @@ def getfile(dirs, ext=None):
         return
     files =  os.listdir(dirs)
     files =  filter(lambda x:os.path.isfile(os.path.join(dirs, x)), files)
-    if ext:files = filter(lambda x:os.path.splitext(x)[1]==ext, files)
+    if ext:
+        files = filter(lambda x:os.path.splitext(x)[1]==ext, files)
     return files
 
 

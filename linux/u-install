@@ -37,6 +37,12 @@ $ sudo apt-get install oracle-java8-set-default
 10、openvpn
 $ sudo apt-get install openvpn
 
+11、mongodb
+
+
+12、redis
+
+
 13、nginx
 $ sudo add-apt-repository ppa:nginx/stable
 $ sudo apt-get update
@@ -67,6 +73,8 @@ pycurl
 错误：Could not run curl-config
 sudo apt-get install libcurl4-openssl-dev
 
+pillow
+$ sudo apt-get install libjpeg-dev
 
 16、config
 
@@ -90,14 +98,6 @@ sudo apt-get install libsqlite3-dev
 
 #lxml
 sudo apt-get install libxml2-dev libxslt-dev python-dev
-
-# orcale java
-http://jingyan.baidu.com/article/7f766daf5e20944101e1d02b.html
-
-# pycharm
-
-# 右键打开终端
-sudo apt-get install nautilus-open-terminal
 
 # 线缆被拔出的问题
 ##关闭了网卡的自动协商功能，设置网卡在100M下工作，设置全双工的工作模式
