@@ -41,8 +41,10 @@ info = {'Personal':{'name':u'郑国文', 'phone':'15901095956', 'sex':u'男'},
 
 json_obj = json.dumps(info)
 print json_obj
-res = json.loads(info)
+print type(json_obj)
+res = json.loads(json_obj)
 print
 print
 print res
+print type(res)
 
