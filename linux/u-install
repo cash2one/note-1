@@ -9,6 +9,12 @@ ubuntu官方论坛方法
 3、vim
 $ sudo apt-get install vim
 
+安装youcompleteme
+sudo apt-get install vim
+sudo apt-get install vim-youcompleteme
+sudo apt-get install vim-addon-manager
+vam install youcompleteme
+
 4、git和svn
 $ sudo apt-get install git
 
