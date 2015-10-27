@@ -42,8 +42,8 @@ mysql> show variables like 'character%';
 mysql> \s
 
 13.备份与还原
-$mysqldump -h hostname -u username -p password databasename > backupfile.sql
-$mysqldump -h hostname -u username -p password databasename | gzip > backupfile.sql.gz
+$ mysqldump -h hostname -u username -p password databasename > backupfile.sql
+$ mysqldump -h hostname -u username -p password databasename | gzip > backupfile.sql.gz
 还原MySQL数据库的命令
-$mysql -h hostname -u username -p password databasename < backupfile.sql
-$gunzip < backupfile.sql.gz | mysql -u username -p password databasename
+$ mysql -h hostname -u username -p password databasename < backupfile.sql
+$ gunzip < backupfile.sql.gz | mysql -u username -p password databasename

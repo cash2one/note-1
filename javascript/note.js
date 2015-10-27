@@ -417,20 +417,66 @@ a.forEach(function (element) {
 
 
 
+/******  函数  ******/
 
 
+// 如果没有return语句，函数执行完毕后也会返回结果，只是结果为undefined
+
+var abs = function (x) {
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+};
+
+// JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题
+
+abs(); // 返回NaN
+// 传入的参数比定义的少也没有问题, x将收到undefined
+// 要避免收到undefined，可以对参数进行检查
+function abs(x) {
+    if (typeof x !== 'number') {
+        throw 'Not a number';
+    }
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+}
 
 
+// 关键字arguments
+
+// 它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。arguments类似Array但它不是一个Array：
+function foo(x) {
+    alert(x); // 10
+    for (var i=0; i<arguments.length; i++) {
+        alert(arguments[i]); // 10, 20, 30
+    }
+}
+
+foo(10, 20, 30);
+
+function abs() {
+    if (arguments.length === 0) {
+        return 0;
+    }
+    var x = arguments[0];
+    return x >= 0 ? x : -x;
+}
+
+abs(); // 0
+abs(10); // 10
+abs(-9); // 9
 
 
+// rest参数   ------ES6标准引入了rest参数
+// 获得额外的rest参数
 
-
-
-
-
-
-
-
-
-
-
+function foo(a, b, ...rest) {
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+}

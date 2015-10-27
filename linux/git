@@ -90,7 +90,8 @@ $ git commit --allow-empty -m "who does commit?"
 
 #  列出分支
 $ git branch
-
+# 列出远程分支
+$ git branch -a
 #  创建新分支
 $ git branch branch-name
 
@@ -99,7 +100,9 @@ $ git push origin branch-name
 
 #  删除分支
 $ git branch -d branch-name
-
+# 删除远程分支
+$ git push origin --delete <branch-name>
+$ git push origin :<branchName>  # 推送一个空分支到远程分支==删除
 #  创建新分支，并立即切换到它
 $ git checkout -b branch-name
 
@@ -146,6 +149,8 @@ $ git whatchanged
 
 8.重置/回退暂存区和版本库
 
+# 回退未提交的修改
+$ git checkout .
 # 重置/回退版本库
 $ git reset --soft 
 # 重置/回退版本库、暂存库
