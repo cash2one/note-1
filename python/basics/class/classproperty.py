@@ -12,6 +12,7 @@ class C(object):
 c = C()
 
 C.version  # >>> 1.2
+
 '''
 python首先会在c实例中搜索version，然后是C类，再就是继承树中的基类.
 本例中，version再C类中被找到
@@ -29,3 +30,4 @@ c.version  # >>> 1.2
 '''
 修改类属性要用类名，而不是实例名
 '''
+
