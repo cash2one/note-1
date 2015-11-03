@@ -212,6 +212,8 @@ $ rm                          =>  删除档案及目录(慎用删除不好恢复
 　　  rm -i *.c
 　　将 Finished 子目录及子目录中所有档案删除:
 　　  rm -r Finished
+	删除目录下的所有文件除file1和file2外
+	rm -rf !(file1|file2)
 
 $ iptraf       =>  查看网络流量
 $ ifconfig -a  =>  显示网络配置
