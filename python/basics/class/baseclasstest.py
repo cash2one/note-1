@@ -3,9 +3,17 @@
 
 '''doc string'''
 
+class Base(object):
+    name = ''
+    version = ''
+    
+    def __init__(self):
+        pass
 
-from baseclass import Base
 
+class Sub(Base):
+    name = 'sub'
 
-print Base.name
-print Base.version
+    def __init__(self, *args, **kwargs):
+        self.version = '1.0'
+

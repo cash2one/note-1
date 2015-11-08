@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 class Base(object):
@@ -32,4 +31,3 @@ if __name__ == "__main__":
     print b.a
     print b.b
         
-
