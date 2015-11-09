@@ -3,7 +3,7 @@
 
 '''toolkits'''
 
-__author__ = 'baixue'
+__author__ = 'Pysaoke'
 
 
 import os, sys
@@ -76,8 +76,48 @@ def smallmerge(*sequences):
     return result
 
 
+# 获取字典的子集
+def sub_dict_select(x_dict, keys):
+    return dict([(k, x_dict[k]) for k in keys if k in x_dict])
+
+# 获取字典的子集,有默认值
+def sub_dict(x_dict, keys, default=None):
+    return dict([(k, x_dict.get(k, default)) for k in keys])
 
 
+import datetime
 
 
+def last_month(multiple=1):
+    """上几个月的日期"""
+    today = datetime.date.today()
+    year, month = divmod(multiple, 12)
+    offset = today.month - month
+    if offset <= 0:
+        return datetime.date(today.year-year-1, 12+offset, 1).strftime('%Y.%m')
+    else:
+        return datetime.date(today.year-year, offset, 1).strftime('%Y.%m')
 
+
+def gen_date():
+    return map(last_month, range(6))
+
+
+import urllib
+import urlparse
+from urlparse import urljoin
+
+
+def qs(url):
+    """获取url中的查询参数"""
+    query = urlparse.urlparse(url).query
+    return dict([(k, v[0]) for k, v in urlparse.parse_qs(query).items()])
+
+
+def add_qs(url, params=None, **kwargs):
+    """添加url参数"""
+    if not params:
+        data = urllib.urlencode(kwargs)
+    else:
+        data = urllib.urlencode(params)
+    return url+'?'+data

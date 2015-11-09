@@ -14,6 +14,7 @@ math--
 decimal--
 pickle--
 itertools--包含了函数用来创建有效的iterators
+collections--在内置数据类型的基础上，提供了几个额外的数据类型:namedtuple,deque,Counter,OrderedDict,defaultdict
 re--正则表达式
 datetime--
 time--
