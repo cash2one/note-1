@@ -1,3 +1,4 @@
+
 /******  数据类型  ******/
 Number
 // JavaScript不区分整数和浮点数，统一用Number表示
