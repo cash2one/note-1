@@ -262,6 +262,7 @@ $ tail  # 从指定点开始将文件写到标准输出
     -f  # 循环读取,f选项可以方便的查阅正在改变的日志文件
 	    # tail -f filename会把filename里最尾部的内容显示在屏幕上,并且不断刷新,使你看到最新的文件内容
 
+
 #----------------ssh----------------------
 # 登录
 ssh xue.bai@192.168.162.101 -p 3222  # enter ==> password
@@ -271,6 +272,7 @@ scp username@servername:/path/filename /var/www/local_dir（本地目录）
 # 上传本地文件到服务器
 scp /path/filename username@servername:/path
 # 传目录加 -r
+
 
 #----------------nohup----------------------
 # nohup就是不挂断的意思( no hang up)
@@ -299,6 +301,7 @@ nohup command > myout.file 2>&1 &
 在上面的例子中, 0 – stdin (standard input), 1 – stdout (standard output), 2 – stderr (standard error);
 2>&1是将标准错误（2）重定向到标准输出（&1）, 标准输出（&1）再被重定向输入到myout.file文件中.
 
+
 #----------------Linux中重定向命令行输出------------------
 Linux环境中支持输入输出重定向，用符号<和>来表示。
 0、1和2分别表示标准输入、标准输出和标准错误信息输出
@@ -321,18 +324,22 @@ $ 命令>>& 文件   => 将命令执行时屏幕上所产生的任何信息附�
 cc lee.c >>& lee.dat 将编译 lee.c 文件时屏幕所产生的任何信息附加到文件 lee.dat 中
 
 
-linux文件描述符：可以理解为linux跟踪打开文件，而分配的一个数字，这个数字有点类似c语言操作文件时候的句柄，
-通过句柄就可以实现文件的读写操作。 用户可以自定义文件描述符范围是：3-num,这个最大数字，跟用户的：ulimit –n 定义数字有关系，不能超过最大值
+linux文件描述符:可以理解为linux跟踪打开文件,而分配的一个数字,这个数字有点类似c语言操作文件时候的句柄,
+通过句柄就可以实现文件的读写操作.
+用户可以自定义文件描述符范围是:3-num,这个最大数字,跟用户的:ulimit –n 定义数字有关系,不能超过最大值
 
-linux启动后，会默认打开3个文件描述符，分别是：标准输入standard input 0,正确输出standard output 1,错误输出：error output 2
+linux启动后,会默认打开3个文件描述符,分别是:
+标准输入standard input 0;
+标准输出standard output 1;
+错误输出：error output 2;
 
-以后打开文件后。新增文件绑定描述符 可以依次增加。 一条shell命令执行，都会继承父进程的文件描述符。因此，所有运行的shell命令，都会有默认3个文件描述符。
+以后打开文件后,新增文件绑定描述符可以依次增加,一条shell命令执行,都会继承父进程的文件描述符,因此,所有运行的shell命令,都会有默认3个文件描述符.
 
 输出重定向
 $ command-line1 [1-n] > file或文件操作符或设备
 
 输入重定向
-$ command-line [n] <file或文件描述符&设备
+$ command-line [n] < file或文件描述符&设备
 
 $ cmd < file cmd 命令以 file 文件作为 stdin
 
@@ -344,3 +351,14 @@ $ cmd < file >file2 cmd 命令以 file 文件作为 stdin，以 file2 文件作�
 $ nohup ./program >/dev/null 2>log &    => 舍弃标准输出，将错误输出到log文件中
 
 $ nohup ./program >/dev/null 2>&1 &     => 如果错误信息也不想要的话
+
+
+#----------------源码编译安装软件------------------
+源码的安装一般由3个步骤组成：配置(configure),编译(make),安装(make install).
+Configure是一个可执行脚本，它有很多选项，在待安装的源码路径下使用命令./configure –help输出详细的选项列表.
+其中--prefix选项是配置安装的路径,如果不配置该选项,安装后可执行文件默认放在/usr/local/bin,库文件默认放在/usr/local/lib,配置文件默认放在/usr/local/etc，其它的资源文件放在/usr/local/share，比较凌乱。
+如果配置--prefix，如：
+./configure --prefix=/usr/local/test
+可以把所有资源文件放在/usr/local/test的路径中,不会杂乱.
+用了—prefix选项的另一个好处是卸载软件或移植软件,当某个安装的软件不再需要时,只须简单的删除该安装目录,就可以把软件卸载得干干净净;移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）
+当然要卸载程序,也可以在原来的make目录下用一次make uninstall,但前提是make文件指定过uninstall。
