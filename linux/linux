@@ -245,12 +245,12 @@ $ tar -xf ***.tar.bz2  # 解压tar.bz2
 
 
 #----------------系统管理-----------------
-$ ps aux =>查看进程
+$ ps aux => 查看进程
 $ ps aux|grep nginx
 
 $ pstree # 树状显示进程和子进程的树
 
-S lsof -i    =>  查看端口占用情况
+$ lsof -i    =>  查看端口占用情况
 $ lsof -i:xxxx    =>  查看xxxx端口的占用情况
 
 $ ps -aux|grep <进程号>   =>  找到进程号后可以用此命令查看详细信息
@@ -261,6 +261,7 @@ $ killall 进程别名    =>   结束进程
 $ tail  # 从指定点开始将文件写到标准输出
     -f  # 循环读取,f选项可以方便的查阅正在改变的日志文件
 	    # tail -f filename会把filename里最尾部的内容显示在屏幕上,并且不断刷新,使你看到最新的文件内容
+
 #----------------ssh----------------------
 # 登录
 ssh xue.bai@192.168.162.101 -p 3222  # enter ==> password
@@ -268,5 +269,78 @@ ssh xue.bai@192.168.162.101 -p 3222  # enter ==> password
 # 从服务器上下载文件
 scp username@servername:/path/filename /var/www/local_dir（本地目录）
 # 上传本地文件到服务器
-scp /path/filename username@servername:/path 
+scp /path/filename username@servername:/path
 # 传目录加 -r
+
+#----------------nohup----------------------
+# nohup就是不挂断的意思( no hang up)
+
+<程序>&    # 后台运行
+普通进程用&符号放到后台运行,如果启动该程序的控制台logout,则该进程随即终止
+
+nohup Command [ Arg ... ] [　& ]
+nohup <程序> &
+则控制台logout后，进程仍然继续运行，起到守护进程的作用（虽然它不是严格意义上的守护进程）
+使用nohup命令后,如果不将 nohup 命令的输出重定向，输出将附加到当前目录的 nohup.out 文件中,起到了log的作用,实现了完整的守护进程功能.
+
+可以使用tail -f nohup.out监控标准输出
+
+# 当shell中提示了nohup成功后还需要按终端上键盘任意键退回到shell输入命令窗口，然后通过在shell中输入exit来退出终端；而我是每次在nohup执行成功后直接点关闭程序按钮关闭终端.。所以这时候会断掉该命令所对应的session，导致nohup对应的进程被通知需要一起shutdown。
+
+$ jobs        => 查看在后台运行的进程
+$ ctrl + z    => 暂停进程转移到后台
+$ bg          => 后台进程继续运行
+$ fg %1       => 将后台进程移到前台
+$ fg %n　      => 关闭
+
+nohup启动的程序在进程执行完毕就退出，而常见的一些服务进程通常永久的运行在后台，不向屏幕输出结果。在Unix中这些永久的后台进程称为守护进程（daemon）。守护进程通常从系统启动时自动开始执行，系统关闭时才停止
+
+nohup command > myout.file 2>&1 &
+在上面的例子中, 0 – stdin (standard input), 1 – stdout (standard output), 2 – stderr (standard error);
+2>&1是将标准错误（2）重定向到标准输出（&1）, 标准输出（&1）再被重定向输入到myout.file文件中.
+
+#----------------Linux中重定向命令行输出------------------
+Linux环境中支持输入输出重定向，用符号<和>来表示。
+0、1和2分别表示标准输入、标准输出和标准错误信息输出
+特殊的文件描述符/dev/null，它就像一个黑洞，所有重定向到它的信息都会消失得无影无踪。这一点非常有用，当我们不需要回显程序的所有信息时，就可以将输出重定向到/dev/null.
+$ ls 1>/dev/null 2>/dev/null  => 标准输出和标准错误都重定向到/dev/null
+$ ls >/dev/null 2>&1          => 将错误重定向到标准输出，然后再重定向到 /dev/null
+
+$ ls -l > lee.dat    => 将执行"ls -l"命令的结果写入文件 lee.dat 中
+
+$ 命令>! 文件   => 将命令的执行结果送至指定的文件中，若文件已经存在，则覆盖
+$ ls -lg >! lee.dat  => 将执行"ls -lg"命令的结果覆盖写入文件 lee.dat 中
+
+$ 命令>& 文件   => 将命令执行时屏幕上所产生的任何信息写入指定的文件中
+$ cc lee.c >& lee.dat  => 将编译 lee.c 文件时所产生的任何信息写入文件 lee.dat 中
+
+$ 命令>> 文件    => 将命令执行的结果附加到指定的文件中.
+$ ls -lag >> lee.dat 将执行 "ls -lag" 命令的结果附加到文件 lee.dat 中
+
+$ 命令>>& 文件   => 将命令执行时屏幕上所产生的任何信息附加到指定的文件中
+cc lee.c >>& lee.dat 将编译 lee.c 文件时屏幕所产生的任何信息附加到文件 lee.dat 中
+
+
+linux文件描述符：可以理解为linux跟踪打开文件，而分配的一个数字，这个数字有点类似c语言操作文件时候的句柄，
+通过句柄就可以实现文件的读写操作。 用户可以自定义文件描述符范围是：3-num,这个最大数字，跟用户的：ulimit –n 定义数字有关系，不能超过最大值
+
+linux启动后，会默认打开3个文件描述符，分别是：标准输入standard input 0,正确输出standard output 1,错误输出：error output 2
+
+以后打开文件后。新增文件绑定描述符 可以依次增加。 一条shell命令执行，都会继承父进程的文件描述符。因此，所有运行的shell命令，都会有默认3个文件描述符。
+
+输出重定向
+$ command-line1 [1-n] > file或文件操作符或设备
+
+输入重定向
+$ command-line [n] <file或文件描述符&设备
+
+$ cmd < file cmd 命令以 file 文件作为 stdin
+
+$ cat <>file 以读写的方式打开 file
+
+$ cmd < file >file2 cmd 命令以 file 文件作为 stdin，以 file2 文件作为 stdout
+
+
+$ nohup ./program >/dev/null 2>log &    => 舍弃标准输出，将错误输出到log文件中
+
+$ nohup ./program >/dev/null 2>&1 &     => 如果错误信息也不想要的话
