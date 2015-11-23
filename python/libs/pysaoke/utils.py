@@ -1,12 +1,12 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''toolkits'''
+"""toolkits"""
 
 __author__ = 'Pysaoke'
 
 
-import os, sys
+import os
+import sys
 import itertools
 
 
