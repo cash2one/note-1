@@ -1,9 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''test'''
-
-__author__ = 'baixue'
+""" test """
 
 
 class Base(object):
