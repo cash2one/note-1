@@ -1,9 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''类属性和实例属性'''
-
-__author__ = 'baixue'
+"""类属性和实例属性"""
 
 
 class C(object):

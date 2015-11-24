@@ -5,6 +5,8 @@ $ info command    => 查看command的信息
 
 $ man command     => command 手册
 
+    man ascii     => ascii码表
+
 # tab          =>  命令不全
 # ctrl + H     =>  显示隐藏文件
 # ctrl + z     =>  退出
@@ -54,7 +56,6 @@ $ echo $PATH  => 查看单个变量
 $ date    =>  显示日期
 $ uptime  =>  现在时间，系统开机运转到现在经过的时间，连线的使用者数量，最近的系统负载
 $ cal     =>  显示一个日历
-$ uptime  =>  显示系统运行了多长时间
 $ bc      =>  一个简单计算器
 $ df -h   =>  显示已挂载的分区列表
 
