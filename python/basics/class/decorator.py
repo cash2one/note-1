@@ -1,9 +1,9 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Decorator ---- 装饰器"""
+""" Decorator ---- 装饰器 """
 
 from time import ctime, sleep
+
 
 def tsfunc(func):
     def wrappendFunc():
@@ -22,3 +22,4 @@ sleep(4)
 for i in range(2):
     sleep(1)
     foo()
+
