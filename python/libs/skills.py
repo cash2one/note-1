@@ -455,13 +455,3 @@ for value, group in itertools.groupby(data, lambda r: r[-1]):
     print 'Group: ' + value
     print_data(group)
 
-
-
-
-
-
-
-
-
-
-
