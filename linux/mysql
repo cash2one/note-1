@@ -3,6 +3,8 @@ $ /etc/init.d/mysql start(stop, restart)
 
 2.登录MySQL
 $ mysql -h hostname -u root -p (用root账户登录), 然后输入密码
+查看数据库基本信息
+mysql> status;
 
 3.查看所有的数据库名字
 mysql> show databases;
@@ -33,17 +35,18 @@ delete from 表名;
 truncate table 表名;
 
 10.设置创建的数据库的编码
-mysql> ALTER DATABASE <db-name> DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+mysql> alter database <db-name> character set utf8;
 
 11.查看数据库编码
+mysql> show create database crm;
 mysql> show variables like 'character%';
 
 12.查看数据库信息
 mysql> \s
 
 13.备份与还原
-$ mysqldump -h hostname -u username -p password databasename > backupfile.sql
-$ mysqldump -h hostname -u username -p password databasename | gzip > backupfile.sql.gz
+$ mysqldump -h hostname -u username -p database-name > backupfile.sql
+$ mysqldump -h hostname -u username -p database-name | gzip > backupfile.sql.gz
 还原MySQL数据库的命令
-$ mysql -h hostname -u username -p password databasename < backupfile.sql
+$ mysql -h hostname -u username -p database-name < backupfile.sql
 $ gunzip < backupfile.sql.gz | mysql -u username -p password databasename
