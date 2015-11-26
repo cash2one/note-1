@@ -13,7 +13,7 @@ import datetime
 
 
 def basename(path):
-    """ 获取一个文件的名字,不包括扩展名 """
+    """获取一个文件的名字,不包括扩展名"""
     return os.path.splitext(os.path.basename(path))[0]
 
 
@@ -32,7 +32,7 @@ def getfile(dir, ext=None):
 
 
 def listget(lst, idx, default=None):
-    """ 若列表中某索引存在则返回之 """
+    """若列表中某索引存在则返回之"""
     if -len(lst) <= idx < len(lst):
         return lst[idx]
     else:
@@ -40,7 +40,7 @@ def listget(lst, idx, default=None):
 
 
 def list_get(lst, idx, default=None):
-    """ 如果传递的索引绝大多数都是有效索引,那么用这个函数 """
+    """如果传递的索引绝大多数都是有效索引,那么用这个函数"""
     try:
         return lst(idx)
     except IndexError:
@@ -48,7 +48,7 @@ def list_get(lst, idx, default=None):
 
 
 def par_two(a, b, padding_item=None):
-    """ 并行地循环两个可迭代对象,短的用padding_item补充 """
+    """并行地循环两个可迭代对象,短的用padding_item补充"""
     a, b = iter(a), iter(b)
     # 首先,对两者用izip处理,直达其中一个耗尽
     for x in itertools.izip(a, b):
@@ -61,7 +61,7 @@ def par_two(a, b, padding_item=None):
 
 
 def par_loop(padding_item, *sequences):
-    """ 并行地循环多个可迭代对象,短的用padding_item补充 """
+    """并行地循环多个可迭代对象,短的用padding_item补充"""
     iterators = map(iter, sequences)
     num_remaining = len(iterators)
     result = [padding_item] * num_remaining
@@ -78,7 +78,7 @@ def par_loop(padding_item, *sequences):
 
 
 def smallmerge(*sequences):
-    """ 合并有序序列 """
+    """合并有序序列"""
     result = []
     for subseq in sequences:
         result.extend(subseq)
@@ -96,7 +96,7 @@ def sub_dict(x_dict, keys, default=None):
 
 
 def last_month(multiple=1):
-    """ 上几个月的日期 """
+    """上几个月的日期"""
     today = datetime.date.today()
     year, month = divmod(multiple, 12)
     offset = today.month - month
@@ -111,16 +111,25 @@ def gen_date():
 
 
 def qs(url):
-    """ 获取url中的查询参数 """
+    """获取url中的查询参数"""
     query = urlparse.urlparse(url).query
     return dict([(k, v[0]) for k, v in urlparse.parse_qs(query).items()])
 
 
-def add_qs(url, params=None, **kwargs):
-    """ 添加url参数 """
-    if not params:
-        data = urllib.urlencode(kwargs)
+def add_qs(url, **kwargs):
+    """ 添加url参数
+    :param params 用这个关键字参数输入字典类型
+    """
+    kwargs.update(kwargs.pop('params', ''))
+    query_string = urllib.urlencode(kwargs)
+    if not query_string:
+        return url
+    if not qs(url):
+        return url+'?'+query_string
     else:
-        data = urllib.urlencode(params)
-    return url+'?'+data
+        return url+'&'+query_string
 
+
+if __name__ == '__main__':
+    url = 'crm.100credit.cn?a=1'
+    print add_qs(url, params={'a':1,'b':3}, c='c', d='ddd')
