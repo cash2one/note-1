@@ -1,5 +1,6 @@
 1.终端启动MySQL
 $ /etc/init.d/mysql start(stop, restart)
+$ service mysql start(stop, restart)
 
 2.登录MySQL
 $ mysql -h hostname -u root -p (用root账户登录), 然后输入密码
