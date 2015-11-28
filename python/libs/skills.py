@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 '''技巧'''
@@ -455,14 +454,4 @@ for value, group in itertools.groupby(data, lambda r: r[-1]):
     print '-----------'
     print 'Group: ' + value
     print_data(group)
-
-
-
-
-
-
-
-
-
-
 

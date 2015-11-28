@@ -1,10 +1,9 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 
 class ClassName(Parent):
 
-    'class documentation string'
+    """class documentation string"""
 
     # ---class_suite---
 
@@ -31,7 +30,7 @@ class ClassName(Parent):
         Parent.__del__(self)
 
 ##############################################################################        
-'静态方法与类方法'
+"静态方法与类方法"
 ##############################################################################
 
     @staticmethod
@@ -132,9 +131,9 @@ __delattr__(self, name)  # 当试图删除特性name时被自动调用
 
 # __getattr__实例
 class Test(object):
-    '''
+    """
     __getattr__仅当属性不能在实例的__dict__或它的类(类的__dict__)或祖先类(其__dict__)中找到时才被调用
-    '''
+    """
     def __init__(self,name):
         self.name = name
 
@@ -246,7 +245,6 @@ class Foo:
     @abstractproperty
     def name(self):
         pass
-
 
 
 #########################################################################

@@ -1,3 +1,26 @@
+>>>dpkg的使用<<<
+
+dpkg -i <.deb file name>  安装
+
+dpkg -r package  删除软件包（保留其配置信息）
+
+dpkg -P  删除一个包（包括配置信息）
+
+dpkg -L package  显示一个包安装到系统里面的文件目录信息,用此命令查看软件安装到什么地方
+
+dpkg –version  显示dpkg的版本号
+
+dpkg -c filename  显示一个Deb文件的目录
+
+dpkg -I filename [control-file]  显示一个Deb的说明
+
+dpkg -s package  查找包的详细信息
+
+dpkg -I vim  搜索Deb包
+
+dpkg –configure package     配置包
+
+
 1、搜狗拼音输入法
 官网下载.deb包
 $ sudo dpkg -i xxx.deb

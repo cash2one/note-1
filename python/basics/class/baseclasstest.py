@@ -1,7 +1,7 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''doc string'''
+"""doc string"""
+
 
 class Base(object):
     name = ''

@@ -1,14 +1,11 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 '''
 @property
 
-@property装饰器就是负责把一个方法变成属性调用的
+@property ---- 装饰器就是负责把一个方法变成属性调用的
 
 '''
-
-__author__ = 'baixue'
 
 
 class Student(object):

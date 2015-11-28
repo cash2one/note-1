@@ -1,9 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''给class动态添加属性'''
-
-__author__ = 'baixue'
+"""给class动态添加属性"""
 
 
 class A(object):

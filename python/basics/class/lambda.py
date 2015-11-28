@@ -1,9 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 '''Functional Programming----函数式编程'''
-
-__author__ = 'baixue'
 
 
 # map
@@ -198,77 +195,6 @@ def build(x, y):
 
 
 #-----------------------------------------------------------------------------
-# 装饰器
-# 类似面向对象中的“装饰器设计模式”
-#-----------------------------------------------------------------------------
-print u'装饰器'
-
-
-def now():
-    print '2015-2-1'
-# 函数对象有一个__name__属性，可以拿到函数的名字
-print now.__name__
-
-# 假设我们要增强now()函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改now()函数的定义，
-# 这种在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）
-# 本质上，decorator就是一个返回函数的高阶函数
-
-def log(func):
-    def wrapper(*args, **kw):
-        print 'call %s():' % func.__name__
-        return func(*args, **kw)
-    return wrapper
-
-@log
-def now():
-    print '2013-12-25'
-
-now()
-print now.__name__
-
-
-# 如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂.
-# 比如，要自定义log的文本：
-def log(text):
-    def decorator(func):
-        def wrapper(*args, **kw):
-            print '%s %s():' % (text, func.__name__)
-            return func(*args, **kw)
-        return wrapper
-    return decorator
-
-@log('execute')
-def now():
-    print '2013-12-25'
-
-now()
-
-
-# 因为返回的那个wrapper()函数名字就是'wrapper'，
-# 所以，需要把原始函数的__name__等属性复制到wrapper()函数中，否则，有些依赖函数签名的代码执行就会出错
-import functools
-
-def log(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kw):
-        print 'call %s():' % func.__name__
-        return func(*args, **kw)
-    return wrapper
-
-
-# 针对带参数的decorator
-def log(text):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kw):
-            print '%s %s():' % (text, func.__name__)
-            return func(*args, **kw)
-        return wrapper
-    return decorator
-
-
-
-#-----------------------------------------------------------------------------
 # 偏函数
 # functools模块提供了很多有用的功能，其中一个就是偏函数（Partial function）
 #-----------------------------------------------------------------------------
@@ -296,10 +222,3 @@ print int2('1000000')
 
 # 简单总结functools.partial的作用就是，把一个函数的某些参数给固定住(也就是设置默认值),
 # 返回一个新的函数，调用这个新函数会更简单。
-
-
-
-
-
-
-
