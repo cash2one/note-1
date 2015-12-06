@@ -9,7 +9,8 @@ $ man command     => command 手册
 
 # tab          =>  命令不全
 # ctrl + H     =>  显示隐藏文件
-# ctrl + z     =>  退出
+# ctrl + z     =>  暂停进程转到后台
+# ctrl + c     =>  停止
 # ctrl + A     =>  命令行下，光标称动到开头
 # ctrl + E     =>  命令行下，光标移动结尾
 
