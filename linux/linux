@@ -5,11 +5,12 @@ $ info command    => 查看command的信息
 
 $ man command     => command 手册
 
-    man ascii     => ascii码表
+$  man ascii      => ascii码表
 
-# tab          =>  命令不全
+# tab          =>  命令补全
 # ctrl + H     =>  显示隐藏文件
-# ctrl + z     =>  退出
+# ctrl + z     =>  暂停进程转到后台
+# ctrl + c     =>  停止
 # ctrl + A     =>  命令行下，光标称动到开头
 # ctrl + E     =>  命令行下，光标移动结尾
 
@@ -21,9 +22,9 @@ $ apt-cache search package_name   => apt搜索包
 $ sudo apt-get remove --purge package_name   => 卸载
 
 $ sudo nautilus     =>  以root权限打开一个窗口，来管理文件
-$ sudo   => 以系统管理者的身份执行指令
-$ top    =>  资源管理
-$ reboot  => 重启机
+$ sudo      => 以系统管理者的身份执行指令
+$ top       => 资源管理
+$ reboot    => 重启机
 $ shutdown  => 关机
     shutdown -h now  # 现在关机
     shutdown -h hours:minutes # 按预定时间关闭系统
@@ -32,13 +33,13 @@ $ shutdown  => 关机
 
 $ login
 $ logout
-$ w      =>  显示登录用户的详细信息
-$ who    =>  显示登录用户
-$ last   =>  查看最近哪些用户登录系统
-$ lscpu  => 查看cpu统计信息
-$ free   =>  查看内存情况
+$ w       => 显示登录用户的详细信息
+$ who     => 显示登录用户
+$ last    => 查看最近哪些用户登录系统
+$ lscpu   => 查看cpu统计信息
+$ free    => 查看内存情况
     free -m  # -m 单位MB
-$ vmstat  =>  监视虚拟内存使用情况
+$ vmstat  => 监视虚拟内存使用情况
 $ ps      => 显示进程信息
     ps ux  # 显示当前用户的进程
     ps uxwww  # 显示当前用户的进程的详细信息
@@ -49,7 +50,7 @@ $ kill  => 杀进程
 $ su    => 变更使用者身份
     su root
     su username # 切换用户
-$ export  =>  查看所有环境变量
+$ export  => 查看所有环境变量
 $ echo $PATH  => 查看单个变量
 
 
@@ -58,6 +59,7 @@ $ uptime  =>  现在时间，系统开机运转到现在经过的时间，连线
 $ cal     =>  显示一个日历
 $ bc      =>  一个简单计算器
 $ df -h   =>  显示已挂载的分区列表
+
 
 $ chmod   =>
     三种基本权限
@@ -74,12 +76,9 @@ $ chmod   =>
 
     例：chmod a=rwx file 和 chmod 777 file
 
-
 $ sudo chmod +x nginx  # 添加可执行权限
 
-
 $ uname -r  => 查看内核版本
-
 
 $ gcc
     gcc -o test test.c
@@ -96,7 +95,7 @@ $ lsblk    => 查看硬盘和分区分布
 
 $ sudo fdisk -l    => 查看硬盘和分区的详细信息
 
-$ df       => 当前挂载的分区
+$ df  => 当前挂载的分区
 
     df -TH
 
@@ -163,11 +162,11 @@ $ mkdir 目录名     => 创建一个目录
 
     mkdir name1 name2...
 
-$ rmdir 空目录名    => 删除一个空目录
+$ rmdir 空目录名   => 删除一个空目录
 
     rm -rf 目录名  # 删除非空目录
 
-$ ls              =>  列出目录下的文件
+$ ls   => 列出目录下的文件
 
     ls -l  # 显示文件和目录的详细信息($ ll)
     ls -a  # 显示隐藏文件($ la)
@@ -179,11 +178,11 @@ $ find    =>
 
 $ locate  => 用于查找文件，它比find命令的搜索速度快
 
-$ touch 文件名        => 创建一个空文件
+$ touch 文件名       => 创建一个空文件
 
-$ rename             =>  重命名一个或多个文件(使用有问题，用mv实现同样的功能)
+$ rename             => 重命名一个或多个文件(使用有问题，用mv实现同样的功能)
 
-$ mv source destination  =>  移动目录或文件
+$ mv source destination  => 移动目录或文件
     # 可以用来重命名文件或目录
 
 $ cp source destination  => 复制
@@ -203,7 +202,7 @@ $ cp source destination  => 复制
 　　 cp /root/source .  # 将/root下的文件source复制到当前目录
 
 
-$ rm                          =>  删除档案及目录(慎用删除不好恢复)
+$ rm  => 删除档案及目录(慎用删除不好恢复)
     & rm [options] name... 
 　　参数:
     -i 删除前逐一询问确认.
@@ -219,10 +218,10 @@ $ rm                          =>  删除档案及目录(慎用删除不好恢复
 
 $ iptraf       =>  查看网络流量
 $ ifconfig -a  =>  显示网络配置
-$ ip address   =>  查看ip
+$ ipaddress   =>  查看ip
 $ sudo ethstatus -i eth0  =>  查看网络流量
 
-# netstat    => 查看端口使用情况
+$ netstat    => 查看端口使用情况
     $ netstat –ntlp|grep 6379  =>  查看xxxx端口的占用情况
     $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
 
