@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+cd #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 '''生成器测试'''
@@ -21,11 +21,6 @@ def gen2():
         yield 'done'
     print 111111111111111
     yield 'break'
-
-
-
-
-
 
 
 if __name__ == "__main__":
