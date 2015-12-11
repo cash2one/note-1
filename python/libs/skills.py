@@ -455,3 +455,34 @@ for value, group in itertools.groupby(data, lambda r: r[-1]):
     print 'Group: ' + value
     print_data(group)
 
+
+# 判断iterator 是否为空
+
+iterator = iter([1, 2, 3])
+
+
+def has_elements(iterator):
+	from itertools import tee
+	iterator_dup, any_check = tee(iterator)
+	try:
+		any_check.next()
+		return True, iterator_dup
+	except StopIteration:
+		return False, iterator_dup
+
+
+def empty_iter(iterable):
+	try:
+		first = iterable.next()
+	except StopIteration:
+		return []
+	else:
+		return itertools.chain([first], iterable)
+
+
+def peek(iterator):
+    try:
+        first = next(iterator)
+    except StopIteration:
+        return None
+    return itertools.chain([first], iterator)
