@@ -51,3 +51,6 @@ $ mysqldump -h hostname -u username -p database-name | gzip > backupfile.sql.gz
 还原MySQL数据库的命令
 $ mysql -h hostname -u username -p database-name < backupfile.sql
 $ gunzip < backupfile.sql.gz | mysql -u username -p password databasename
+
+13.查看表里的数据
+mysql> select * from RePhone limit 10 offset 101200;  # 倒数10条

@@ -255,3 +255,74 @@ ps:如何去除SVN中保存的用户授权密码
 
 $ svn switch --relocate http://oldPath http://newpath
 修改svn的地址
+
+
+----------------------------------------------------------------------------------------------------------------------
+分支操作
+----------------------------------------------------------------------------------------------------------------------
+
+一、创建分支 
+1，创建一个分支 
+svn copy svn://xx.com/repo/trunk svn://xx.com/repo/branches/TRY-something -m 'make branches TRY-something' 
+
+2，把工作目录转到分支 
+svn switch svn://xx.com/repo/branches/TRY-something 
+
+当然，也可以再转到主干svn switch svn://xx.com/repo/trunk 
+
+
+二、合并一个分支到主干 
+1, 查找到分支版本 
+方法一：cd branch 
+svn log --stop-on-copy 
+最后一个r11340就是创建分支时的reversion 
+
+方法二：cd trunk 
+命令：svn -q --stop-on-copy 分支URL，这条命令会查询出自创建分支以后分支上的所有修改，最下面的那个版本号就是我们要找的版本号. 
+示例：svn log -q --stop-on-copy svn://192.168.1.177/tags/beta_2009_12_24 
+
+2, 合并到主干 
+命令：svn -r 分支版本号:HEAD 分支的URL 
+解释：HEAD为当前主干上的最新版本 
+示例： 
+cd trunk 
+svn merge -r 12:HEAD svn://192.168.1.177/tags/beta_2009_12_24 
+
+
+解决冲突： 
+使用svn st | grep ^C 查找合并时的冲突文件，手工解决冲突 
+使用svn resolved filename 告知svn冲突已解决 
+使用svn commit -m "" 提示合并后的版本 
+
+
+svn: Aborting commit: '/path/resources/noc' remains in conflict 
+$ svn revert resources/noc 
+Reverted 'resources/noc' 
+
+
+三、两个分支合并 
+
+两个分支合并可以拆分为一下两步： 
+
+第一步： 
+
+197从旧主干引出， 
+186打完tag，表示是新主干 
+
+合并最新代码的意思是：将新主干与旧主干比对，并添加到197中。这样197既有自己的新增的代码，也同时有最新线上的代码。 
+cd 197_Branch 
+svn merge https://xxx.com/tags/project/project_Old_BL https://xxx.com/tags/project/project_New_BL 
+svn ci -m 'merge 186 trunk' 
+
+第二步： 
+
+但是后来，其他人又向186提了代码，所以还需要将186分支（即打了tag后的186，打了tag前的186已是主干）合并至197中。 
+合并办法：找出186分支，比对与新主干之间的差别，并添加到197中。这样197就有最新的全部代码了。 
+cd 197_Branch 
+svn merge https://xxx.com/tags/project/project_New_BL https:/xxx.com/project/branches/project/186_Branch 
+svn ci -m 'merge 186 branch' 
+
+四、发布 
+
+给当前主干打个标签，并且这个标签不再改动了，但是实际上标签和分支是一个意思，你可以在标签上继续做改动，但这不推荐。 
+svn copy svn://xx.com/repo/trunk svn://xx.com/repo/tags/RB-1.0 

@@ -45,6 +45,7 @@ def par_two(a, b, padding_item=None):
     for x in b:
         yield padding_item, x
 
+
 # 通用的，任意数目的序列
 def par_loop(padding_item, *sequences):
     iterators = map(iter, sequences)
@@ -66,6 +67,15 @@ def smallmerge(*sequences):
     '''合并有序序列'''
     result = []
     for subseq in sequences:result.extend(subseq)
+    return result
+
+
+def strider(p, n):
+    """ 分组 """
+    result = [[] for x in itertools.repeat(0, n)]
+    resiter = itertools.cycle(result)
+    for item, sublist in itertools.izip(p, resiter):
+        sublist.append(item)
     return result
 
 
