@@ -18,13 +18,7 @@ def gen2():
         yield 'done%s' % r
     yield 'break'
 
-
-
-
-
 if __name__ == "__main__":
     c = 0
     for i in gen2():
-        c += 1
         print i
-    print c
