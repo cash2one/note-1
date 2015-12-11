@@ -222,7 +222,7 @@ $ ipaddress   =>  查看ip
 $ sudo ethstatus -i eth0  =>  查看网络流量
 
 $ netstat    => 查看端口使用情况
-    $ netstat –ntlp|grep 6379  =>  查看xxxx端口的占用情况
+    $ netstat -apn            =>  查看端口的占用情况
     $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
 
 $ tar        =>  压缩解压
