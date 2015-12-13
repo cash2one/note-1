@@ -3,9 +3,10 @@ $ /etc/init.d/mysql start(stop, restart)
 $ service mysql start(stop, restart)
 
 2.登录MySQL
-$ mysql -h hostname -u root -p (用root账户登录), 然后输入密码
+$ mysql -h hostname -u username -p  然后输入密码
 查看数据库基本信息
-mysql> status;
+mysql> \s
+mysql> status
 
 3.查看所有的数据库名字
 mysql> show databases;
@@ -17,7 +18,9 @@ mysql> use database_name;
 mysql> show tables;
 
 查看表结构
-mysql> show columns from table
+mysql> show columns from table_name;
+mysql> desc table_name;
+mysql> show create table table_name;  # 创建该表的sql
 
 6.创建一个数据库
 mysql> create database database_name;
@@ -26,14 +29,14 @@ mysql> create database database_name;
 mysql> drop database database_name;
 
 8.创建一个表
-mysql> create table mytest( uid bigint(20) not null, uname varchar(20) not null);
+mysql> create table table_name( uid bigint(20) not null, uname varchar(20) not null);
 
 9.删除一个表
-mysql> drop table mytest;
+mysql> drop table table_name;
 
 清空表数据
-delete from 表名;
-truncate table 表名;
+mysql> delete from 表名;
+mysql> truncate table 表名;
 
 10.设置创建的数据库的编码
 mysql> alter database <db-name> character set utf8;
@@ -42,12 +45,12 @@ mysql> alter database <db-name> character set utf8;
 mysql> show create database crm;
 mysql> show variables like 'character%';
 
-12.查看数据库信息
-mysql> \s
-
-13.备份与还原
+12.备份与还原
 $ mysqldump -h hostname -u username -p database-name > backupfile.sql
 $ mysqldump -h hostname -u username -p database-name | gzip > backupfile.sql.gz
 还原MySQL数据库的命令
 $ mysql -h hostname -u username -p database-name < backupfile.sql
 $ gunzip < backupfile.sql.gz | mysql -u username -p password databasename
+
+13.查看表里的数据
+mysql> select * from RePhone limit 10 offset 101200;  # 倒数10条

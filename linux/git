@@ -1,4 +1,5 @@
 一.安装GIT和配置GIT
+
 1.安装GIT
 $ apt-get install git
 
@@ -92,26 +93,25 @@ $ git commit --allow-empty -m "who does commit?"
 $ git branch
 # 列出远程分支
 $ git branch -a
-#  创建新分支
+# 创建新分支
 $ git branch branch-name
-
-#  将新建分支push到远端
+# 将新建分支push到远端
 $ git push origin branch-name
 
-#  删除分支
+# 删除分支
 $ git branch -d branch-name
 # 删除远程分支
 $ git push origin --delete <branch-name>
 $ git push origin :<branchName>  # 推送一个空分支到远程分支==删除
-#  创建新分支，并立即切换到它
+# 创建新分支，并立即切换到它
 $ git checkout -b branch-name
 
-#  切换分支
+# 切换分支
 $ git checkout master
 $ git checkout branch-name
 $ git checkout branch-name -- filename # 将xxx分支的xxx文件替换当前分支的文件,解决冲突时有用.
 
-#  将分支合并到当前的分支
+# 将分支合并到当前的分支
 $ git merge branch-name
 
 5.比较差异
@@ -125,8 +125,11 @@ $ git diff --cached
 $ git diff --staged
 
 # 冲突标记
-<<<<<<<与=======之间的内容是我的修改
-=======与>>>>>>>之间的内容是别人的修改
+<<<<<<<HEAD
+当前分支内容
+=======
+合并过来的分支的内容
+>>>>>>>6853e5ff96.........
 
 6.修改最后一次提交
 
@@ -140,10 +143,8 @@ $ git commit --amend
 $ git log
 # 查看所有日志(包含重置的日志)
 $ git reflog show master
-
 # 查看某个文件某次的修改
 $ git show <某次提交的哈希值> 文件名
-
 # 查看那几个文件改变了
 $ git whatchanged
 
@@ -200,7 +201,7 @@ $ git stash branch
 # 查看标记
 $ git tag
 
-#  将提交ID为“1b2e1d63ff.....”的提交标记为v1.0.0
+# 将提交ID为“1b2e1d63ff.....”的提交标记为v1.0.0
 $ git tag v1.0.0 1b2e1d63ff
 
 #  将最新提交打上“v1.0”的标签
@@ -217,8 +218,10 @@ DIR/           # 忽略当前目录下所有文件
 DIR/*.txt      # 忽略DIR下的txt文件（不包括子目录）
 
 五、同步github的原作者
-git remote add upstream https://github.com/xxxxx/xxxxx.git
-git remote -v
-git fetch upstream
-git checkout master
-git merge upstream/master
+$ git remote -v 查看远端仓库
+$ git remote add upstream https://github.com/xxxxx/xxxxx.git
+$ git remote -v
+$ git fetch upstream
+$ git checkout master
+$ git merge upstream/master
+

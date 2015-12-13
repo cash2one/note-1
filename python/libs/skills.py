@@ -45,6 +45,7 @@ def par_two(a, b, padding_item=None):
     for x in b:
         yield padding_item, x
 
+
 # 通用的，任意数目的序列
 def par_loop(padding_item, *sequences):
     iterators = map(iter, sequences)
@@ -66,6 +67,15 @@ def smallmerge(*sequences):
     '''合并有序序列'''
     result = []
     for subseq in sequences:result.extend(subseq)
+    return result
+
+
+def strider(p, n):
+    """ 分组 """
+    result = [[] for x in itertools.repeat(0, n)]
+    resiter = itertools.cycle(result)
+    for item, sublist in itertools.izip(p, resiter):
+        sublist.append(item)
     return result
 
 
@@ -455,3 +465,34 @@ for value, group in itertools.groupby(data, lambda r: r[-1]):
     print 'Group: ' + value
     print_data(group)
 
+
+# 判断iterator 是否为空
+
+iterator = iter([1, 2, 3])
+
+
+def has_elements(iterator):
+	from itertools import tee
+	iterator_dup, any_check = tee(iterator)
+	try:
+		any_check.next()
+		return True, iterator_dup
+	except StopIteration:
+		return False, iterator_dup
+
+
+def empty_iter(iterable):
+	try:
+		first = iterable.next()
+	except StopIteration:
+		return []
+	else:
+		return itertools.chain([first], iterable)
+
+
+def peek(iterator):
+    try:
+        first = next(iterator)
+    except StopIteration:
+        return None
+    return itertools.chain([first], iterator)
