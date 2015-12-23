@@ -14,3 +14,12 @@ for line in lines:
 # fobj.write(codecs.BOM_UTF8)
 # writer = csv.writer(fobj)
 # writer.writerow(headers)
+
+
+csvfile = file('csv_test.csv', 'rb')
+reader = csv.reader(csvfile)
+
+for line in reader:
+    print line
+
+csvfile.close()
