@@ -1,25 +1,25 @@
-　　nginx 这个轻量级、高性能的 web server 主要可以干两件事情：
+nginx 这个轻量级、高性能的 web server 主要可以干两件事情：
 
-　　〉直接作为http server(代替apache，对PHP需要FastCGI处理器支持)；
-　　〉另外一个功能就是作为反向代理服务器实现负载均衡
+>直接作为http server(代替apache，对PHP需要FastCGI处理器支持)；
+>另外一个功能就是作为反向代理服务器实现负载均衡
 
-　　以下我们就来举例说明如何使用 nginx 实现负载均衡。因为nginx在处理并发方面的优势，现在这个应用非常常见。当然了Apache的 mod_proxy和mod_cache结合使用也可以实现对多台app server的反向代理和负载均衡，但是在并发处理方面apache还是没有 nginx擅长。
+以下我们就来举例说明如何使用 nginx 实现负载均衡。因为nginx在处理并发方面的优势，现在这个应用非常常见。当然了Apache的 mod_proxy和mod_cache结合使用也可以实现对多台app server的反向代理和负载均衡，但是在并发处理方面apache还是没有 nginx擅长。
 
-　　1)环境：
+1)环境：
 
-　　a. 我们本地是Windows系统，然后使用VirutalBox安装一个虚拟的Linux系统。
-　　在本地的Windows系统上分别安装nginx(侦听8080端口)和apache(侦听80端口)。在虚拟的Linux系统上安装apache(侦听80端口)。
-　　这样我们相当于拥有了1台nginx在前端作为反向代理服务器；后面有2台apache作为应用程序服务器(可以看作是小型的server cluster。;-) )；
+　a. 我们本地是Windows系统，然后使用VirutalBox安装一个虚拟的Linux系统。
+ 　　在本地的Windows系统上分别安装nginx(侦听8080端口)和apache(侦听80端口)。在虚拟的Linux系统上安装apache(侦听80端口)。
+ 　　这样我们相当于拥有了1台nginx在前端作为反向代理服务器；后面有2台apache作为应用程序服务器(可以看作是小型的server cluster。;-) )；
 
-　　b. nginx用来作为反向代理服务器，放置到两台apache之前，作为用户访问的入口；
+　b. nginx用来作为反向代理服务器，放置到两台apache之前，作为用户访问的入口；
 　　nginx仅仅处理静态页面，动态的页面(php请求)统统都交付给后台的两台apache来处理。
 　　也就是说，可以把我们网站的静态页面或者文件放置到nginx的目录下；动态的页面和数据库访问都保留到后台的apache服务器上。
 
-　　c. 如下介绍两种方法实现server cluster的负载均衡。
+　c. 如下介绍两种方法实现server cluster的负载均衡。
 　　我们假设前端nginx(为127.0.0.1:80)仅仅包含一个静态页面index.html；
 　　后台的两个apache服务器(分别为localhost:80和158.37.70.143:80)，一台根目录放置phpMyAdmin文件夹和test.php(里面测试代码为print “server1“;)，另一台根目录仅仅放置一个test.php(里面测试代码为 print “server2“;)。
 
-　　2)针对不同请求 的负载均衡：
+2)针对不同请求 的负载均衡：
 
 　　a. 在最简单地构建反向代理的时候 (nginx仅仅处理静态不处理动态内容，动态内容交给后台的apache server来处理)，我们具体的设置为：在nginx.conf中修改：
 　　复制代码 代码如下:
