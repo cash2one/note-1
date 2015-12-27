@@ -5,15 +5,14 @@ $ info command    => 查看command的信息
 
 $ man command     => command 手册
 
-$  man ascii      => ascii码表
+$ man ascii       => ascii码表
 
-# tab          =>  命令补全
 # ctrl + H     =>  显示隐藏文件
 # ctrl + z     =>  暂停进程转到后台
 # ctrl + c     =>  停止
-# ctrl + A     =>  命令行下，光标称动到开头
-# ctrl + E     =>  命令行下，光标移动结尾
-
+# ctrl + A     =>  光标称动到开头
+# ctrl + E     =>  光标移动结尾
+# ctrl + W     =>  回退一个单词
 
 $ which  command  =>  查看命令的完整路径
 
@@ -40,14 +39,6 @@ $ lscpu   => 查看cpu统计信息
 $ free    => 查看内存情况
     free -m  # -m 单位MB
 $ vmstat  => 监视虚拟内存使用情况
-$ ps      => 显示进程信息
-    ps ux  # 显示当前用户的进程
-    ps uxwww  # 显示当前用户的进程的详细信息
-    ps aux  # 显示当前用户的进程
-    ps ef  # 显示系统所有进程信息
-	ps -em  # 显示 pid cmd
-$ kill  => 杀进程
-    kill -9 [PID]
 $ su    => 变更使用者身份
     su root
     su username # 切换用户
@@ -58,7 +49,7 @@ $ export HELLO='hello'  => 设置变量HELLO,这是临时的变量,在关闭shel
 
 # 永久环境变量
 在/etc/profile文件中添加变量【对所有用户生效(永久的)】
-用户目录下的.bash_profile文件中增加变量【对单一用户生效(永久的)】
+用户目录下的.bash.profile文件中增加变量【对单一用户生效(永久的)】
 export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib
 
 $ date    =>  显示日期
@@ -278,14 +269,6 @@ $ rm  => 删除档案及目录(慎用删除不好恢复)
 	删除目录下的所有文件除file1和file2外
 	rm -rf !(file1|file2)
 
-$ iptraf       =>  查看网络流量
-$ ifconfig -a  =>  显示网络配置
-$ ipaddress   =>  查看ip
-$ sudo ethstatus -i eth0  =>  查看网络流量
-
-$ netstat    => 查看端口使用情况
-    $ netstat -apn            =>  查看端口的占用情况
-    $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
 
 $ tar        =>  压缩解压
     $ tar -zcvf filename.tar.gz dirname  # 压缩
@@ -307,6 +290,17 @@ $ tar -xf ***.tar.bz2  # 解压tar.bz2
 
 
 #----------------系统管理-----------------
+
+$ iptraf       =>  查看网络流量
+$ ifconfig -a  =>  显示网络配置
+$ ipaddress    =>  查看ip
+$ sudo ethstatus -i eth0  =>  查看网络流量
+
+$ netstat    => 查看端口使用情况
+    $ netstat -apn            =>  查看端口的占用情况
+    $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
+
+
 $ ps aux => 查看进程
 $ ps aux|grep nginx
 $ ps aux|grep <进程号>   =>  找到进程号后可以用此命令查看详细信息
@@ -316,8 +310,44 @@ $ pstree # 树状显示进程和子进程的树
 $ lsof -i    =>  查看端口占用情况
 $ lsof -i:xxxx    =>  查看xxxx端口的占用情况
 
-$ killall 进程别名    =>   结束进程
-    killall -s INT 进程名
+$ ps      => 显示进程信息
+    ps ux  # 显示当前用户的进程
+    ps uxwww  # 显示当前用户的进程的详细信息
+    ps aux  # 显示当前用户的进程
+    ps ef  # 显示系统所有进程信息
+	ps -em  # 显示 pid cmd
+
+$ pgrep firefox  #专门用于进程查询的grep
+$ kill -l  # 列出所有的信号
+# 只有第9种信号(SIGKILL)才可以无条件终止进程，其他信号进程都有权利忽略.
+# 下面是常用的信号：
+# HUP    1    终端断线
+# INT    2    中断（同 Ctrl + C）
+# QUIT   3    退出（同 Ctrl + \）
+# TERM   15    终止
+# KILL   9    强制终止
+# CONT   18    继续（与STOP相反， fg/bg命令）
+# STOP   19    暂停（同 Ctrl + Z）
+
+$ kill  => 杀进程
+    kill -s INT 【PID】  # -s 9 制定了传递给进程的信号是９,即强制、尽快终止进程
+    kill -9 【PID】
+	
+$ pkill   # pkill = pgrep + kill	
+$ pkill -９ firefox
+# pkill或者pgrep只要给出进程名的一部分就可以终止进程。
+# killall和pkill是相似的,不过如果给出的进程名不完整，killall会报错 
+$ killall
+    killall -s INT 【进程名】
+	killall -9 【进程名】
+
+$ ps -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs kill -s 9	
+$ pgrep firefox | xargs kill -s 9  # 上一行的改进
+说明:
+“grep firefox”的输出结果是，所有含有关键字“firefox”的进程
+“grep -v grep”是在列出的进程中去除含有关键字“grep”的进程
+“cut -c 9-15”是截取输入行的第9个字符到第15个字符，而这正好是进程号PID
+“xargs kill -s 9”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -s 9”命令的参数，并执行该命令。“kill -s 9”会强行杀掉指定进程。
 
 $ tail  # 从指定点开始将文件写到标准输出
     -f  # 循环读取,f选项可以方便的查阅正在改变的日志文件
@@ -354,7 +384,7 @@ $ jobs        => 查看在后台运行的进程
 $ ctrl + z    => 暂停进程转移到后台
 $ bg          => 后台进程继续运行
 $ fg %1       => 将后台进程移到前台
-$ fg %n　      => 关闭
+$ fg %n　     => 关闭
 
 nohup启动的程序在进程执行完毕就退出，而常见的一些服务进程通常永久的运行在后台，不向屏幕输出结果。在Unix中这些永久的后台进程称为守护进程（daemon）。守护进程通常从系统启动时自动开始执行，系统关闭时才停止
 
