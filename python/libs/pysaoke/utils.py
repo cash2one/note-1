@@ -130,6 +130,21 @@ def add_qs(url, **kwargs):
         return url+'&'+query_string
 
 
+def group_generator(data, chunksize):
+
+    """将迭代器分组返回"""
+
+    chunk = []
+    for d in data:
+        chunk.append(d)
+        if len(chunk) == chunksize:
+            yield chunk
+            chunk = []
+    if chunk:
+        yield chunk
+
+
 if __name__ == '__main__':
     url = 'crm.100credit.cn?a=1'
     print add_qs(url, params={'a':1,'b':3}, c='c', d='ddd')
+
