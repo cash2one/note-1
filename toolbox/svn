@@ -139,7 +139,7 @@ $ svn merge [[-c M]... | [-r N:M]...] [SOURCE[@REV] [WCPATH]]
 eg：svn merge --reintegrate http://svn.example.com/repos/calc/branches/my-calc-branch  ##合并分支上的改变项到WC，往往用于分支合并到主干。
 eg：svn merge -r 156:157 http://svn.example.com/repos/calc/branches/my-calc-branch   ##将制定URL版本156到157的所有更新合并到WC。
 eg: svn merge [-r M:N] ^/trunk  ##主干合并到分支
-eg: ssvn merge --reintegrate ^/branches/xxxxxx  ##分支合并到主干
+eg: svn merge --reintegrate ^/branches/xxxxxx  ##分支合并到主干
  
 $ svn mkdir PATH...
 $ svn mkdir URL...
