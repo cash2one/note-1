@@ -226,4 +226,4 @@ $ git checkout master
 $ git merge upstream/master
 
 六、常用
-$ git remote prune  # remote上的一个分支被其他人删除后，需要更新本地的分支列表 
+$ git remote prune origin   # remote上的一个分支被其他人删除后，需要更新本地的分支列表 
