@@ -96,7 +96,9 @@ $ git branch -a
 # 创建新分支
 $ git branch branch-name
 # 将新建分支push到远端
-$ git push origin branch-name
+$ git push origin <branch-name>
+# 拉取远端分支
+$ git pull origin <branch-name>
 
 # 删除分支
 $ git branch -d branch-name
@@ -113,6 +115,10 @@ $ git checkout branch-name -- filename # 将xxx分支的xxx文件替换当前分
 
 # 将分支合并到当前的分支
 $ git merge branch-name
+
+# 设置本地分支和远端分支的对应跟踪
+$ git branch <branch-name>  切换到对应分支
+$ git branch --set-upstream-to=origin/<branch-name>
 
 5.比较差异
 
