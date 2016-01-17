@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 
@@ -141,8 +140,7 @@ foo1 is foo2
 #成员关系操作符
 in  , not in
 
-#实用局部变量替换模块变量
-可以提高效率
+#实用局部变量替换模块变量可以提高效率
 #调试器---pdb
 #记录器---logging
 #性能测试器---profile、hotshot、cProfile
