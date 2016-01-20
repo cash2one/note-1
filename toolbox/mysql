@@ -33,6 +33,7 @@ mysql> create table table_name( uid bigint(20) not null, uname varchar(20) not n
 
 9.删除一个表
 mysql> drop table table_name;
+mysql> alter table [table_name] drop column [column_name]
 
 清空表数据
 mysql> delete from 表名;
