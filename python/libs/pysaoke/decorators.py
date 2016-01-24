@@ -5,6 +5,7 @@
 import time
 import traceback
 import functools
+import threading import Thread
 
 
 def clock(ms=True):
@@ -37,5 +38,13 @@ def trace_run(func):
         print '>>>>>>>> function *%s* is called :: %s >>>>>>>>' % \
               (wrapper.__name__, time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
         return func(*args, **kwargs)
+    return wrapper
+
+
+def async(f):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        thr = Thread(target=f, args=args, kwargs=kwargs)
+        thr.start()
     return wrapper
 

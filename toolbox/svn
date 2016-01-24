@@ -127,7 +127,8 @@ eg：##如果版本号不连续，只能采用如下方式。
 $ svn log -r 14 > mylog
 $ svn log -r 19 >> mylog
 $ svn log -r 27 >> mylog
-$ svn log -r 13716 -v dir  ##显示指定版本号的修改信息
+$ svn log -r 13716 -v dir  # 显示指定版本号的修改信息
+$ svn log | head -n X  # 显示最近X次提交的log
 
 $ svn merge sourceURL1[@N] sourceURL2[@M] [WCPATH]
 $ svn merge sourceWCPATH1@N sourceWCPATH2@M [WCPATH]
@@ -137,6 +138,8 @@ $ svn merge [[-c M]... | [-r N:M]...] [SOURCE[@REV] [WCPATH]]
 访问库：只有当访问库地址时。
 eg：svn merge --reintegrate http://svn.example.com/repos/calc/branches/my-calc-branch  ##合并分支上的改变项到WC，往往用于分支合并到主干。
 eg：svn merge -r 156:157 http://svn.example.com/repos/calc/branches/my-calc-branch   ##将制定URL版本156到157的所有更新合并到WC。
+eg: svn merge [-r M:N] ^/trunk  ##主干合并到分支
+eg: svn merge --reintegrate ^/branches/xxxxxx  ##分支合并到主干
  
 $ svn mkdir PATH...
 $ svn mkdir URL...
