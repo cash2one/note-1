@@ -52,7 +52,19 @@
 >>> a, b = 1, 1.0
 >>> print a == b
 >>> print a is b
-
+(5)
+>>> print 1/2
+>>> from __future__ import division
+>>> print 1/2
+(6)
+>>> if 2>1:
+>>>     print 'a'
+>>> elif 3>1:
+>>>     print 'b'
+>>> elif 4>1:
+>>>     print 'c'
+>>> else:
+>>>     print 'd'
 
 3、expression?A:b python如何表达?
 
@@ -82,31 +94,28 @@
 8、enumerate 的用处？
 
 
-9、如何判断dict中是否存在某个key？
+9、
+l1 = [1, 3, 5, 6, 8, 9]
+l2 = [2, 0, 3, 5, 11, 10, 12]
+如何取得l1和l2的重复元素
 
 
-10、
-l1 = ['key1', 'key2', 'key3', 'key4']
-l2 = [1, 2, 3, 4]
-
-如何根据l1和l2得到字典{'key1': 1, 'key2': 2, 'key3': 3, 'key4': 4}
+10、如何判断dict中是否存在某个key？
 
 
 11、
->>> d = {'key': 1}
->>> l = []
->>> for x in xrange(5):
->>>     l.append(d['key']=x)
->>> print l
+l1 = ['key1', 'key2', 'key3', 'key4']
+l2 = [1, 2, 3, 4]
+如何根据l1和l2得到字典{'key1': 1, 'key2': 2, 'key3': 3, 'key4': 4}
 
 
 12、如何判断对象的类型, 比如: str、tuple、dict 或 list 等？
 
 
-13、如何判断一个对象是不是可迭代对象
+13、如何判断一个对象是不是可迭代对象？
 
 
-14、列表解析
+14、用列表解析的方式提取range(1, 100)中的偶数？
 
 
 15、list.reverse()、reversed(list)和list[::-1]的区别？
@@ -123,11 +132,11 @@ l2 = [1, 2, 3, 4]
 
 19、异常处理, 断言？
 
-assert isinstance('aaa', str), 'tips'
+assert True, 'tips'
 
 try:
     pass
-except (ValueError, ):
+except (ValueError, IOError):
     pass
 except Exception as e:
     raise
@@ -143,7 +152,7 @@ finally:
 21、如何调用父类的方法？
 
 
-22、实例方法、类方法、静态方法的区别，如何实现？
+22、实例方法、类方法、静态方法的区别，如何定义？
 
 
 23、下面代码输出什么？
@@ -158,13 +167,17 @@ finally:
 >>> print obj1.a, obj2.a
 
 
-24、线程同步方法有哪些？
+24、python中线程同步方法有哪些？
 
 
-25、闭包、修饰器
+#################################################################
+# Python 提高篇
+#################################################################
+
+1、闭包、修饰器
 
 
-26、元类，描述符
+2、元类，描述符
 
 
 #################################################################
@@ -172,8 +185,3 @@ finally:
 #################################################################
 
 1、简述Django从Request到Response的流程？
-
-Request -> RequestMiddleware -> URLConf -> View -> ResponseMiddleware -> Response
-
-
-2、Forignkey 和 ManyToManyField
