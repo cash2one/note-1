@@ -10,9 +10,9 @@ import MySQLdb
 
 
 try:
-    conn=MySQLdb.connect(host='localhost', user='root', passwd='35535', db='easyspider', port=3306)
+    conn=MySQLdb.connect(host='localhost', user='root', passwd='xuebailove321', db='crm', port=3306)
     cur=conn.cursor()
-    cur.execute('select * from car58')
+    cur.execute('select * from accounts_zone')
     print cur.fetchall()
     cur.close()
     conn.close()

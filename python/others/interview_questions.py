@@ -49,14 +49,12 @@
 >>>     print 'd'
 (4)
 >>> a = 1
->>> b = [1]
 
->>> def foo(x, y):
->>>     x = 2
->>>     y + y
+>>> def foo(a):
+>>>     a = 2
 
->>> foo(a, b)
->>> print a, b
+>>> foo(a)
+>>> print a
 
 3、expression?A:b python如何表达?
 
