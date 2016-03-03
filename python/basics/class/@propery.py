@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
 @property
-
 @property ---- 装饰器就是负责把一个方法变成属性调用的
-
-'''
+"""
 
 
 class Student(object):

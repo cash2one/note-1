@@ -142,4 +142,3 @@ def clock(ms=True):
 def foo(a, b):
     time.sleep(0.1)
     return a+b
-

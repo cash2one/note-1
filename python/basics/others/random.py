@@ -34,6 +34,5 @@ random.shuffle(items)
 print items
 
 
-
 if __name__ == "__main__":
     pass

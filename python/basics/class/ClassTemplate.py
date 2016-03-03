@@ -97,13 +97,11 @@ class Sub(Parent):
 issubclass(sub, parent)----判断sub是不是parent的子类，如果是返回True
 
 python2.3之后parent可以是一个tuple, 如果sub是tuple中任一个类的子类就返回True
-#
-#
+
 isinstance(obj1, obj2)----如果obj1是obj2的一个实例或其子类的一个实例, 就返回True
 obj2一是可以用一个tuple的
-#
-#
-#attr()系列函数可以在各种对象下工作,不限于类和实例
+
+# attr()系列函数可以在各种对象下工作,不限于类和实例
 hasattr(obj, 'propertyname')----确定对象obj是否有一个特定的属性propertyname
 
 getattr(obj, 'propertyname')----返回对象obj的属性propertyname的值
@@ -112,7 +110,7 @@ setattr(obj, 'propertyname', 'value')----设置属性值
 
 delattr(obj, 'propertyname')----删除属性
 
-#dir()
+# dir()
 dir(object)----列出一个对象的所有属性
 dir(module)----列出一个模块的所有属性
 

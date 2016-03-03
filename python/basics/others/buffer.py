@@ -31,7 +31,7 @@ class Buffer(object):
         return len(self.buf)
 
     def append(self, item):
-        if len(self.buf)>=self.size:
+        if len(self.buf) >= self.size:
             del self.buf[0]
         self.buf.append(item)
 

@@ -131,9 +131,7 @@ def add_qs(url, **kwargs):
 
 
 def group_generator(data, chunksize):
-
     """将迭代器分组返回"""
-
     chunk = []
     for d in data:
         chunk.append(d)

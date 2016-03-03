@@ -149,7 +149,6 @@ def tansform_user_data4(user_data):
     return dict_list
 
 
-
 #-------------------拆箱---------------------#
 a, b, c = 1, 2, 3
 print a, b, c
@@ -472,22 +471,22 @@ iterator = iter([1, 2, 3])
 
 
 def has_elements(iterator):
-	from itertools import tee
-	iterator_dup, any_check = tee(iterator)
-	try:
-		any_check.next()
-		return True, iterator_dup
-	except StopIteration:
-		return False, iterator_dup
+    from itertools import tee
+    iterator_dup, any_check = tee(iterator)
+    try:
+        any_check.next()
+	return True, iterator_dup
+    except StopIteration:
+        return False, iterator_dup
 
 
 def empty_iter(iterable):
-	try:
-		first = iterable.next()
-	except StopIteration:
-		return []
-	else:
-		return itertools.chain([first], iterable)
+    try:
+        first = iterable.next()
+    except StopIteration:
+        return []
+    else:
+        return itertools.chain([first], iterable)
 
 
 def peek(iterator):
