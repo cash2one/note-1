@@ -5,7 +5,7 @@ $ info command    => 查看command的信息
 
 $ man command     => command 手册
 
-	$ man ascii       => ascii码表
+$ man ascii       => ascii码表
 
 # ctrl + H     =>  显示隐藏文件
 # ctrl + z     =>  暂停进程转到后台
@@ -17,7 +17,8 @@ $ man command     => command 手册
 
 $ which  command  =>  查看命令的完整路径
 
-
+$ apt-get update
+$ sudo apt-get upgrade
 $ apt-cache search package_name   => apt搜索包
 $ sudo apt-get remove --purge package_name   => 连同配置信息一起卸载
 
@@ -231,7 +232,7 @@ $ find . -name "*.conf"  -mtime +5 -ok rm {  } \;
 
 $ locate  => 用于查找文件，它比find命令的搜索速度快
 
-$ touch 文件名       => 创建一个空文件
+$ touch filename     => 创建一个空文件
 
 $ rename             => 重命名一个或多个文件(使用有问题，用mv实现同样的功能)
 
@@ -295,6 +296,7 @@ $ tar -xf ***.tar.bz2  # 解压tar.bz2
 
 #----------------系统管理-----------------
 
+$ route
 $ iptraf       =>  查看网络流量
 $ ifconfig -a  =>  显示网络配置
 $ ipaddress    =>  查看ip
