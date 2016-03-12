@@ -34,6 +34,10 @@ $ shutdown  => 关机
 
 $ login
 $ logout
+$ passwd
+
+$ uname -r  => 查看内核版本
+
 $ w       => 显示登录用户的详细信息
 $ who     => 显示登录用户
 $ last    => 查看最近哪些用户登录系统
@@ -77,11 +81,6 @@ $ chmod   =>
 
 $ sudo chmod +x nginx  # 添加可执行权限
 
-$ uname -r  => 查看内核版本
-
-$ gcc
-    gcc -o test test.c
-
 $ lsblk    => 查看硬盘和分区分布
 
 $ sudo fdisk -l    => 查看硬盘和分区的详细信息
@@ -93,6 +92,8 @@ $ umount   => 卸载磁盘分区
     mount /dev/sda5 /mnt/d  # /mnt目录下要有d这个目录
     umount /dev/sda5
 
+$ gcc
+    gcc -o test test.c
 
 #----------------常用-----------------
 $ cd
