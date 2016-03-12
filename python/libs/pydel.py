@@ -3,30 +3,27 @@
 
 """
 Delete the file specified type in the directory
-
 """
-
-__author__ = 'Pysaoke'
 
 import os
 import argparse
 from termcolor import colored
 
 
-def del_type_file(directory, ftype):
+def get_extname(fname):
+    return os.path.splitext(fname)[1]
+
+
+def rm_file(directory, ftype):
     for rel_path in os.listdir(directory):
         abs_path = os.path.join(directory, rel_path)
         if os.path.isdir(abs_path):
-            del_type_file(abs_path, ftype)  # callback self
+            rm_file(abs_path, ftype)  # call self
         elif os.path.isfile(abs_path):
             extname = get_extname(abs_path)
             if extname in ftype:
                 os.remove(abs_path)
                 print colored("REMOVE >>> ", 'red'), colored(abs_path, 'green')
-
-
-def get_extname(fname):
-    return os.path.splitext(fname)[1]
 
 
 if __name__ == "__main__":
@@ -45,4 +42,4 @@ if __name__ == "__main__":
 
     assert os.path.exists(directory), "ERROR:%s is not exist"
 
-    del_type_file(directory, ftype)
+    rm_file(directory, ftype)

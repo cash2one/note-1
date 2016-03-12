@@ -17,7 +17,5 @@ print os.getcwd()
 raw_input('完成:'.decode('utf-8').encode('gbk'))
 
 
-
-
 if __name__ == "__main__":
     pass

@@ -7,7 +7,7 @@ import os, sys
 
 
 def getfile(dirs, ext=None):
-    '''获取给目录内的所有文件(不包括子目录里的文件), 可以指定文件扩展名来获取指定类型的文件'''
+    """获取给目录内的所有文件(不包括子目录里的文件), 可以指定文件扩展名来获取指定类型的文件"""
     if not os.path.isdir(dirs):
         return
     files =  os.listdir(dirs)

@@ -12,6 +12,7 @@ import threading
 
 class Worker(Threading.Thread):
     requestID = 0
+
     def __init__(self, requestsQueue, resultQueue, **kwds):
         Threading.Thread.__init__(self, **kwds)
         self.setDaemon(1)
@@ -20,7 +21,7 @@ class Worker(Threading.Thread):
         self.start()
 
     def performWork(self, callable, *args, **kwds):
-        "called by the main thread as callable would be, but w/o return"
+        """called by the main thread as callable would be, but w/o return"""
         Worker.requestID +=1
         self.workRequestQueue.put((Worker.requestID, callable, args, kwds))
         return Worker.requestID
@@ -31,6 +32,6 @@ class Worker(Threading.Thread):
             self.resultQueue.put((requestID, callable(*args, **kwds)))
 
 
-
 if __name__ == "__main__":
     pass
+

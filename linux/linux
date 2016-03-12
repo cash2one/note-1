@@ -13,12 +13,14 @@ $ man ascii       => ascii码表
 # ctrl + A     =>  光标称动到开头
 # ctrl + E     =>  光标移动结尾
 # ctrl + W     =>  回退一个单词
+# ctrl + d     =>  exit
 
 $ which  command  =>  查看命令的完整路径
 
-
+$ apt-get update
+$ sudo apt-get upgrade
 $ apt-cache search package_name   => apt搜索包
-$ sudo apt-get remove --purge package_name   => 卸载
+$ sudo apt-get remove --purge package_name   => 连同配置信息一起卸载
 
 $ sudo nautilus     =>  以root权限打开一个窗口，来管理文件
 $ sudo      => 以系统管理者的身份执行指令
@@ -32,6 +34,10 @@ $ shutdown  => 关机
 
 $ login
 $ logout
+$ passwd
+
+$ uname -r  => 查看内核版本
+
 $ w       => 显示登录用户的详细信息
 $ who     => 显示登录用户
 $ last    => 查看最近哪些用户登录系统
@@ -75,11 +81,6 @@ $ chmod   =>
 
 $ sudo chmod +x nginx  # 添加可执行权限
 
-$ uname -r  => 查看内核版本
-
-$ gcc
-    gcc -o test test.c
-
 $ lsblk    => 查看硬盘和分区分布
 
 $ sudo fdisk -l    => 查看硬盘和分区的详细信息
@@ -91,6 +92,8 @@ $ umount   => 卸载磁盘分区
     mount /dev/sda5 /mnt/d  # /mnt目录下要有d这个目录
     umount /dev/sda5
 
+$ gcc
+    gcc -o test test.c
 
 #----------------常用-----------------
 $ cd
@@ -112,7 +115,6 @@ $ more filename  => 分页查看 space下一页, b上一页
 
 $ nl filename   => 带行号查看文件
 $ file          => 查看文件类型
-$ stat          => 查看文件状态
 
 $ wc            => 统计文本中函数、字数、字符数
 $ grep          => 在指定文件中搜索特定内容--Global Regular Expression
@@ -231,7 +233,7 @@ $ find . -name "*.conf"  -mtime +5 -ok rm {  } \;
 
 $ locate  => 用于查找文件，它比find命令的搜索速度快
 
-$ touch 文件名       => 创建一个空文件
+$ touch filename     => 创建一个空文件
 
 $ rename             => 重命名一个或多个文件(使用有问题，用mv实现同样的功能)
 
@@ -286,11 +288,16 @@ $ tar        =>  压缩解压
 $ zip/unzip
     $ zip -r mydata.zip mydata  # 压缩mydata目录
     $ unzip mydata.zip -d mydatabak
+
 $ tar -xf ***.tar.bz2  # 解压tar.bz2
+
+创建tar.xz文件: 先 tar cvf xxx.tar xxx/ 创建xxx.tar文件先，然后使用 xz -z xxx.tar 来将 xxx.tar压缩成为 xxx.tar.xz
+解压tar.xz文件: 先 xz -d xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar 然后，再用 tar xvf xxx.tar来解包
 
 
 #----------------系统管理-----------------
 
+$ route
 $ iptraf       =>  查看网络流量
 $ ifconfig -a  =>  显示网络配置
 $ ipaddress    =>  查看ip
@@ -298,8 +305,8 @@ $ sudo ethstatus -i eth0  =>  查看网络流量
 
 $ netstat    => 查看端口使用情况
     $ netstat -apn            =>  查看端口的占用情况
-    $ netstat -apn|grep xxxx  =>  查看xxxx端口的占用情况
-
+    $ netstat -apn|grep xxx   =>  查看xxxx端口的占用情况
+	$ netstat -ntlp|grep xxx  =>  查看端口占用 
 
 $ ps aux => 查看进程
 $ ps aux|grep nginx
@@ -311,13 +318,13 @@ $ lsof -i    =>  查看端口占用情况
 $ lsof -i:xxxx    =>  查看xxxx端口的占用情况
 
 $ ps      => 显示进程信息
-    ps ux  # 显示当前用户的进程
+    ps ux     # 显示当前用户的进程
     ps uxwww  # 显示当前用户的进程的详细信息
-    ps aux  # 显示当前用户的进程
-    ps ef  # 显示系统所有进程信息
-	ps -em  # 显示 pid cmd
+    ps aux    # 显示当前用户的进程
+    ps ef     # 显示系统所有进程信息
+	ps -em    # 显示 pid cmd
 
-$ pgrep firefox  #专门用于进程查询的grep
+$ pgrep firefox  # 专门用于进程查询的grep
 $ kill -l  # 列出所有的信号
 # 只有第9种信号(SIGKILL)才可以无条件终止进程，其他信号进程都有权利忽略.
 # 下面是常用的信号：

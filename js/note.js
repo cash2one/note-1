@@ -1,68 +1,60 @@
+/**
+ * 数据类型
+ */
 
-/******  数据类型  ******/
-Number
+var a = Number()  // a是0
 // JavaScript不区分整数和浮点数，统一用Number表示
-123; // 整数123
-0.456; // 浮点数0.456
-1.2345e3; // 科学计数法表示1.2345x1000，等同于1234.5
--99; // 负数
-NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示
-Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
+123;  // 整数123
+0.456;  // 浮点数0.456
+1.2345e3;  // 科学计数法表示1.2345x1000，等同于1234.5
+-99;  // 负数
+NaN;  // NaN表示Not a Number，当无法计算结果时用NaN表示
+Infinity;  // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
 0xff00;  // 16进制
 
-// Number可以直接做四则运算
-1 + 2; // 3
-(1 + 2) * 5 / 2; // 7.5
-2 / 0; // Infinity
-0 / 0; // NaN
-10 % 3; // 1
-10.5 % 3; // 1.5
+1 + 2;  // 3
+(1 + 2) * 5 / 2;  // 7.5
+2 / 0;  // Infinity
+0 / 0;  // NaN
+10 / 3;  // 3.333333333
+10 % 3;  // 1
+10.5 % 3;  // 1.5
 
 
+/**
+ * 字符串
+ */
 
-/******  字符串  ******/
 'abc';
 "xyz";
-// 字符串是以单引号'或双引号"括起来的任意文本
-
 'I\'m \"OK\"!';
 
-// ASCII字符可以以\x##形式的十六进制表示，例如：
-'\x41'; // 完全等同于 'A'
+// ASCII字符可以用 \x## 形式的十六进制表示，例如：
+'\x41';  // 完全等同于 'A'
 
-// 还可以用\u####表示一个Unicode字符：
-'\u4e2d\u6587'; // 完全等同于 '中文'
-
-
-var s = 'Hello, world!';
-s.length; // 13
+//  还可以用 \u#### 表示一个Unicode字符：
+'\u4e2d\u6587';  // 完全等同于 '中文'
 
 var s = 'Hello, world!';
-
-s[0]; // 'H'
-s[6]; // ' '
-s[7]; // 'w'
-s[12]; // '!'
-s[13]; // undefined 超出范围的索引不会报错，但一律返回undefined
-
+s.length;  // 13
+s[0];  // 'H'
+s[13];  // undefined 超出范围的索引不会报错，但一律返回undefined
 
 // 需要特别注意的是: 字符串是不可变的，如果对字符串的某个索引赋值，不会有任何错误，但是，也没有任何效果：
 var s = 'Test';
 s[0] = 'X';
-alert(s); // s仍然为'Test'
+console.log(s);  // s仍然为'Test'
 
 // JavaScript为字符串提供了一些常用方法，
 // 注意，调用这些方法本身不会改变原有字符串的内容，而是返回一个新字符串：
 var s = 'Hello';
-s.toUpperCase(); // 返回'HELLO'
-
-var s = 'Hello';
-var lower = s.toLowerCase(); // 返回'hello'并赋值给变量lower
-lower; // 'hello'
+s.toUpperCase();  // 返回'HELLO'
+var lower = s.toLowerCase();  // 返回'hello'并赋值给变量lower
+lower;  // 'hello'
 
 var s = 'hello, world';
-s.indexOf('world'); // 返回7
-s.indexOf('World'); // 没有找到指定的子串，返回-1
+s.indexOf('world');  // 返回7
+s.indexOf('World');  // 没有找到指定的子串，返回-1
 
 var s = 'hello, world'
 s.substring(0, 5); // 从索引0开始到5（不包括5），返回'hello'
