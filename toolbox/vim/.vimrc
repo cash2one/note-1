@@ -7,19 +7,26 @@ set tabstop=4           "tab键为4个空格
 set shiftwidth=4        "换行时行间交错使用4个空格
 set cindent             "C语言格式对齐
 syntax enable
-syntax on               "自动语法高亮
+" syntax on               "自动语法高亮
 " color scheme
 set t_Co=256
-colo molokai
+if has('gui_running')
+    set background=light
+else
+	set background=dark
+endif
+colorscheme solarized
+let g:solarized_termcolors=256
+" colo molokai
 " hilight function name
-autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2 
-autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
-hi cfunctions ctermfg=81
-
-hi Type ctermfg=118 cterm=none 
-hi Structure ctermfg=118 cterm=none
-hi Macro ctermfg=161 cterm=bold
-hi PreCondit ctermfg=161 cterm=bold
+" autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2 
+" autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
+" hi cfunctions ctermfg=81
+" 
+" hi Type ctermfg=118 cterm=none 
+" hi Structure ctermfg=118 cterm=none
+" hi Macro ctermfg=161 cterm=bold
+" hi PreCondit ctermfg=161 cterm=bold
 set cursorline
 
 filetype plugin on
