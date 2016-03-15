@@ -58,9 +58,6 @@ GRANT SELECT ON test.user TO 'pig'@'%',
 7.查看权限
 $ mysql> SHOW GRANTS FOR 'pig'@'%';
 
-
-
-
 3.查看所有的数据库名字
 mysql> show databases;
 
