@@ -74,6 +74,7 @@ mysql> show create table table-name;
 
 6.创建一个数据库
 mysql> CREATE DATABASE db_name;
+mysql> CREATE DATABASE db_name DEFAULT CHARACTER SET utf8;
 
 7.删除一个数据库
 mysql> DROP DATABASE db_name;
@@ -129,6 +130,9 @@ mysql> INSERT INTO 新表 SELECT * FROM 旧表;
 
 
 12.备份与还原
+只导出表结构不导数据
+$ mysqldump --opt -d 数据库名 -u root -p > xxx.sql
+导出数据和结构
 $ mysqldump -h hostname -u username -p database-name > backupfile.sql
 $ mysqldump -h hostname -u username -p database-name | gzip > backupfile.sql.gz
 还原MySQL数据库的命令

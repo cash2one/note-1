@@ -149,6 +149,11 @@ def tansform_user_data4(user_data):
     return dict_list
 
 
+def list_group(l, c):
+    """将列表按给定个数分组"""
+    return [l[i:i+c] for i in xrange(0, len(l), c)]    
+
+
 #-------------------拆箱---------------------#
 a, b, c = 1, 2, 3
 print a, b, c
