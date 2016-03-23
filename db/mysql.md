@@ -1,6 +1,8 @@
-# MySQL笔记
+MySQL笔记
+=========
 ####　导语:
-> 与其他的大型数据库例如 Oracle、DB2、SQL Server等相比，MySQL自有它的不足之处,但是这丝毫也没有减少它受欢迎的程度。对于一般的个人使用者和中小型企业来说，MySQL提供的功能已经绰绰有余，而且由于 MySQ L是开放源码软件，因此可以大大降低总体拥有成本
+> 与其他的大型数据库例如 Oracle、DB2、SQL Server等相比,MySQL自有它的不足之处,但是这丝毫也没有减少它受欢迎的程度.
+> 对于一般的个人使用者和中小型企业来说,MySQL提供的功能已经绰绰有余,而且由于MySQL是开放源码软件,因此可以大大降低总体拥有成本
 
 ## 数据库管理
 
@@ -18,49 +20,63 @@ enter your passwd:
 
 #### 4. 创建用户
 * $ mysql> CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+```
 username -> 创建的用户名
 host -> 指定该用户在哪个主机上可以登陆(localhost:本地; %:任意主机)
 password -> 密码,为空代表无密码
+```
 
 例:
-$ mysql> CREATE USER 'pig'@'localhost' IDENTIFIED BY '123456';
-$ mysql> CREATE USER 'pig'@'192.168.1.101' IDENDIFIED BY '123456';
-$ mysql> CREATE USER 'pig'@'%' IDENTIFIED BY '123456';
-$ mysql> CREATE USER 'pig'@'localhost';
+
+    $ mysql> CREATE USER 'pig'@'localhost' IDENTIFIED BY '123456';
+    $ mysql> CREATE USER 'pig'@'192.168.1.101' IDENDIFIED BY '123456';
+    $ mysql> CREATE USER 'pig'@'%' IDENTIFIED BY '123456';
+    $ mysql> CREATE USER 'pig'@'localhost';
 
 #### 4. 删除用户
 * $ mysql> DROP USER 'username'@'host';
 
 #### 5. 授权
 * $ mysql> GRANT privileges ON databasename.tablename TO 'username'@'host';
-privileges -> 用户操作权限,如:select, insert, update等.如果要授予用户所有权限可以使用all;
+```
+privileges -> 用户操作权限,如:select, insert, update等.所有权限可以使用all;
 databasename -> 数据库名;
 tablename -> 表名;
-(如果要授予该用户对所有数据库和表的相应操作权限则可用*表示, 如*.*.)
+```
+(如果要授予该用户对所有数据库和表的相应操作权限则可用\*表示, 如\*.\*.)
+
 例:
-$ mysql> GRANT select, insert ON school.* TO 'lin'@'%';
-$ mysql> GRANT ALL ON *.* TO 'pig'@'%';
+
+    $ mysql> GRANT select, insert ON school.* TO 'lin'@'%';
+    $ mysql> GRANT ALL ON *.* TO 'pig'@'%';
+
 注意:
-用以上命令授权的用户不能给其它用户授权,如果想让该用户可以授权,用以下命令:
-$ mysql> GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
+
+    用以上命令授权的用户不能给其它用户授权,如果想让该用户可以授权,用以下命令:
+
+    $ mysql> GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
 
 #### 6. 设置与更改用户密码
 * $ mysql> SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
-如果是当前登陆用户用
-$ mysql> SET PASSWORD = PASSWORD("newpassword");
+* $ mysql> SET PASSWORD = PASSWORD("newpassword");  (如果是当前登陆用户用)
 
 #### 7. 撤销用户权限
 * $ mysql> REVOKE privileges ON databasename.tablename FROM 'username'@'host';
-**例子:**
-$ mysql> REVOKE select ON *.* FROM 'pig'@'%';
-**注意:**
-假如你在给用户'pig'@'%'授权的时候是这样的(或类似的):
-GRANT SELECT ON test.user TO 'pig'@'%',
-则在使用REVOKE SELECT ON *.* FROM 'pig'@'%';
-命令并不能撤销该用户对test数据库中user表的SELECT 操作.
-相反,如果授权使用的是GRANT SELECT ON *.* TO 'pig'@'%';
-则REVOKE SELECT ON test.user FROM 'pig'@'%';
-命令也不能撤销该用户对test数据库中user表的Select 权限.
+
+例:
+
+    * $ mysql> REVOKE select ON *.* FROM 'pig'@'%';
+    
+注意:
+
+    假如你在给用户'pig'@'%'授权的时候是这样的(或类似的):
+    GRANT SELECT ON test.user TO 'pig'@'%',
+    则在使用REVOKE SELECT ON *.* FROM 'pig'@'%';
+    命令并不能撤销该用户对test数据库中user表的SELECT 操作.
+    相反,如果授权使用的是GRANT SELECT ON *.* TO 'pig'@'%';
+    则REVOKE SELECT ON test.user FROM 'pig'@'%';
+    命令也不能撤销该用户对test数据库中user表的Select 权限.
+
 
 #### 8. 查看权限
 * $ mysql> SHOW GRANTS FOR 'pig'@'%';
@@ -74,11 +90,6 @@ GRANT SELECT ON test.user TO 'pig'@'%',
 #### 11. 查看当前数据库下所有的表名
 * $ mysql> show tables;
 
-#### 12. 查看表结构
-* $ mysql> show columns from table-name;
-* $ mysql> desc table-name;
-* $ mysql> show create table table-name;
-
 #### 6. 创建一个数据库
 * $ mysql> CREATE DATABASE db_name;
 * $ mysql> CREATE DATABASE db_name DEFAULT CHARACTER SET utf8;
@@ -87,35 +98,40 @@ GRANT SELECT ON test.user TO 'pig'@'%',
 * $ mysql> DROP DATABASE db_name;
 * $ mysql> DROP DATABASE IF EXISTS db_name
 
+#### 12. 查看表结构
+* $ mysql> show columns from table-name;
+* $ mysql> desc table-name;
+* $ mysql> show create table table-name;
+
 #### 8.创建一个表
 * $ mysql> CREATE TABLE table-name( uid bigint(20) not null, uname varchar(20) not null);
-**例子:**
-CREATE TABLE
-    USER
-    (
-        name VARCHAR(30) NOT NULL,
-        id INT DEFAULT '0' NOT NULL,
-        stu_id INT,
-        phone VARCHAR(20),
-        address VARCHAR(30) NOT NULL,
-        age INT(4) NOT NULL,
-        PRIMARY KEY (name),
-        CONSTRAINT stu_id UNIQUE (stu_id)
-    )
-    ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+例:
+
+    CREATE TABLE
+        USER
+        (
+            name VARCHAR(30) NOT NULL,
+            id INT DEFAULT '0' NOT NULL,
+            stu_id INT,
+            phone VARCHAR(20),
+            address VARCHAR(30) NOT NULL,
+            age INT(4) NOT NULL,
+            PRIMARY KEY (name),
+            CONSTRAINT stu_id UNIQUE (stu_id)
+        )
+        ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 #### 9. 删除一个表
 * $ mysql> DROP TABLE table-name;
 * $ mysql> alter table table-name drop column column-name
-
 * $ 清空表数据
-mysql> delete from 表名;
-mysql> truncate table 表名;(不记录mysql日志,无法恢复数据)
-
+    * mysql> delete from 表名;
+    * mysql> truncate table 表名;(不记录mysql日志,无法恢复数据)
 * $ 删除表中的某些数据
-mysql> delete from 表名 where 表达式;
-mysql> delete from MyClass where id=1;
+    * mysql> delete from 表名 where 表达式;
+    * mysql> delete from MyClass where id=1;
 
 #### 10. 设置创建的数据库的编码
 * $ mysql> alter database <db-name> character set utf8;
@@ -126,96 +142,109 @@ mysql> delete from MyClass where id=1;
 
 #### 12.表复制及备份还原
 * 复制表结构
-含有主键等信息的完整表结构
-$ mysql> CREATE TABLE 新表名 LIKE book;
-只有表结构,没有主键等信息
-$ mysql> CREATE TABLE 新表名 SELECT * FROM books;
-$ mysql> CREATE TABLE 新表名 as(select * from book);
-$ mysql> CREATE TABLE 新表名 SELECT * FROM books WHERE 1=2;
-
+    * $ mysql> CREATE TABLE 新表名 LIKE book;  含有主键等信息的完整表结构
+* 只有表结构,没有主键等信息
+    * $ mysql> CREATE TABLE 新表名 SELECT * FROM books;
+    * $ mysql> CREATE TABLE 新表名 as(select * from book);
+    * $ mysql> CREATE TABLE 新表名 SELECT * FROM books WHERE 1=2;
 * 将旧表中的数据灌入新表(新表必须已经存在)
-mysql> INSERT INTO 新表 SELECT * FROM 旧表;
+    * mysql> INSERT INTO 新表 SELECT * FROM 旧表;
 
 #### 13.备份与还原
 * 只导出表结构不导数据
-$ mysqldump --opt -d 数据库名 -u root -p > xxx.sql
-导出数据和结构
-$ mysqldump -h hostname -u username -p database-name > backupfile.sql
-$ mysqldump -h hostname -u username -p database-name | gzip > backupfile.sql.gz
-
+    * $ mysqldump --opt -d 数据库名 -u root -p > xxx.sql
+* 导出数据和结构
+    * $ mysqldump -h hostname -u username -p database-name > backupfile.sql
+    * $ mysqldump -h hostname -u username -p database-name | gzip > backupfile.sql.gz
 * 还原MySQL数据库的命令
-$ mysql> source test.sql;
-$ mysql -h hostname -u username -p database-name < backupfile.sql
-$ gunzip < backupfile.sql.gz | mysql -u username -p password databasename
+    * $ mysql> source test.sql;
+    * $ mysql -h hostname -u username -p database-name < backupfile.sql
+    * $ gunzip < backupfile.sql.gz | mysql -u username -p password databasename
 
 #### 14.查看表里的数据
 * mysql> select * from RePhone limit 10 offset 101200;  # 倒数10条
 
 #### 15. 修改表的列与表名
 * 给列更名
-$ mysql> alter table 表名称 change 旧字段名称 新字段名称;
+    * $ mysql> alter table 表名称 change 旧字段名称 新字段名称;
 * 给表更名
-$ mysql> alter table 表名称 rename 表名称;
+    * $ mysql> alter table 表名称 rename 表名称;
 * 修改某个表的字段类型及指定为空或非空
-$ mysql> alter table 表名称 change 字段名称 字段类型 [是否允许非空];
-$ mysql> alter table 表名称 modify 字段名称 字段类型 [是否允许非空];
+    * $ mysql> alter table 表名称 change 字段名称 字段类型 [是否允许非空];
+    * $ mysql> alter table 表名称 modify 字段名称 字段类型 [是否允许非空];
 * 修改某个表的字段名称及指定为空或非空
-$ mysql> alter table 表名称 change 字段原名称 字段新名称 字段类型 [是否允许非空];
-**例如:**修改表expert_info中的字段birth,允许其为空
-$ mysql> alter table expert_info change birth birth varchar(20) null;
+    * $ mysql> alter table 表名称 change 字段原名称 字段新名称 字段类型 [是否允许非空];
+
+例:修改表expert_info中的字段birth,允许其为空
+
+    $ mysql> alter table expert_info change birth birth varchar(20) null;
 
 #### 16. 修改表中的数据
 * 增加一个字段(一列)
-$ mysql> alter table 表名 add column column_name type default value;
+    * $ mysql> alter table 表名 add column column_name type default value;
 (type指该字段的类型,value指该字段的默认值)
 * 更改一个字段名字(也可以改变类型和默认值)
-$ alter table table_name change sorce_col_name dest_col_name type default value;
+    * $ alter table table_name change sorce_col_name dest_col_name type default value;
 (source_col_name指原来的字段名称,dest_col_name)
+
 例:
-$ alter table Board_Info change IsMobile IsTelphone int(3) unsigned default1;
-* 改变一个字段的默认值
-$ alter table table_name alter column_name set default value;
+
+    $ alter table Board_Info change IsMobile IsTelphone int(3) unsigned default1;
+    改变一个字段的默认值
+    $ alter table table_name alter column_name set default value;
 例:
-$ alter table book alter flag set default '0′;
-* 改变一个字段的数据类型
-$ alter table table_name change column column_name column_name type;
+
+    $ alter table book alter flag set default '0′;
+    改变一个字段的数据类型
+    $ alter table table_name change column column_name column_name type;
+
 例:
-$ alter table userinfo change column username username varchar(20);
-* 向一个表中增加一个列做为主键
-$ alter table table_name add column column_name type auto_increment PRIMARYKEY;
-例如:
-代码如下:
-alter table book add column id int(10) auto_increment PRIMARY KEY;
+
+    $ alter table userinfo change column username username varchar(20);
+    向一个表中增加一个列做为主键
+    $ alter table table_name add column column_name type auto_increment PRIMARYKEY;
+
+例:
+
+    代码如下:
+    alter table book add column id int(10) auto_increment PRIMARY KEY;
 
 #### 17. 数据库某表的备份, 在命令行中输入
 
 * mysqldump -u root -p database_name table_name > bak_file_name
-例如:
-代码如下:
-mysqldump -u root -p f_info user_info > user_info.dat
+
+例:
+
+    代码如下:
+    mysqldump -u root -p f_info user_info > user_info.dat
 
 #### 18. 导出数据
 
 * select_statment into outfile”dest_file”;
-例如:
-代码如下:
-select cooperatecode,createtime from publish limit 10 intooutfile”/home/mzc/temp/tempbad.txt”;
+
+例:
+
+    代码如下:
+    select cooperatecode,createtime from publish limit 10 intooutfile”/home/mzc/temp/tempbad.txt”;
 
 #### 19. 导入数据
 
 * load data infile”file_name” into table table_name;
-例如:
-代码如下:
-load data infile”/home/mzc/temp/tempbad.txt” into table pad;
+
+例:
+
+    代码如下:
+    load data infile”/home/mzc/temp/tempbad.txt” into table pad;
 
 #### 20. 将两个表里的数据拼接后插入到另一个表里.
 
-例如: 下面的例子说明将t1表中的com2和t2表中的com1字段的值拼接后插入到tx表对应的字段里.
-$ mysql> insert into tx select t1.com1,concat(t1.com2,t2.com1) from t1,t2;
+例:下面的例子说明将t1表中的com2和t2表中的com1字段的值拼接后插入到tx表对应的字段里.
+
+    $ mysql> insert into tx select t1.com1,concat(t1.com2,t2.com1) from t1,t2;
 
 #### 21. 删除字段
 
-$ mysql> alter table form1 drop column 列名;
+* $ mysql> alter table form1 drop column 列名;
 
 
 ## 查询表
