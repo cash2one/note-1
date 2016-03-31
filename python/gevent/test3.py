@@ -35,4 +35,3 @@ synchronous()
 
 print('Asynchronous:')
 asynchronous()
-
