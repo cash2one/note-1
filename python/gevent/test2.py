@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''例子中的select()函数通常是一个在各种文件描述符上轮询的阻塞调用'''
+"""例子中的select()函数通常是一个在各种文件描述符上轮询的阻塞调用"""
 
 
 import time

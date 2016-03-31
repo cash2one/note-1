@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 '''gevnet demo'''
@@ -23,5 +22,3 @@ gevent.joinall([
     gevent.spawn(foo),
     gevent.spawn(bar),
 ])
-
-
