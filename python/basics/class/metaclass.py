@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-"""MetaClass"""
+""" MetaClass """
 
 
 #--------------------类也是对象---------------------
 
-'''
+"""
 在理解元类之前，你需要先掌握Python中的类。Python中类的概念借鉴于Smalltalk，这显得有些奇特。
 在大多数编程语言中，类就是一组用来描述如何生成一个对象的代码段。在Python中这一点仍然成立：
-'''
+"""
 
 class ObjectCreator(object):
     pass
@@ -17,13 +17,16 @@ my_object = ObjectCreator()
 print my_object  # <__main__.ObjectCreator object at 0x8974f2c>
 
 
-'''
+"""
 但是，Python中的类还远不止如此。类同样也是一种对象.
 只要你使用关键字class，Python解释器在执行的时候就会创建一个对象。下面的代码段：
-'''
+"""
+
 class ObjectCreator(object):
     pass
-'''
+
+
+"""
 将在内存中创建一个对象，名字就是ObjectCreator.
 这个对象（类）自身拥有创建对象（类实例）的能力，而这就是为什么它是一个类的原因。
 它的本质仍然是一个对象，于是乎你可以对它做如下的操作：
@@ -31,7 +34,7 @@ class ObjectCreator(object):
 2)   你可以拷贝它
 3)   你可以为它增加属性
 4)   你可以将它作为函数参数进行传递
-'''
+"""
 # 你可以打印一个类，因为它其实也是一个对象
 print ObjectCreator  # <class '__main__.ObjectCreator'>
 
@@ -108,6 +111,7 @@ print MyShinyClass()  # <__main__.MyShinyClass object at 0x8997cec>
 你会发现我们使用“MyShinyClass”作为类名，并且也可以把它当做一个变量来作为类的引用.
 类和变量是不同的，这里没有任何理由把事情弄的复杂.
 '''
+
 '''type 接受一个字典来为类定义属性，因此'''
 class Foo(object):
     bar = True
@@ -359,7 +363,8 @@ Django框架将这些看起来很复杂的东西通过暴露出一个简单的�
 首先，你知道了类其实是能够创建出类实例的对象。好吧，事实上，类本身也是实例，当然，它们是元类的实例.
 '''
 
-class Foo(object): pass
+class Foo(object):
+	pass
 id(Foo)
 
 '''
