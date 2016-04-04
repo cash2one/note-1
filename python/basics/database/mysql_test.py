@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''测试mysql操作'''
-
-__author__ = 'Pysaoke'
-
+"""测试mysql操作"""
 
 import MySQLdb
 

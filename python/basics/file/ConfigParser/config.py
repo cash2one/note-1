@@ -8,18 +8,18 @@ CONFIGFILE = "config.txt"
 
 config = ConfigParser()
 
-#读取配置文件
+# 读取配置文件
 config.read(CONFIGFILE)
 
-#打印初始问候语
-#要查看的区段是'messages'
+# 打印初始问候语
+# 要查看的区段是'messages'
 print config.get('messages', 'greeting')
 
-#打印配置文件中的结果信息
-#以逗号结束，以在同一行显示
+# 打印配置文件中的结果信息
+# 以逗号结束，以在同一行显示
 print config.get('messages', 'result_message')
 
-#getfloat()将config值转换为float类型
+# getfloat()将config值转换为float类型
 print config.getfloat('numbers', 'pi')
 
 config.set('numbers', 'pi', 4.001)

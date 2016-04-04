@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-'''技巧'''
+"""
+技巧
+"""
 
 __author__ = 'baixue'
 
@@ -12,6 +14,7 @@ lista = list(iterobj)
 
 # 用可迭代对象的前N个元素创建list
 import itertools
+N = 10
 y = list(itertools.islice(lst, N))
 
 # 并行地循环多个可迭代对象
@@ -21,12 +24,12 @@ import itertools
 for x, y in itertools.izip(a, b):
     print x, y
 
-# 内建函数zip是个备选方案，缺点是它可能会损害性能
+# 内建函数zip是个备选方案, 缺点是它可能会损害性能
 for x, y in zip(a, b):
     print x, y
 
-# 如果迭代多个不同长度的可迭代对象，最短的可迭代对象耗尽时，zip和itertools.izip都会停止
-# 在较短的可迭代对象中填充None，直到和最长的相等
+# 如果迭代多个不同长度的可迭代对象, 最短的可迭代对象耗尽时, zip和itertools.izip都会停止
+# 在较短的可迭代对象中填充None, 直到和最长的相等
 for x, y in map(None, a, b):
     print x, y
 
@@ -46,7 +49,7 @@ def par_two(a, b, padding_item=None):
         yield padding_item, x
 
 
-# 通用的，任意数目的序列
+# 通用的, 任意数目的序列
 def par_loop(padding_item, *sequences):
     iterators = map(iter, sequences)
     num_remaining = len(iterators)
@@ -64,9 +67,10 @@ def par_loop(padding_item, *sequences):
 
 
 def smallmerge(*sequences):
-    '''合并有序序列'''
+    """合并有序序列"""
     result = []
-    for subseq in sequences:result.extend(subseq)
+    for subseq in sequences:
+        result.extend(subseq)
     return result
 
 
@@ -79,11 +83,11 @@ def strider(p, n):
     return result
 
 
-#-------------------无需过多援引 ，创建字典---------------------#
+#-------------------无需过多援引创建字典---------------------#
 dt = dict(zip(keys, values))
 dt = dict(itertools.izip(keys, values))
-
 dt = dict(map(None, a, range(3)))
+
 import string
 count_by_letter = dict.fromkeys(string.ascii_lowercase, 0)
 
@@ -97,23 +101,23 @@ lines = [[i for x in range(4)] for i in range(10000)]
 print len(lines)
 
 def tansform_user_data(user_data):
-    '''将列表构建成和字段对应的字典'''
-##    line = ['' for i in range(len(HEADER))]
-##    dict_data = dict(zip(HEADER, line))
+    """将列表构建成和字段对应的字典"""
+    # line = ['' for i in range(len(HEADER))]
+    # dict_data = dict(zip(HEADER, line))
     # 字典推导式
     # dict_data = { h:'' for h in HEADER }
     dict_data = dict.fromkeys(HEADER, '')
     dict_list = []
-    for data in user_data:
+    for d in user_data:
         dt = dict_data.copy()
         for idx, field in enumerate(HEADER):
-            dt[field] = data[idx]
+            dt[field] = d[idx]
         dict_list.append(dt)
     return dict_list
 
 
 def tansform_user_data10(user_data):
-    '''将列表构建成和字段对应的字典'''
+    """将列表构建成和字段对应的字典"""
     dict_data = dict.fromkeys(HEADER, '')
     dict_list = []
     for data in user_data:
@@ -125,7 +129,7 @@ def tansform_user_data10(user_data):
 
 
 def tansform_user_data2(user_data):
-    '''将列表构建成和字段对应的字典'''
+    """将列表构建成和字段对应的字典"""
     dict_list = []
     for data in user_data:
         dt = dict(zip(HEADER, data))
@@ -134,17 +138,17 @@ def tansform_user_data2(user_data):
 
 
 def tansform_user_data3(lines):
-    '''将列表构建成和字段对应的字典'''
+    """将列表构建成和字段对应的字典"""
     return [dict(itertools.izip(HEADER, line)) for line in lines]
 
 
 def tansform_user_data4(user_data):
-    '''将列表构建成和字段对应的字典'''
+    """将列表构建成和字段对应的字典"""
     dict_list = []
-    for data in user_data:
-        dt = dict({'id':'', 'name':''})
+    for d in user_data:
+        dt = {'id': '', 'name': ''}
         for idx, field in enumerate(HEADER):
-            dt[field] = data[idx]
+            dt[field] = d[idx]
         dict_list.append(dt)
     return dict_list
 
@@ -470,7 +474,7 @@ for value, group in itertools.groupby(data, lambda r: r[-1]):
     print_data(group)
 
 
-# 判断iterator 是否为空
+# 判断iterator是否为空
 
 iterator = iter([1, 2, 3])
 
@@ -480,12 +484,13 @@ def has_elements(iterator):
     iterator_dup, any_check = tee(iterator)
     try:
         any_check.next()
-	return True, iterator_dup
+        return True, iterator_dup
     except StopIteration:
         return False, iterator_dup
 
 
 def empty_iter(iterable):
+    """判断迭代器是否为空, 大迭代器仍然不行, 有缺陷"""
     try:
         first = iterable.next()
     except StopIteration:

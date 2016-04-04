@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''mongodb操作'''
+"""mongodb操作"""
 
 import pymongo
 
@@ -10,10 +10,6 @@ client = pymongo.MongoClient("localhost", 27017)
 db = client.test
 db.name
 db.my_collection
-
-
-
-
 
 # connection = pymongo.Connection('localhost', 27017)
 
