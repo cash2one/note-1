@@ -1,4 +1,4 @@
-#----------------常用-----------------
+#################常用#################
 $ command --help  => 查看command的帮助
 
 $ info command    => 查看command的信息
@@ -22,15 +22,15 @@ $ sudo apt-get upgrade
 $ apt-cache search package_name   => apt搜索包
 $ sudo apt-get remove --purge package_name   => 连同配置信息一起卸载
 
-$ sudo nautilus     =>  以root权限打开一个窗口，来管理文件
+$ sudo nautilus     => 以root权限打开一个窗口, 来管理文件
 $ sudo      => 以系统管理者的身份执行指令
 $ top       => 资源管理
 $ reboot    => 重启机
 $ shutdown  => 关机
     shutdown -h now  # 现在关机
-    shutdown -h hours:minutes # 按预定时间关闭系统
-    shutdown -c # 取消按预定时间关闭系统
-    shutdown -r now # 重启计算机，停止服务后重新启动计算机
+    shutdown -h hours:minutes  # 按预定时间关闭系统
+    shutdown -c  # 取消按预定时间关闭系统
+    shutdown -r now  # 重启计算机, 停止服务后重新启动计算机
 
 $ login
 $ logout
@@ -47,15 +47,15 @@ $ free    => 查看内存情况
 $ vmstat  => 监视虚拟内存使用情况
 $ su    => 变更使用者身份
     su root
-    su username # 切换用户
+    su username  # 切换用户
 $ export  => 查看所有环境变量
 $ env     => 查看所有环境变量
 $ echo $PATH  => 查看环境变量PATH
-$ export HELLO='hello'  => 设置变量HELLO,这是临时的变量,在关闭shell时失效 
+$ export HELLO='hello'  => 设置变量HELLO, 这是临时的变量, 在关闭shell时失效 
 
 # 永久环境变量
-在/etc/profile文件中添加变量【对所有用户生效(永久的)】
-用户目录下的.bash.profile文件中增加变量【对单一用户生效(永久的)】
+在/etc/profile文件中添加变量, 对所有用户生效(永久的)
+用户目录下的.bash.profile文件中增加变量, 对单一用户生效(永久的)
 export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib
 
 $ date    =>  显示日期
@@ -64,11 +64,11 @@ $ cal     =>  显示一个日历
 $ bc      =>  一个简单计算器
 
 
-$ chmod   =>
+$ chmod 
     三种基本权限
-    R:读  数值表示为4
-    W:写  数值表示为2
-    X：可执行  数值表示为1
+    R: 读      数值表示为4
+    W: 写      数值表示为2
+    X: 可执行  数值表示为1
 
     chmod abc file
     r=4, w=2, x=1
@@ -77,7 +77,7 @@ $ chmod   =>
     若要rw-属性则4+2=6
     若要r-x属性则4+1=5
 
-    例：chmod a=rwx file 和 chmod 777 file
+    例: chmod a=rwx file 和 chmod 777 file
 
 $ sudo chmod +x nginx  # 添加可执行权限
 
@@ -291,8 +291,8 @@ $ zip/unzip
 
 $ tar -xf ***.tar.bz2  # 解压tar.bz2
 
-创建tar.xz文件: 先 tar cvf xxx.tar xxx/ 创建xxx.tar文件先，然后使用 xz -z xxx.tar 来将 xxx.tar压缩成为 xxx.tar.xz
-解压tar.xz文件: 先 xz -d xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar 然后，再用 tar xvf xxx.tar来解包
+创建tar.xz文件: 先 tar cvf xxx.tar xxx/ 创建xxx.tar文件先, 然后使用 xz -z xxx.tar 来将 xxx.tar压缩成为 xxx.tar.xz
+解压tar.xz文件: 先 xz -d xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar 然后, 再用 tar xvf xxx.tar来解包
 
 
 #----------------系统管理-----------------
@@ -331,10 +331,10 @@ $ kill -l  # 列出所有的信号
 # HUP    1    终端断线
 # INT    2    中断（同 Ctrl + C）
 # QUIT   3    退出（同 Ctrl + \）
-# TERM   15    终止
+# TERM   15   终止
 # KILL   9    强制终止
-# CONT   18    继续（与STOP相反， fg/bg命令）
-# STOP   19    暂停（同 Ctrl + Z）
+# CONT   18   继续（与STOP相反， fg/bg命令）
+# STOP   19   暂停（同 Ctrl + Z）
 
 $ kill  => 杀进程
     kill -s INT 【PID】  # -s 9 制定了传递给进程的信号是９,即强制、尽快终止进程
@@ -364,6 +364,8 @@ $ tail  # 从指定点开始将文件写到标准输出
 #----------------ssh----------------------
 # 登录
 ssh xue.bai@192.168.162.101 -p 3222  # enter ==> password
+# 免密登陆
+ssh-copy-id user@host -p 3222
 # 传文件
 # 从服务器上下载文件
 scp username@servername:/path/filename /var/www/local_dir（本地目录）
