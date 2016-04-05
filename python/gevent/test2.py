@@ -1,8 +1,8 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-"""例子中的select()函数通常是一个在各种文件描述符上轮询的阻塞调用"""
-
+"""
+例子中的select()函数通常是一个在各种文件描述符上轮询的阻塞调用
+"""
 
 import time
 import gevent
@@ -28,7 +28,7 @@ def gr2():
 
 
 def gr3():
-    print("Hey lets do some stuff while the greenlets poll, %s" % tic())
+    print("Hey lets do some stuff while the Greenlets poll, %s" % tic())
     gevent.sleep(1)
 
 
@@ -37,4 +37,3 @@ gevent.joinall([
     gevent.spawn(gr2),
     gevent.spawn(gr3),
 ])
-

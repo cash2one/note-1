@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-from twisted.internet.protocol import Protocol, ClientFactory
 from twisted.internet import reactor
+from twisted.internet.protocol import Protocol, ClientFactory
 
 
 HOST = "localhost"
@@ -10,7 +9,6 @@ PORT = 5001
 
 
 class TSClntProtocol(Protocol):
-
     def sendData(self):
         data = raw_input('>>')
         if data:
@@ -29,8 +27,7 @@ class TSClntProtocol(Protocol):
 
 class TSClntFactory(ClientFactory):
     protocol = TSClntProtocol
-    clientConnectionLost = clientConnectionFailed = \
-                           lambda self, connector, reason: reactor.stop()
+    clientConnectionLost = clientConnectionFailed = lambda self, connector, reason: reactor.stop()
 
 
 reactor.connectTCP(HOST, PORT, TSClntFactory())

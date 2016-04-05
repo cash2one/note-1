@@ -20,7 +20,6 @@ class Student(object):
 
 
 class Student(object):
-
     # 把一个getter方法变成属性，只需要加上@property就可以了
     @property
     def score(self):
@@ -39,7 +38,6 @@ class Student(object):
 # 还可以定义只读属性，只定义getter方法，不定义setter方法就是一个只读属性：
 # 下面的Student类的birth是可读写属性，而age就是一个只读属性
 class Student(object):
-
     @property
     def birth(self):
         return self._birth

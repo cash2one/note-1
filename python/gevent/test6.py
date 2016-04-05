@@ -1,11 +1,9 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''
-greenlet具有确定性。在相同配置相同输入的情况下，它们总是 会产生相同的输出.
-下面就有例子，我们在multiprocessing的pool之间执行一系列的 任务，与在gevent的pool之间执行作比较.
-'''
-
+"""
+Greenlet具有确定性. 在相同配置相同输入的情况下, 它们总是会产生相同的输出.
+下面就有例子, 我们在multiprocessing的pool之间执行一系列的任务, 与在gevent的pool之间执行作比较.
+"""
 
 import time
 

@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     assert len(ftype) > 0, "ERROR:file error"
 
-    directory = os.path.curdir if not args.dir or args.dir=='.' else args.dir
+    directory = os.path.curdir if not args.dir or args.dir == '.' else args.dir
 
     assert os.path.exists(directory), "ERROR:%s is not exist"
 

@@ -1,17 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
-argparse是python用于解析命令行参数和选项的标准模块,用于代替已经过时的optparse模块。
-'''
-
-__author__ = 'Pysaoke'
-
+"""
+argparse是python用于解析命令行参数和选项的标准模块, 用于代替已经过时的optparse模块.
+"""
 
 import argparse
 
 
-#----------------------------------Positional arguments--------------------------------#
+# Positional arguments
+
+
 parser = argparse.ArgumentParser(description="new a python module")
 parser.add_argument("square", default=0, type=int, help="display a square of a given number")
 args = parser.parse_args()
@@ -39,7 +38,9 @@ args = parser.parse_args()
 print args.fname
 
 
-#-------------------------------Optional arguments---------------------------------#
+# Optional arguments
+
+
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbosity", help="increase output verbosity")
@@ -57,7 +58,9 @@ if args.verbose:
    print "verbosity turned on"
 
 
-#--------------------------------Short options-------------------------------#
+# Short options
+
+
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-v", "--verbose", help="increase output verbosity",
@@ -67,7 +70,9 @@ if args.verbose:
     print "verbosity turned on"
 
 
-#--------------------Combining Positional and Optional arguments--------------#
+# Combining Positional and Optional arguments
+
+
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("square", type=int,
@@ -128,10 +133,3 @@ elif args.verbosity == 1:
     print "{}^2 == {}".format(args.square, answer)
 else:
     print answer
-
-
-
-
-
-if __name__ == "__main__":
-    pass

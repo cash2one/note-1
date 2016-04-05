@@ -1,11 +1,9 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''
+"""
 创建Greenlets
-gevent对Greenlet初始化提供了一些封装，最常用的使用模板之一有
-'''
-
+gevent对Greenlet初始化提供了一些封装, 最常用的使用模板之一有
+"""
 
 import gevent
 from gevent import Greenlet
@@ -37,11 +35,8 @@ threads = [thread1, thread2, thread3]
 gevent.joinall(threads)
 
 
-'''除使用基本的Greenlet类之外，你也可以子类化Greenlet类，重载它的_run方法.'''
-
-
+# 除使用基本的Greenlet类之外, 你也可以子类化Greenlet类, 重载它的_run方法.
 class MyGreenlet(Greenlet):
-
     def __init__(self, message, n):
         Greenlet.__init__(self)
         self.message = message

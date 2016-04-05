@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''发送邮件测试'''
+"""发送邮件测试"""
 
 import smtplib
 from email.mime.text import MIMEText

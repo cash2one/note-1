@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import time
 import urllib2
 from multiprocessing.dummy import Pool as ThreadPool
@@ -11,7 +11,6 @@ urls = [
     'http://sae.sina.com.cn/',
     'http://bj.58.com/',
     'http://www.bootcss.com/',
-    'http://xlambda.com/gevent-tutorial/',
     'http://bbs.tianya.cn/',
 ]
 
@@ -36,6 +35,7 @@ pool.join()
 end = time.time()
 print end-start
 print
+
 
 from gevent import monkey
 monkey.patch_socket()

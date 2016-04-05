@@ -3,41 +3,38 @@
 
 """
     new some python module file
+    author: Pysaoke
 """
 
-__author__ = 'Pysaoke'
-
-
-import os, sys
+import os
+import sys
 
 
 fnames = sys.argv[1:]
 
 if not fnames:
-    print "---no filename input---"
-    sys.exit()
+    sys.exit('---no filename input---')
 
-linelist = [
+lines = [
     "#!/usr/bin/env python",
     "# -*- coding: utf-8 -*-\n",
     "\"\"\"doc string\"\"\"\n",
     "__author__ = \'Pysaoke\'",
     "\n\n\n\n\n\n\n\n",
-    r'if __name__ == "__main__":',
+    r"if __name__ == '__main__':",
     "    pass"
-    ]
+]
 
-PY_TEMPLATE = os.linesep.join(linelist)
+content = os.linesep.join(lines)
 
-for fname in fnames:
+for fn in fnames:
     # check if the file exists already
-    fname = '%s.py' % fname.split('.')[0]
-    if os.path.exists(fname):
-        print "WARNING:<%s> already exists" % fname
+    fn = '%s.py' % fn.split('.')[0]
+    if os.path.exists(fn):
+        print "WARNING:<%s> already exists" % fn
         continue
-
     # write lines to file
-    fobj = open(fname, 'w')
-    fobj.writelines(PY_TEMPLATE)
+    fobj = open(fn, 'wb')
+    fobj.writelines(content)
     fobj.close()
-    print "OK:<%s>" % fname
+    print "OK:<%s>" % fn

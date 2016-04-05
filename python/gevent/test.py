@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''gevnet demo'''
+"""gevnet demo"""
 
 
 import gevent
