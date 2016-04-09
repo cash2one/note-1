@@ -54,9 +54,12 @@ $ echo $PATH  => 查看环境变量PATH
 $ export HELLO='hello'  => 设置变量HELLO, 这是临时的变量, 在关闭shell时失效 
 
 # 永久环境变量
-在/etc/profile文件中添加变量, 对所有用户生效(永久的)
-用户目录下的.bash.profile文件中增加变量, 对单一用户生效(永久的)
-export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib
+在/etc/profile文件中添加变量, 对所有用户生效
+用户目录下的.bash.profile文件中增加变量, 对单一用户生效
+(ubuntu下为home目录下的.bashrc和.profile, /etc/profile; /etc/evnironment)
+export PATH=/opt/node/bin:$PATH
+(/etc/environment不需要使用export设置环境变量,其他profile文件需要)
+source ～/.bashrc  使新变量立即生效
 
 $ date    =>  显示日期
 $ uptime  =>  现在时间，系统开机运转到现在经过的时间，连线的使用者数量，最近的系统负载
