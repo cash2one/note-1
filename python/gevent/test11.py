@@ -7,19 +7,17 @@ gevent能够 修改标准库里面大部分的阻塞式系统调用，包括sock
 """
 
 import socket
+import select
+from gevent import monkey
 
 
 print(socket.socket)
-
-print("After monkey patch")
-from gevent import monkey
-
+print("After monkey patch socket")
 monkey.patch_socket()
 print(socket.socket)
 
-import select
+
 print(select.select)
 monkey.patch_select()
-
-print("After monkey patch")
+print("After monkey patch select")
 print(select.select)
