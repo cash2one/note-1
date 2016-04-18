@@ -34,14 +34,17 @@ reobj = re.compile(r'\(\S+?\)')
 print  reobj.subn('', s)
 
 
-print re.findall(r'\(\S+?\)', s)
-uuid_val = re.findall(r'\(\S+?\)', s)[-1]
+print re.findall(r'\(\S+?\)', s)  # 匹配括号结果中包含括号
+print re.findall(r'(?<=\()\S+?(?=\))', s)   # 匹配括号结果中不包含括号
+
+uuid_val = re.findall(r'(?<=\()\S+?(?=\))', s)[-1]
 print s.replace(uuid_val, '')
+uuid_val = re.findall(r'\(\S+?\)', s)[-1]
 
 
 # re.split(pattern, string, maxsplit=0)  maxsplit是分离的次数，maxsplit=1分离一次，默认为0
 
-reresult = re.split(regex, subject)
+# reresult = re.split(regex, subject)
 
-rereobj = re.compile(regex)  
-result = reobj.split(subject)匹配 
+# rereobj = re.compile(regex)  
+# result = reobj.split(subject)匹配 
