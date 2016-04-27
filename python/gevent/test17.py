@@ -19,18 +19,21 @@ def cron():
 
 g = gevent.spawn(cron)
 
-f = Popen(['ping', 'www.baidu.com'], stdout=PIPE).stdout
+popen = Popen(['ping', 'www.baidu.com'], stdout=PIPE)
 
+# f = popen.stdout
+# for i in range(10):
+#     print i
+#     print f.readline()
+#     gevent.sleep(1)
 
-for i in range(10):
-    print i
-    print f.readline()
-    gevent.sleep(1)
+# f.close()
 
-f.close()
+# print popen.communicate()  # 等待子进程结束, 返回标准输出. 会阻塞主进程
 
 # popen.send_signal(signal.SIGTERM)  # 向子进程发送信号
-# popen.terminate()
+
+print popen.terminate()
 
 gevent.sleep(5)
 
