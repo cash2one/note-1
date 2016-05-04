@@ -1,15 +1,13 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-__author__ = "baixue"
-
-
 import numpy as np
 
-#------------属性--------------
+# *************************************************************************
+# 属性
+# *************************************************************************
+
 ndarray = np.arange(0, 10)
 
-#数组的维数（即数组轴的个数），等于秩
+#数组的维数（即数组轴的个数）, 等于秩
 ndarray.ndim
 
 #数组的维度。为一个表示数组在每个维度上大小的整数元组
@@ -30,28 +28,34 @@ ndarray.data
 #flags属性描述了数据存储区域的一些属性
 ndarray.flags
 
-#-------------创建数组(Array Creation)--------------
+
+# *************************************************************************
+# 创建数组(Array Creation)
+# *************************************************************************
 
 ndarray = np.arange(0, 10)
 
-ndarray = np.array([20,30,40,50])
+ndarray = np.array([20, 30, 40, 50])
 
-ndarray = np.array([[1,2],[3,4]])
+ndarray = np.array([[1, 2], [3, 4]])
 
-ndarray = ones((2,3), dtype=int)
+ndarray = ones((2, 3), dtype=int)
 
 ndarray = zeros(5, dtype=float)
 
-ndarray = np.empty((2,3))
+ndarray = np.empty((2, 3))
 
 
-#-------------数组操作--------------
-vstack和hstack--合并数组
-np.concatenate()-- 连接数组
-np.insert()--插入
-np.delete()--删除
-np.vsplit()--拆分数组
-np.transpose--数组转置
+# *************************************************************************
+# 数组操作
+# *************************************************************************
+
+# vstack 和 hstack  # 合并数组
+np.concatenate()  # 连接数组
+np.insert()  # 插入
+np.delete()  # 删除
+np.vsplit()  # 拆分数组
+np.transpose  # 数组转置
 np.append(array, element)
 np.max()
 np.min()
@@ -59,8 +63,3 @@ np.mean()
 np.sin()
 np.add()
 np.reshape()
-
-
-
-if __name__ == "__main__":
-    pass

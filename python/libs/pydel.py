@@ -14,9 +14,9 @@ def get_extname(fname):
     return os.path.splitext(fname)[1]
 
 
-def rm_file(directory, ftype):
-    for rel_path in os.listdir(directory):
-        abs_path = os.path.join(directory, rel_path)
+def rm_file(dir, ftype):
+    for rel_path in os.listdir(dir):
+        abs_path = os.path.join(dir, rel_path)
         if os.path.isdir(abs_path):
             rm_file(abs_path, ftype)  # call self
         elif os.path.isfile(abs_path):
