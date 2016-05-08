@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os, sys
+import os
+import sys
 
 
 # global definition
 # base = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F]
-base = [str(x) for x in range(10)] + [ chr(x) for x in range(ord('A'), ord('A')+6)]
+base = [str(x) for x in range(10)] + [chr(x) for x in range(ord('A'), ord('A')+6)]
 
 
 # bin2dec
@@ -60,13 +61,13 @@ def bin2hex(string_num):
     return dec2hex(bin2dec(string_num))
 
 
-#整数到bin()
+# 整数到bin()
 def dec2bin(data, length):
     binstr = bin(data)[2:]
-    binstr = binstr[::-1]#翻转
+    binstr = binstr[::-1]  # 翻转
     len_binstr = len(binstr)
     if len_binstr < length:
-        binstr = binstr + '0' * (length-len_binstr)
+        binstr = binstr + '0' * (length - len_binstr)
     return binstr
 
 
