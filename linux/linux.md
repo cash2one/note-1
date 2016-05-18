@@ -40,14 +40,17 @@ $ uname -r  => 查看内核版本
 
 $ w       => 显示登录用户的详细信息
 $ who     => 显示登录用户
+$ whoami  => 查看当前登陆的用户名 
 $ last    => 查看最近哪些用户登录系统
+$ su    => 变更使用者身份
+    su root
+    su username  # 切换用户
+
 $ lscpu   => 查看cpu统计信息
 $ free    => 查看内存情况
     free -m  # -m 单位MB
 $ vmstat  => 监视虚拟内存使用情况
-$ su    => 变更使用者身份
-    su root
-    su username  # 切换用户
+
 $ export  => 查看所有环境变量
 $ env     => 查看所有环境变量
 $ echo $PATH  => 查看环境变量PATH
@@ -67,6 +70,40 @@ $ cal     =>  显示一个日历
 $ bc      =>  一个简单计算器
 
 
+# -----------------用户与权限--------------------
+linux用户主要分为三类:
+第一类:root(超级管理员),UID为0,这个用户有极大的权限,可以直接无视很多的限制,包括读写执行的权限.
+第二类:系统用户,UID为1～499.一般是不会被登入的.
+第三类:就是普通用户,UID范围一般是500～65534.这类用户的权限会受到基本权限的限制,也会受到来自管理员的限制.
+不过要注意nobody这个特殊的帐号,UID为65534,这个用户的权限会进一步的受到限制,一般用于实现来宾帐号.
+
+/etc/group  # 文件包含所有组
+/etc/passwd  # 用户(user)的配置文件
+/etc/shadow  # 用户user影子口令文件
+
+$ useradd/adduser  => 添加用户
+    useradd -d /usr/sam -m sam  # -d 用户home目录, -m 用户名
+
+$ usermod  => 修改用户
+
+$ userdel  => 删除用户
+    userdel -r sam  
+    # 删除用户sam在系统文件(主要是/etc/passwd;/etc/shadow;/etc/group等)中的记录,同时删除用户的主目录.
+
+$ passwd
+
+$ groupadd / addgroup
+
+$ groupmod
+
+$ groupdel
+
+$ groups
+
+$ id username  => 显示用户信息
+
+$ chown  =>  改变目录的用户和组 
+
 $ chmod 
     三种基本权限
     R: 读      数值表示为4
@@ -83,6 +120,8 @@ $ chmod
     例: chmod a=rwx file 和 chmod 777 file
 
 $ sudo chmod +x nginx  # 添加可执行权限
+$ sudo chmod -x nginx  # 取消可执行权限
+
 
 $ lsblk    => 查看硬盘和分区分布
 
