@@ -6,35 +6,32 @@
 # Author: baixue
 # Purpose:
 # ------------------------------------------------------------------------------
-
+import time
 import threading
 
 
-class TestThread(threading.Thread):
+class Worker(threading.Thread):
     def __init__(self, name='TestThread'):
-        self._stopevent = threading.Event()
-        self._sleepperiod = 1.0
-        threading.Thread.__init__(self, name=name)
+        super(Worker, self).__init__(name=name)
+        self._stop_event = threading.Event()
+        self._sleep_period = 1.0
 
     def run(self):
-        # 主循环
-        print "%s starts" % self.getName()
+        print " --- %s: start ---" % self.getName()
         count = 0
-        while not self._stopevent.isSet():
+        while not self._stop_event.isSet():
             count += 1
             print "loop %d" % count
-            self._stopevent.wait(self._sleepperiod)
-        print "%s ends" % self.getName()
+            self._stop_event.wait(self._sleep_period)
+        print " --- %s: end ---" % self.getName()
 
     def join(self, timeout=None):
-        # 终止线程并等待结束
-        self._stopevent.set()
-        threading.Thread.join(self, timeout)
+        self._stop_event.set()
+        super(Worker, self).join(timeout)
 
 
 if __name__ == "__main__":
-    testthread = TestThread()
-    testthread.start()
-    import time
+    t = Worker()
+    t.start()
     time.sleep(5.0)
-    testthread.join()      
+    t.join()

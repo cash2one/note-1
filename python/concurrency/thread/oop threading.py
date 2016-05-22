@@ -4,7 +4,9 @@
 import threading
 from time import sleep, ctime
 
-loops=[4,2]
+
+loops = [4, 2]
+
 
 class myThread(threading.Thread):
 
@@ -15,13 +17,15 @@ class myThread(threading.Thread):
         self.args=args
 
     def run(self):
-        #apply(self.func, self.args)
-        self.res = self.func(*self.args)#处理变长参数见11.6.3
+        # apply(self.func, self.args)
+        self.res = self.func(*self.args)  # 处理变长参数见11.6.3
+
 
 def loop(nloop, nsec):
     print 'start loop', nloop, 'at:', ctime()
     sleep(nsec)
     print 'loop', nloop, 'done at:', ctime()
+
 
 def main():
     print 'starting at:', ctime()
@@ -41,5 +45,5 @@ def main():
 
     print 'all DONE at:', ctime()
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

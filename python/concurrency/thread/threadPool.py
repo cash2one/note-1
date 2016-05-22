@@ -1,7 +1,7 @@
 # Example2.py
-'''
+"""
 a more realistic thread pool example
-'''
+"""
 
 import time
 import threading
@@ -24,7 +24,7 @@ class Consumer(threading.Thread):
         print 'Bye byes'
 
 
-def Producer():
+def producer():
     urls = [
         'http://www.python.org', 'http://www.yahoo.com',
         'http://www.scala.org', 'http://www.goole.com'
@@ -56,4 +56,4 @@ def build_worker_pool(queue, size):
 
 
 if __name__ == '__main__':
-    Producer()
+    producer()

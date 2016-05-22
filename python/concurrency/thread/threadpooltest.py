@@ -1,27 +1,24 @@
-# Example2.py
-'''
-socket multiThread test
-'''
-
 import time
 import threading
 import Queue
 from socket import*
 
 
+BUFSIZ = 1024
+
+
 class Consumer(threading.Thread):
-    """docstring for Consumer"""
     def __init__(self, queue, host, port):
-        self.BUFSIZ = 1024
-        self.ADDR = (host, port)
-        self.CliSock = socket(AF_INET, SOCK_STREAM)
         threading.Thread.__init__(self, name=host)
+        self.ADDR = (host, port)
+        self.cli_sock = socket(AF_INET, SOCK_STREAM)
         self._queue = queue
+        self.state = None
 
     def connect(self):
         try:
-            self.CliSock.connect(self.ADDR)
-        except Exception, e:
+            self.cli_sock.connect(self.ADDR)
+        except Exception as e:
             self.state = 'bad'
             print str(e)
 
@@ -30,15 +27,15 @@ class Consumer(threading.Thread):
         while True:
             content = self._queue.get()
             if isinstance(content, str) and content == 'quit':
-                self.CliSock.close()
+                self.cli_sock.close()
                 break
             elif isinstance(content, str) and content == 'run':
-                if self.state = 'good'
+                if self.state == 'good':
                     try:
-                        self.CliSock.send(data)
-                        data = self.CliSock.recv(self.BUFSIZ)
-                        print self.getName(), data, state
-                    except Exception, e:
+                        self.cli_sock.send(data)
+                        data = self.cli_sock.recv(BUFSIZ)
+                        print self.getName(), data, self.state
+                    except Exception as e:
                         self.state = 'bad'
                 else:
                     self.connect()
@@ -46,15 +43,17 @@ class Consumer(threading.Thread):
                 break
 
 
-def Producer():
-    addrs = [('192.168.3.1',5000), ('192.16..3.2', 5001),
-            ('192.168.3.3', 5002), ('192.168.3.4', 5004)]
+def producer():
+    addrs = [
+        ('192.168.3.1', 5000), ('192.16..3.2', 5001),
+        ('192.168.3.3', 5002), ('192.168.3.4', 5004)
+    ]
     queue = Queue.Queue()
     worker_threads = build_worker_pool(queue, addrs)
     start_time = time.time()
 
     # Add the urls to process
-    for url in urls:
+    for url in addrs:
         queue.put('run')
     # Add the poison pill
     for worker in worker_threads:
@@ -67,7 +66,7 @@ def Producer():
 
 def build_worker_pool(queue, urls):
     workers = []
-    for addr in addrs:
+    for addr in urls:
         worker = Consumer(queue, addr[0], addr[1])
         worker.start()
         workers.append(worker)
@@ -75,4 +74,4 @@ def build_worker_pool(queue, urls):
 
 
 if __name__ == '__main__':
-    Producer()
+    producer()

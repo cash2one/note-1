@@ -2,13 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import Queue
-from threading import Thread
+import threading
 
 
-class ExternalInterfacing(Thread)
-
+class ExternalInterfacing(threading.Thread):
     def __init__(self, externalCallable, **kwds):
-        Thread.__init__(self, **kwds)
+        threading.Thread.__init__(self, **kwds)
         self.setDaemon(1)
         self.externalCallable = externalCallable
         self.workRequestQueue = Queue.Queue()
@@ -16,7 +15,7 @@ class ExternalInterfacing(Thread)
         self.start()
 
     def request(self, *args, **kwds):
-        "called by other threads as externalCallable would be"
+        """called by other threads as externalCallable would be"""
         self.workRequestQueue.put((args, kwds))
         return self.resultQueue.get()
 

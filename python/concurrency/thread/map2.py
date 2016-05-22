@@ -1,15 +1,14 @@
+import os
 from multiprocessing import Pool
 from PIL import Image
 
 
-SIZE = (75,75)
+SIZE = (75, 75)
 SAVE_DIRECTORY = 'thumbs'
 
 
 def get_image_paths(folder):
-    return (os.path.join(folder, f)
-            for f in os.listdir(folder)
-            if 'jpeg' in f)
+    return (os.path.join(folder, f) for f in os.listdir(folder) if 'jpeg' in f)
 
 
 def create_thumbnail(filename):
@@ -26,8 +25,7 @@ if __name__ == '__main__':
     
     images = get_image_paths(folder)
 
-    pool = pool()
+    pool = Pool()
     pool.map(create_thumbnail, images)
     pool.close()
     pool.join()
-    

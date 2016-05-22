@@ -17,7 +17,6 @@ urls = [
     'http://www.python.org/psf/',
     'http://docs.python.org/devguide/',
     'http://www.python.org/community/awards/'
-    # etc..
 ]
 
 

@@ -10,14 +10,14 @@
 import threading
 
 
-class Worker(Threading.Thread):
+class Worker(threading.Thread):
     requestID = 0
 
     def __init__(self, requestsQueue, resultQueue, **kwds):
-        Threading.Thread.__init__(self, **kwds)
+        threading.Thread.__init__(self, **kwds)
         self.setDaemon(1)
         self.workRequestQueue = requestsQueue
-        self.resultQueue = resultsQueue
+        self.resultQueue = resultQueue
         self.start()
 
     def performWork(self, callable, *args, **kwds):

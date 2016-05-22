@@ -1,4 +1,4 @@
-﻿# Producer&Consumer
+﻿# -*- coding: utf-8 -*-
 """
 Standard Producer/Consumer Threading Pattern
 """
@@ -29,7 +29,7 @@ class Consumer(threading.Thread):
         print 'Bye byes!'
 
 
-def Producer():
+def producer():
     # Queue is used to share items between the threads
     queue = Queue.Queue()
 
@@ -54,5 +54,6 @@ def Producer():
     # wait for the thread to close down
     worker.join()
 
+
 if __name__ == '__main__':
-    Producer()
+    producer()

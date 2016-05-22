@@ -5,18 +5,18 @@ import threading
 from time import sleep, ctime
 
 
-loops=[4,2]
+loops = [4, 2]
 
 
 class ThreadFunc(object):
     def __init__(self, func, args, name=''):
-        self.name=name
-        self.func=func
-        self.args=args
+        self.name = name
+        self.func = func
+        self.args = args
 
     def __call__(self):
-        #apply(self.func, self.args)
-        self.res = self.func(*self.args)#处理变长参数见11.6.3
+        # apply(self.func, self.args)
+        self.res = self.func(*self.args)  # 处理变长参数见11.6.3
 
 
 def loop(nloop, nsec):
@@ -31,8 +31,7 @@ def main():
     nloops = range(len(loops))
 
     for i in nloops:
-        t = threading.Thread(
-            target=ThreadFunc(loop, (i, loops[i]),loop.__name__))
+        t = threading.Thread(target=ThreadFunc(loop, (i, loops[i]), loop.__name__))
         threads.append(t)
 
     for i in nloops:
@@ -45,5 +44,5 @@ def main():
     print 'all DONE at:', ctime()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

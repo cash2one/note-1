@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
-A more realistic thread pool example 
-'''
-
-__author__ = 'baixue'
-
-#Example2.py
+"""
+A more realistic thread pool example
+"""
 
 import time
 import threading
@@ -28,11 +24,20 @@ class Consumer(threading.Thread):
             response = urllib2.urlopen(content)
         print 'Bye byes!'
 
-def Producer():
+
+def build_worker_pool(queue, size):
+    workers = []
+    for _ in range(size):
+        worker = Consumer(queue)
+        worker.start()
+        workers.append(worker)
+    return workers
+
+
+def producer():
     urls = [
         'http://www.python.org', 'http://www.yahoo.com'
         'http://www.scala.org', 'http://www.google.com'
-        # etc.. 
     ]
     queue = Queue.Queue()
     worker_threads = build_worker_pool(queue, 4)
@@ -49,18 +54,6 @@ def Producer():
 
     print 'Done! Time taken: {}'.format(time.time() - start_time)
 
-def build_worker_pool(queue, size):
-    workers = []
-    for _ in range(size):
-        worker = Consumer(queue)
-        worker.start()
-        workers.append(worker)
-    return workers
 
 if __name__ == '__main__':
-    Producer()
-
-
-
-if __name__ == "__main__":
-    pass
+    producer()

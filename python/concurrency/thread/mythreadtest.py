@@ -10,16 +10,16 @@ def loop(a,b,c):
     sleep(1)
     print 'loop done at:', ctime()
     return a+b+c
-    
+
+
 def main():
     t = MyThread(loop, (1,2,3))
     t.start()
     print 'wait....', ctime()
     sleep(0.5)
     print 'wait....', ctime()
-    t.join()#等待线程结束
+    t.join()  # 等待线程结束
     print t.getResult(), ctime()
-
 
 
 if __name__ == "__main__":
