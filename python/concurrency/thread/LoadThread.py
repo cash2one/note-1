@@ -5,7 +5,6 @@ import threading
 
 
 class SubThread(threading.Thread):
-
     def __init__(self, func, args, name=''):
         threading.Thread.__init__(self)
         self.name=name

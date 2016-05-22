@@ -1,7 +1,7 @@
 ﻿# Producer&Consumer
-'''
+"""
 Standard Producer/Consumer Threading Pattern
-'''
+"""
 
 import time
 import threading
@@ -9,7 +9,6 @@ import Queue
 
 
 class Consumer(threading.Thread):
-    """docstring for Consumer"""
     def __init__(self, queue):
         threading.Thread.__init__(self)
         self._queue = queue

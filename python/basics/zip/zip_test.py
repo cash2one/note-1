@@ -37,7 +37,7 @@ def unzip(filename, to_dir):
             ext_filename = os.path.join(to_dir, name)
             ext_dir = os.path.dirname(ext_filename)
             if not os.path.exists(ext_dir):
-                os.mkdir(ext_dir)
+                os.makedirs(ext_dir)
             outfile = open(ext_filename, 'wb')
             outfile.write(zfobj.read(name))
             outfile.close()
@@ -60,4 +60,3 @@ if __name__ == "__main__":
     # for name in zfobj.namelist():
     #   if name.endswith('/'):
     #           print name
-

@@ -1,9 +1,10 @@
-
 from multiprocessing import Pool
 from PIL import Image
 
+
 SIZE = (75,75)
 SAVE_DIRECTORY = 'thumbs'
+
 
 def get_image_paths(folder):
     return (os.path.join(folder, f)

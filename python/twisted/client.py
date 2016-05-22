@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from twisted.internet import reactor
 from twisted.internet.protocol import Protocol, ClientFactory

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
-# File: tcpclient.py
+# File: client.py
 # Created: 13/12/2013 09:50:53
 # Author: baixue
 # Purpose:

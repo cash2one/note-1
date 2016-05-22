@@ -9,8 +9,8 @@ PORT = 5001
 
 class TSServerProtocol(Protocol):
     def connectionMade(self):
-        client = self.client = self.transport.getPeer().host
-        print 'Got connection from', client
+        self.client = self.transport.getPeer().host
+        print 'Got connection from', self.client
 
     def connectionLost(self, reason):
         print self.transport, 'disconnected'

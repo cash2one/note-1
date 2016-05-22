@@ -1,6 +1,7 @@
-
+# -*- coding: utf-8 -*-
 import urllib2
 from multiprocessing.dummy import Pool as ThreadPool
+
 
 urls = [
     'http://www.python.org',
@@ -18,6 +19,7 @@ urls = [
     'http://www.python.org/community/awards/'
     # etc..
 ]
+
 
 # Make the Pool of workers
 pool = ThreadPool(4)
