@@ -210,18 +210,20 @@ $ ls   => 列出目录下的文件
 	ls -l | grep ^-  # 只显示文件a
 
 $ find    => man find
-	find [-H] [-L] [-P] [-D debugopts] [-Olevel] [path...] [expression]
-	[-H] [-L] [-P] [-D debugopts] [-Olevel]这几个选项并不常用
 	常用简化形式:
 	find [path...] [expression]
-	path: find命令所查找的目录路径. 例如用.来表示当前目录,用/来表示系统根目录
+	path: find命令所查找的目录路径, 例: 用.来表示当前目录, 用/来表示系统根目录
 	expression: expression可以分为——"-options [-print -exec -ok ...]"
 	-options  指定find命令的常用选项
 	-print  find命令将匹配的文件输出到标准输出
 	-exec  find命令对匹配的文件执行该参数所给出的shell命令.相应命令的形式为'command' {} \; 注意{}和\;之间的空格
 
+# 统计代码行数
+$ find . -name "*.py" | xargs wc -l
+$ find . -name "*.py" | xargs cat|grep -v ^$|wc -l  # 去除空格
+
 # 删除文件大小为零的文件
-find ./ -size 0 -exec rm {} \; 或 rm -i 'find ./ -size 0'
+$ find ./ -size 0 -exec rm {} \; 或 rm -i 'find ./ -size 0'
 
 # 删除目录及其子目录下某类型的文件
 $ find . -name "*.pyc" -type f -print -exec rm -rf {} \;
@@ -273,7 +275,7 @@ $ find . -name "*.conf"  -mtime +5 -ok rm {  } \;
 		# 在当前目录下查找除目录以外的所有类型的文件
 		$ find . ! -type d –print
 
-$ locate  => 用于查找文件，它比find命令的搜索速度快
+$ locate  => 用于查找文件, 它比find命令的搜索速度快
 
 $ touch filename     => 创建一个空文件
 
@@ -290,12 +292,12 @@ $ cp source destination  => 复制
 　　-f 若目的地已经有相同档名的档案存在，则在复制前先予以删除再行复制.
 
 　　例:
-　　将档案 aaa 复制(已存在)，并命名为 bbb : 
+　　将档案 aaa 复制(已存在)，并命名为 bbb :
 　　 cp aaa bbb
-　　 
-　　将所有的C语言程序拷贝至 Finished 子目录中 : 
+
+　　将所有的C语言程序拷贝至 Finished 子目录中 :
 　　 cp *.c Finished
-　　 
+
 　　 cp /root/source .  # 将/root下的文件source复制到当前目录
 
 
