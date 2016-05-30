@@ -83,7 +83,7 @@ $ git add -A
 # 提交更新
 $ git commit -m "message"
 # 添加并提交更新
-$ git commit -a -m 'message'
+$ git commit -am "message"
 # 执行一次空白提交
 $ git commit --allow-empty -m "who does commit?"
 
@@ -92,6 +92,7 @@ $ git commit --allow-empty -m "who does commit?"
 #  列出分支
 $ git branch
 # 列出远程分支
+$ git branch -r
 $ git branch -a
 # 创建新分支
 $ git branch branch-name
