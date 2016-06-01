@@ -36,7 +36,7 @@ if m:
 strings = [
     "hello foo",     # returns False
     "hello foobar",  # returns True
-]    
+]
 
 for string in strings:
     pattern = re.search(r'foo(?=bar)', string)
@@ -67,7 +67,7 @@ strings = [
     "hello bar",     # returns True
     "hello foobar",  # returns False
     "hello bazbar",  # returns True
-]      
+]
 
 for string in strings:
     pattern = re.search(r'(?<!foo)bar', string)
@@ -109,7 +109,7 @@ string = 'Hello foobar'
 pattern = re.search(r'(f.*)(b.*)', string)
 
 print "f* => {0}".format(pattern.group(1))
-# prints f* => foo    
+# prints f* => foo
 print "b* => {0}".format(pattern.group(2))
 # prints b* => bar
 
