@@ -112,6 +112,9 @@ sudo apt-get build-dep python
 # install python
 ./configure
 sudo make
+(
+tk-dev; libgdbm-dev; libdb5.1-dev 
+)
 sudo make install
 
 # mysql_config not found
