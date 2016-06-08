@@ -189,7 +189,7 @@ $ mysql> alter table expert_info change birth birth varchar(20) null;
 #### 16. 修改表中的数据
 * 增加一个字段(一列)
 ```
-$ mysql> alter table 表名 add column column_name type default value;
+$ mysql> alter table 表名 add column column_name type default value;字段mi字段名字段字段
 ```
 > (type指该字段的类型,value指该字段的默认值)
 
@@ -285,6 +285,15 @@ load data infile "file_name" into table table_name;
 #### 21. 删除字段
 ```
 $ mysql> alter table form1 drop column 列名;
+```
+
+#### 22. 字段唯一
+```sql
+-- 设置字段唯一
+ALTER TABLE 表名 ADD unique('字段名')
+
+-- 移除字段唯一
+ALTER TABLE 表名 DROP INDEX field-name
 ```
 
 ## 查询表
