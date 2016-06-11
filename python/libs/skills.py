@@ -6,6 +6,8 @@
 
 __author__ = 'baixue'
 
+# 列表去重, 比set快
+{}.fromkeys(list).keys()
 
 # 用可迭代对象创建列表
 lst = ['a', 'b', 'c', 'd']
