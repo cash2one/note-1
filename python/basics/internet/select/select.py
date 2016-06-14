@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#------------------------------------------------------------------------------
 
 import select
 import socket
@@ -9,7 +8,7 @@ import Queue
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server.setblocking(False)#非阻塞
+server.setblocking(False)  # 非阻塞
 # set option reused
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -48,7 +47,7 @@ while inputs:
                 if s not in outputs:
                     outputs.append(s)
             else:
-                #Interpret empty result as closed connection
+                # Interpret empty result as closed connection
                 print " closing", client_address
                 if s in outputs:
                     outputs.remove(s)
@@ -61,33 +60,18 @@ while inputs:
         try:
             next_msg = message_queues[s].get_nowait()
         except Queue.Empty:
-            print " " , s.getpeername() , 'queue empty'
+            print " ", s.getpeername(), 'queue empty'
             outputs.remove(s)
         else:
-            print " sending " , next_msg , " to ", s.getpeername()
+            print " sending ", next_msg, " to ", s.getpeername()
             s.send(next_msg)
      
     for s in exceptional:
         print " exception condition on ", s.getpeername()
-        #stop listening for input on the connection
+        # stop listening for input on the connection
         inputs.remove(s)
         if s in outputs:
             outputs.remove(s)
         s.close()
-        #Remove message queue
+        # Remove message queue
         del message_queues[s]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

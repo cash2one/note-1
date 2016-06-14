@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#------------------------------------------------------------------------------
 
 import socket
  
-messages = ["This is the message" ,
-            "It will be sent" ,
-            "in parts "]
+messages = [
+    "This is the message",
+    "It will be sent",
+    "in parts "
+]
  
 print "Connect to the server"
  
-server_address = ("192.168.1.102",10001)
- 
-#Create a TCP/IP sock
+server_address = ("192.168.1.102", 10001)
+
+# Create a TCP/IP sock
  
 socks = []
  

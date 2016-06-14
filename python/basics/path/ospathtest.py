@@ -4,7 +4,7 @@
 import os
 
 
-curPath =  os.path.dirname(__file__)
+curPath = os.path.dirname(__file__)
 fPath = os.path.join(curPath, os.path.pardir)
 print fPath
 
@@ -19,12 +19,9 @@ print MEDIA_ROOT
 
 
 DIRNAME = os.path.dirname(__file__)
-print "dirname=%s"  % DIRNAME
+print "dirname=%s" % DIRNAME
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
     os.path.pardir
 ))
 print "PROJECT_ROOT=%s" % PROJECT_ROOT
-
-##if __name__ == "__main__":
-##    pass

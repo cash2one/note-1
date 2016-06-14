@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__author__ = 'baixue'
-
-
 import os
 
 
@@ -55,5 +52,4 @@ os.path.samefile(path1,path2) #如果2个路径指向同样的文件或目录，
 
 '''glob模块'''
 
-glob.glob(“*.py”) #返回当前目录下所有以.py为后缀的目录或文件,glob(“*.py”) 里面可用正则去匹配,返回一个LIST列表.
-
+glob.glob(“*.py”)  # 返回当前目录下所有以.py为后缀的目录或文件,glob(“*.py”) 里面可用正则去匹配,返回一个LIST列表.

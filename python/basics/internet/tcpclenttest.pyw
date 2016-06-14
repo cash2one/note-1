@@ -1,17 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
-# File: tcpclenttest.py
-# Created: 13/12/2013 10:21:24
-# Author: baixue
-# Purpose:
-#-------------------------------------------------------------------------------
 
 from PyQt4 import QtGui, QtCore
 import tcpclient
 
-class Client(QtGui.QWidget):
 
+class Client(QtGui.QWidget):
     def __init__(self):
         super(Client, self).__init__()
 
@@ -66,34 +60,15 @@ class Client(QtGui.QWidget):
         self.TcpClient.close()
 
     def timerEvent(self, e):
-        '定时器触发事件'
+        """定时器触发事件"""
         self.TcpClient.sendData('ashdata')
         data = self.TcpClient.recvData()
         data = data.split('@',data.count('@'))
-        #要将data按gb2312解码，不然中文会乱码
+        # 要将data按gb2312解码，不然中文会乱码
         self.dataText.append(data[2])
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
-
     import sys
 
     app = QtGui.QApplication(sys.argv)

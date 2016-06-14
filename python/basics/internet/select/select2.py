@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#------------------------------------------------------------------------------
 
 import socket, sys, select
 
@@ -10,6 +9,7 @@ host = 'localhost'
 spinsize = 10
 spinpos = 0
 spindir = 1
+
 
 def spin():
     global spinsize, spinpos, spindir

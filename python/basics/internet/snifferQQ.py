@@ -1,6 +1,5 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
+"""
 说到嗅探必须要讲到所支持的环境，并非只能对本机或者HUB环境才能使用。
 对于交换机，你可以指定一个口为嗅探口，从这个口能拿到所有端口的数据。
 如果这个交换是核心交换，那么你所能取到数据将更多。（三层交换一般都可以指定嗅探口）
@@ -11,17 +10,17 @@
 同样，如果你是在unix下使用，请下载libpcap。
 3、安装pcap没有太多说的，win下是个exe，直接运行。unix下直接make就可以了。
 4、打开你的记事本，将以下代码保存在sniffer-QQ.py这个文件中。
-'''
+"""
+import struct
+import pcap
 
-import pcap ,struct
-
-pack=pcap.pcap() 
+pack = pcap.pcap()
 pack.setfilter('udp')
-key=''
-for recv_time,recv_data in pack: 
-   recv_len=len(recv_data)
-   if recv_len == 102 and recv_data[42]== chr(02) and recv_data[101] == chr(03):
-      print struct.unpack('>I',recv_data[49:53])[0]
+key = ''
+for recv_time, recv_data in pack:
+   recv_len = len(recv_data)
+   if recv_len == 102 and recv_data[42] == chr(02) and recv_data[101] == chr(03):
+      print struct.unpack('>I', recv_data[49:53])[0]
       print '登陆了'
    elif recv_len == 55:
       print struct.unpack('>I',recv_data[49:53])[0]
