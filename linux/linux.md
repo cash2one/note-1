@@ -1,4 +1,5 @@
-#################常用#################
+常用
+=====
 $ command --help  => 查看command的帮助
 
 $ info command    => 查看command的信息
@@ -7,13 +8,13 @@ $ man command     => command 手册
 
 $ man ascii       => ascii码表
 
-# ctrl + H     =>  显示隐藏文件
-# ctrl + z     =>  暂停进程转到后台
-# ctrl + c     =>  停止
-# ctrl + A     =>  光标称动到开头
-# ctrl + E     =>  光标移动结尾
-# ctrl + W     =>  回退一个单词
-# ctrl + d     =>  exit
+ctrl + H     =>  显示隐藏文件
+ctrl + z     =>  暂停进程转到后台
+ctrl + c     =>  停止
+ctrl + A     =>  光标称动到开头
+ctrl + E     =>  光标移动结尾
+ctrl + W     =>  回退一个单词
+ctrl + d     =>  exit
 
 $ which  command  =>  查看命令的完整路径
 
@@ -56,7 +57,7 @@ $ env     => 查看所有环境变量
 $ echo $PATH  => 查看环境变量PATH
 $ export HELLO='hello'  => 设置变量HELLO, 这是临时的变量, 在关闭shell时失效 
 
-# 永久环境变量
+#### 永久环境变量
 在/etc/profile文件中添加变量, 对所有用户生效
 用户目录下的.bash.profile文件中增加变量, 对单一用户生效
 (ubuntu下为home目录下的.bashrc和.profile, /etc/profile; /etc/evnironment)
@@ -70,7 +71,8 @@ $ cal     =>  显示一个日历
 $ bc      =>  一个简单计算器
 
 
-# -----------------用户与权限--------------------
+用户与权限
+========
 linux用户主要分为三类:
 第一类:root(超级管理员),UID为0,这个用户有极大的权限,可以直接无视很多的限制,包括读写执行的权限.
 第二类:系统用户,UID为1～499.一般是不会被登入的.
@@ -137,7 +139,8 @@ $ umount   => 卸载磁盘分区
 $ gcc
     gcc -o test test.c
 
-#----------------常用-----------------
+常用
+====
 $ cd
     cd ..     # 返回上级目录
     cd ../..  # 返回上两级目录
@@ -339,8 +342,8 @@ $ tar -xf ***.tar.bz2  # 解压tar.bz2
 解压tar.xz文件: 先 xz -d xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar 然后, 再用 tar xvf xxx.tar来解包
 
 
-#----------------系统管理-----------------
-
+系统管理
+=======
 $ route
 $ iptraf       =>  查看网络流量
 $ ifconfig -a  =>  显示网络配置
@@ -405,7 +408,7 @@ $ tail  # 从指定点开始将文件写到标准输出
 	    # tail -f filename会把filename里最尾部的内容显示在屏幕上,并且不断刷新,使你看到最新的文件内容
 
 
-#----------------ssh----------------------
+#### ssh
 # 登录
 ssh xue.bai@192.168.162.101 -p 3222  # enter ==> password
 # 免密登陆
@@ -418,7 +421,7 @@ scp /path/filename username@servername:/path
 # 传目录加 -r
 
 
-#----------------nohup----------------------
+#### nohup
 # nohup就是不挂断的意思( no hang up)
 
 <程序>&    # 后台运行
@@ -446,7 +449,7 @@ nohup command > myout.file 2>&1 &
 2>&1是将标准错误（2）重定向到标准输出（&1）, 标准输出（&1）再被重定向输入到myout.file文件中.
 
 
-#----------------Linux中重定向命令行输出------------------
+#### Linux中重定向命令行输出
 Linux环境中支持输入输出重定向，用符号<和>来表示。
 0、1和2分别表示标准输入、标准输出和标准错误信息输出
 特殊的文件描述符/dev/null，它就像一个黑洞，所有重定向到它的信息都会消失得无影无踪。这一点非常有用，当我们不需要回显程序的所有信息时，就可以将输出重定向到/dev/null.
@@ -497,7 +500,7 @@ $ nohup ./program >/dev/null 2>log &    => 舍弃标准输出，将错误输出�
 $ nohup ./program >/dev/null 2>&1 &     => 如果错误信息也不想要的话
 
 
-#----------------源码编译安装软件------------------
+#### 源码编译安装软件
 源码的安装一般由3个步骤组成：配置(configure),编译(make),安装(make install).
 Configure是一个可执行脚本，它有很多选项，在待安装的源码路径下使用命令./configure –help输出详细的选项列表.
 其中--prefix选项是配置安装的路径,如果不配置该选项,安装后可执行文件默认放在/usr/local/bin,库文件默认放在/usr/local/lib,配置文件默认放在/usr/local/etc，其它的资源文件放在/usr/local/share，比较凌乱。
