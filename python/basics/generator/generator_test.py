@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''生成器测试'''
+"""生成器测试"""
 
 
 def generator():
@@ -17,6 +17,7 @@ def gen2():
     for r in range(10):
         yield 'done%s' % r
     yield 'break'
+
 
 if __name__ == "__main__":
     c = 0

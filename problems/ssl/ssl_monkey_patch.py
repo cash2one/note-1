@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -35,4 +34,3 @@ class HTTPSConnection(HTTPConnection):
 #now we override the one in httplib
 httplib.HTTPSConnection = HTTPSConnection
 # ssl_version corrections are done
-

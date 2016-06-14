@@ -28,7 +28,6 @@ ssl._create_default_https_context = ssl._create_unverified_context
 print urllib2.urlopen("https://www.12306.cn/mormhweb/").read()
 
 
-
 HTTPS认证：
 
 """https协议需要到 CA 申请证书 是付费的"""
