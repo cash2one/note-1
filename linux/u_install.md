@@ -1,4 +1,5 @@
->>>dpkg的使用<<<
+dpkg的使用
+=========
 
 dpkg -i <.deb file name>  安装
 
