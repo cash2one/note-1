@@ -2,26 +2,26 @@
 # -*- coding: utf-8 -*-
 import os
 import zipfile
+import shutil
 import datetime
 
 
-def zip_dir(dirname, zipfilename):
-    filelist = []
-    if os.path.isfile(dirname):
-        filelist.append(dirname)
-    else:
-        for root, dirs, files in os.walk(dirname):
-            for d in dirs:
-                filelist.append(os.path.join(root, d))
-            for f in files:
-                filelist.append(os.path.join(root, f))            
+# shutil.make_archive('xxx.zip', 'zip', 'xxx')
 
-    zf = zipfile.ZipFile(zipfilename, "w", zipfile.zlib.DEFLATED)
-    for tar in filelist:
-        arcname = tar[len(dirname):]
-        zf.write(tar, arcname)
-    zf.close()
-    return zipfilename
+
+def zipdir(dirname, zipfilename=None):
+    if zipfilename is None:
+        zipfilename = os.path.basename(os.path.normpath(dirname)) + '.zip'
+    zipf = zipfile.ZipFile(zipfilename, 'w', zipfile.ZIP_DEFLATED)
+    base_len = len(dirname)
+    for root, dirs, files in os.walk(dirname):
+        for f in files:
+            fn = os.path.join(root, f)
+            zipf.write(fn, fn[base_len:])
+        for d in dirs:
+            fn = os.path.join(root, d)
+            zipf.write(fn, fn[base_len:])
+    zipf.close()
 
 
 def unzip(filename, to_dir):
@@ -47,11 +47,19 @@ def backup_dir(dirname):
     dt = datetime.datetime.now().strftime('-%y%m%d%H%M%S')
     base, name = os.path.split(dirname)
     print os.path.split(dirname)
-    return zip_dir(dirname, os.path.join(base, 'bak'+name+dt+'.zip'))
+    return zipdir(dirname, os.path.join(base, 'bak'+name+dt+'.zip'))
 
 
 if __name__ == "__main__":
-    zip_dir('ice', 'ice.zip')
+    import time
+    st = time.time()
+    # shutil.make_archive('/home/pysaoke/idea/react.zip', 'zip', '/home/pysaoke/idea/react')
+    # zipdir('/home/pysaoke/idea/django', '/home/pysaoke/idea/django.zip')
+    zip_ref = zipfile.ZipFile('/home/pysaoke/idea/django.zip', 'r')
+    zip_ref.extractall('/home/pysaoke/idea/djangozip')
+    zip_ref.close()
+    print time.time() - st
+    # shutil.make_archive('/home/pysaoke/idea/python.zip', 'zip', '/home/pysaoke/idea/python')
     # unzip('file.zip', 'file_zip')
     # base_dir = os.path.dirname(os.path.abspath(__file__))
     # backup_dir(os.path.join(base_dir, 'ice'))
