@@ -123,6 +123,8 @@ $ chmod
 
 $ sudo chmod +x nginx  # 添加可执行权限
 $ sudo chmod -x nginx  # 取消可执行权限
+$ sudo chmod +w file   # 添加可写权限
+$ sudo chmod -w file   # 取消可写权限
 
 
 $ lsblk    => 查看硬盘和分区分布
@@ -132,6 +134,7 @@ $ sudo fdisk -l    => 查看硬盘和分区的详细信息
 $ df -h   =>  显示已挂载的分区列表
 
 $ mount    => 挂载磁盘分区
+$ mount -o remount, rw / (recovery mode 时，重新过载根分区为可读写
 $ umount   => 卸载磁盘分区
     mount /dev/sda5 /mnt/d  # /mnt目录下要有d这个目录
     umount /dev/sda5
