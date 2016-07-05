@@ -333,7 +333,7 @@ $ tar        =>  压缩解压
     $ tar -zxvf filename.tar.gz # 解压
 
 $ zip/unzip
-    $ zip -r mydata.zip mydata  # 压缩mydata目录
+    $ zip -r mydata.zip mydir  # 压缩mydir目录
     $ unzip mydata.zip -d mydatabak
 
 $ tar -xf ***.tar.bz2  # 解压tar.bz2
