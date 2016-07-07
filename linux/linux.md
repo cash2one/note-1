@@ -358,14 +358,14 @@ $ netstat    => 查看端口使用情况
     $ netstat -apn|grep xxx   =>  查看xxxx端口的占用情况
 	$ netstat -ntlp|grep xxx  =>  查看端口占用 
 
-$ ps aux => 查看进程
-$ ps aux|grep nginx
-$ ps aux|grep <进程号>   =>  找到进程号后可以用此命令查看详细信息
-
 $ pstree # 树状显示进程和子进程的树
 
 $ lsof -i    =>  查看端口占用情况
 $ lsof -i:xxxx    =>  查看xxxx端口的占用情况
+
+$ ps aux => 查看进程
+$ ps aux|grep nginx
+$ ps aux|grep <进程号>   =>  找到进程号后可以用此命令查看详细信息
 
 $ ps      => 显示进程信息
     ps ux     # 显示当前用户的进程
