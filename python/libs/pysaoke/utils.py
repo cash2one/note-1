@@ -110,8 +110,8 @@ def gen_date():
     return map(last_month, range(6))
 
 
-def qs(url):
-    """获取url中的查询参数"""
+def get_qs(url):
+    """parse a URL query string"""
     query = urlparse.urlparse(url).query
     return dict([(k, v[0]) for k, v in urlparse.parse_qs(query).items()])
 
@@ -121,13 +121,13 @@ def add_qs(url, **kwargs):
     :param params 用这个关键字参数输入字典类型
     """
     kwargs.update(kwargs.pop('params', ''))
-    query_string = urllib.urlencode(kwargs)
-    if not query_string:
+    qs = urllib.urlencode(kwargs)
+    if not qs:
         return url
-    if not qs(url):
-        return url+'?'+query_string
+    if not get_qs(url):
+        return url+'?'+qs
     else:
-        return url+'&'+query_string
+        return url+'&'+qs
 
 
 def group_generator(data, chunksize):
