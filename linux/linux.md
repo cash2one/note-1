@@ -117,7 +117,7 @@ $ chmod
     其中a,b,c各为一个数字，分别表示User、Group、及Other的权限
     若要rwx属性则4+2+1=7
     若要rw-属性则4+2=6
-    若要r-x属性则4+1=5
+    若要rx-属性则4+1=5
 
     例: chmod a=rwx file 和 chmod 777 file
 
