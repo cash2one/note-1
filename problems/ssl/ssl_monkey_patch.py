@@ -21,7 +21,7 @@ class HTTPSConnection(HTTPConnection):
         self.cert_file = cert_file
 
     def connect(self):
-        "Connect to a host on a given (SSL) port."
+        """Connect to a host on a given (SSL) port."""
         sock = socket.create_connection((self.host, self.port),
                 self.timeout, self.source_address)
         if self._tunnel_host:
@@ -31,6 +31,6 @@ class HTTPSConnection(HTTPConnection):
         # we added the ssl_version variable
         self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLSv1)
 
-#now we override the one in httplib
+# now we override the one in httplib
 httplib.HTTPSConnection = HTTPSConnection
 # ssl_version corrections are done
