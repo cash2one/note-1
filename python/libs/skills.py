@@ -85,7 +85,7 @@ def strider(p, n):
     return result
 
 
-#-------------------无需过多援引创建字典---------------------#
+# -------------------无需过多援引创建字典---------------------
 dt = dict(zip(keys, values))
 dt = dict(itertools.izip(keys, values))
 dt = dict(map(None, a, range(3)))
@@ -94,7 +94,7 @@ import string
 count_by_letter = dict.fromkeys(string.ascii_lowercase, 0)
 
 
-#-------------------字典操作技巧---------------------#
+# -------------------字典操作技巧---------------------
 import itertools
 
 HEADER = ('name', 'id', 'cell', 'mail')
