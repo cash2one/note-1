@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import signal
 import gevent
 from gevent.subprocess import Popen, PIPE
+
+import signal
 
 
 def cron():
@@ -34,10 +35,10 @@ sub = Popen(['ping', 'www.baidu.com', '-c', '5'], stdout=PIPE, stderr=PIPE)
 print sub.poll()
 
 while sub.poll() is None:
-	print '------------'
-	print sub.stdout.readline()
-	print '------------'
-	gevent.sleep(1)
+    print '------------'
+    print sub.stdout.readline()
+    print '------------'
+    gevent.sleep(1)
 
 print 'return', sub.poll()
 

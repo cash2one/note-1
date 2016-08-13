@@ -5,13 +5,13 @@
 此例中执行这个函数的副作用就是,每次task在它的执行过程中都会随机地停某些秒.
 """
 
-import random_note
+import random
 import gevent
 
 
 def task(pid):
     """Some non-deterministic task"""
-    gevent.sleep(random_note.randint(0, 2) * 0.001)
+    gevent.sleep(random.randint(0, 2) * 0.001)
     print('Task %s done' % pid)
 
 

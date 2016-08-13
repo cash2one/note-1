@@ -1,35 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# -------------------------------------------------------------------------------
-# File: worker.py
-# Created: 18/12/2013 17:07:15
-# Author: baixue
-# Purpose:
-# -------------------------------------------------------------------------------
 
 import threading
 
 
 class Worker(threading.Thread):
-    requestID = 0
+    request_id = 0
 
-    def __init__(self, requestsQueue, resultQueue, **kwds):
-        threading.Thread.__init__(self, **kwds)
+    def __init__(self, req_q, res_q, **kwargs):
+        threading.Thread.__init__(self, **kwargs)
         self.setDaemon(1)
-        self.workRequestQueue = requestsQueue
-        self.resultQueue = resultQueue
+        self.requests_queue = req_q
+        self.result_queue = res_q
         self.start()
 
-    def performWork(self, callable, *args, **kwds):
+    def perform_work(self, func, *args, **kwargs):
         """called by the main thread as callable would be, but w/o return"""
-        Worker.requestID +=1
-        self.workRequestQueue.put((Worker.requestID, callable, args, kwds))
-        return Worker.requestID
+        Worker.request_id += 1
+        self.requests_queue.put((Worker.request_id, func, args, kwargs))
+        return Worker.request_id
 
     def run(self):
         while True:
-            requestID, callable, args, kwds = self.workRequestQueue.get()
-            self.resultQueue.put((requestID, callable(*args, **kwds)))
+            requestID, callable, args, kwds = self.requests_queue.get()
+            self.result_queue.put((requestID, callable(*args, **kwds)))
 
 
 if __name__ == "__main__":

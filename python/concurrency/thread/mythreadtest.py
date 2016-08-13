@@ -5,7 +5,7 @@ from time import sleep, ctime
 from myThread import MyThread
 
 
-def loop(a,b,c):
+def loop(a, b, c):
     print 'start loop at:', ctime()
     sleep(1)
     print 'loop done at:', ctime()

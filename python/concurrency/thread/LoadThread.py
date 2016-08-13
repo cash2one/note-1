@@ -17,6 +17,6 @@ class SubThread(threading.Thread):
     def run(self):
         self.res = self.func(*self.args)
 
-#用start()来启动线程
-#用join()来等待线程结束
-#用getResult()来获取函数结果
+# 用start()来启动线程
+# 用join()来等待线程结束
+# 用getResult()来获取函数结果
