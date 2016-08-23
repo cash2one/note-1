@@ -41,7 +41,6 @@ vam install youcompleteme
 
 4、git和svn
 $ sudo apt-get install git
-
 $ sudo apt-get install subversion
 
 5、chrome
@@ -62,10 +61,13 @@ $ sudo apt-get install oracle-java8-set-default
 
 8、pycharm
 
+
 9、sublime text3
+
 
 10、openvpn
 $ sudo apt-get install openvpn
+
 
 11、mongodb
 
@@ -82,6 +84,7 @@ $ sudo cd /usr/local/nginx
 $ sudo sbin/nginx
 
 访问localhost:8080
+
 
 14、右键打开终端
 $ sudo apt-get install nautilus-open-terminal
