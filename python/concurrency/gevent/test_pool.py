@@ -6,16 +6,14 @@ Greenlet具有确定性. 在相同配置相同输入的情况下, 它们总是�
 """
 
 import time
+from multiprocessing.pool import Pool
 
 
 def echo(i):
     time.sleep(0.001)
     return i
 
-
 # Non Deterministic Process Pool
-
-from multiprocessing.pool import Pool
 
 p = Pool(10)
 run1 = [a for a in p.imap_unordered(echo, xrange(10))]

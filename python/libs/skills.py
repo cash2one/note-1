@@ -4,7 +4,6 @@
 技巧
 """
 
-__author__ = 'baixue'
 
 # 列表去重, 比set快
 {}.fromkeys(list).keys()

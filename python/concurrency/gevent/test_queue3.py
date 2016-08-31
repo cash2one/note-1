@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Queue.get()回阻塞其他的worker
+Queue.get()不会阻塞其他的worker
 """
 
 import gevent
@@ -12,8 +12,9 @@ tasks = Queue()
 
 
 def worker_a():
-    print 'worker: a'
-    gevent.sleep(1)
+    while True:
+        print 'worker: a'
+        gevent.sleep(1)
 
 
 def worker_b():

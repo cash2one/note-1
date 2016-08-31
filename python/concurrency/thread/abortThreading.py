@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# ------------------------------------------------------------------------------
-# File: abortThreading.py
-# Created: 17/01/2014 13:38:55
-# Author: baixue
-# Purpose:
-# ------------------------------------------------------------------------------
 import time
 import threading
 

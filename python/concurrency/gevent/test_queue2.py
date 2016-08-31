@@ -16,7 +16,7 @@ gevent.spawn(foo).join()
 def worker(name):
     while True:
         if not tasks.empty():
-            print name , ' -- ', tasks.get()
+            print name, ' -- ', tasks.get()
         gevent.sleep(1)
 
 

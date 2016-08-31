@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-创建Greenlets
+创建Greenlet
 gevent对Greenlet初始化提供了一些封装, 最常用的使用模板之一有
 """
 

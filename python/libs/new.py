@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-    new some python module file
-    author: Pysaoke
+new some python module file
+author: Pysaoke
 """
 
 import os

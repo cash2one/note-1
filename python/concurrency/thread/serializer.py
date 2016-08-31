@@ -6,8 +6,8 @@ import threading
 
 
 class Serializer(threading.Thread):
-    def __init__(self, **kwds):
-        super(Serializer, self).__init__(self, **kwds)
+    def __init__(self, **kwargs):
+        super(Serializer, self).__init__(self, **kwargs)
         # 设置为"守护线程", 主线程退出时, 不用等待它结束
         self.setDaemon(1)
         self.workRequestQueue = Queue.Queue()
@@ -21,5 +21,5 @@ class Serializer(threading.Thread):
 
     def run(self):
         while True:
-            callable, args, kwds = self.workRequestQueue.get()
-            self.resultQueue.put(callable(*args, **kwds))
+            callable, args, kwargs = self.workRequestQueue.get()
+            self.resultQueue.put(callable(*args, **kwargs))

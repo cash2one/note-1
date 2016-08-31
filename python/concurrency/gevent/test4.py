@@ -5,8 +5,9 @@
 各个请求的执行时间会有差别.
 """
 
-import gevent.monkey; gevent.monkey.patch_socket()
 import gevent
+import gevent.monkey; gevent.monkey.patch_socket()
+
 import urllib2
 import json
 
