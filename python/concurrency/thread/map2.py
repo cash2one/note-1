@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from multiprocessing import Pool
 from PIL import Image

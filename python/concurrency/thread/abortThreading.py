@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
 import threading
 
 
 class Worker(threading.Thread):
-    def __init__(self, name='TestThread'):
+    def __init__(self, name='MyThread'):
         super(Worker, self).__init__(name=name)
         self._stop_event = threading.Event()
         self._sleep_period = 1.0
@@ -16,12 +15,12 @@ class Worker(threading.Thread):
         while not self._stop_event.isSet():
             count += 1
             print "loop %d" % count
-            self._stop_event.wait(self._sleep_period)
+            self._stop_event.wait(timeout=self._sleep_period)
         print " --- %s: end ---" % self.getName()
 
     def join(self, timeout=None):
         self._stop_event.set()
-        super(Worker, self).join(timeout)
+        super(Worker, self).join(timeout=timeout)
 
 
 if __name__ == "__main__":

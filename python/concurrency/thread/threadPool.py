@@ -1,4 +1,5 @@
-# Example2.py
+# -*- coding: utf-8 -*-
+
 """
 a more realistic thread pool example
 """
@@ -20,7 +21,7 @@ class Consumer(threading.Thread):
             content = self._queue.get()
             if isinstance(content, str) and content == 'quit':
                 break
-            response = urllib2.urlopen(content)
+            resp = urllib2.urlopen(content)
         print 'Bye byes'
 
 
