@@ -226,7 +226,7 @@ $ find    => man find
 
 # 统计代码行数
 $ find . -name "*.py" | xargs wc -l
-$ find . -name "*.py" | xargs cat|grep -v ^$|wc -l  # 去除空格
+$ find . -name "*.py" | xargs cat|grep -v ^$|wc -l  # 去除空行
 
 # 删除文件大小为零的文件
 $ find ./ -size 0 -exec rm {} \; 或 rm -i 'find ./ -size 0'
