@@ -28,6 +28,7 @@ def spin():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, port))
 
+
 while 1:
     infds, outfds, errfds = select.select([s], [], [s], 0.1)
     if len(infds):

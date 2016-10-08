@@ -1,7 +1,4 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-
 import time
 import numpy as np
 
@@ -11,13 +8,14 @@ print u'维数(秩rank):', a.ndim
 
 print a[:1]
 print a[:-1]
-#连接两个数组
+
+# 连接两个数组
 a = np.concatenate((a[:1], a[:-1]), 1)
 print a
 print u'维数(秩rank):', a.ndim
 
 
-alst = [0,]
+alst = [0]
 
 start = time.clock()
 
@@ -30,29 +28,13 @@ stop = time.clock()
 print stop - start
 
 
-npalst = np.array([0,])
+npalst = np.array([0])
 
 start = time.clock()
 
 for i in range(1000):
-    c = np.concatenate((npalst, np.array([i,])), 1)
+    _ = np.concatenate((npalst, np.array([i])), 1)
 
 stop = time.clock()
 
 print stop - start
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

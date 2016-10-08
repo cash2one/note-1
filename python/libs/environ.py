@@ -4,10 +4,10 @@ import sys
 
 
 filename = "environ.txt"
-sep = os.linesep
+
 
 while True:
-    if not os.path.exists(filename):
+    if not os.path.isfile(filename):
         break
     cmd = raw_input('ERROR: <%s> already exists' % filename)
     if cmd == 'done':
@@ -15,14 +15,12 @@ while True:
     else:
         break
 
-fobj = open(filename, 'wb')
 
-env = os.environ
-keys = env.keys()
-flag = '-' * 8
-for key in keys:
-    fobj.writelines("\n%s[%s]%s\n" % (flag, key, flag))
-    lpath = env[key].split(';')
-    fobj.writelines('%s;%s' % (x, sep) for x in lpath)
-
-fobj.close()
+with open(filename, 'wb') as f:
+    env = os.environ
+    keys = env.keys()
+    flag = '-' * 8
+    for key in keys:
+        f.writelines("\n%s[%s]%s\n" % (flag, key, flag))
+        lpath = env[key].split(';')
+        f.writelines('%s;%s' % (x, os.linesep) for x in lpath)

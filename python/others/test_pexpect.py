@@ -47,5 +47,5 @@ else:
 child.close()
 
 # pattern = re.compile(r'hbase\(main\).+?>')
-#
+
 # print re.match(pattern, 'hbase(main):001:10>')

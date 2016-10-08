@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
-from socket import *
 import sys
 import threading
+from socket import *
+
 
 HOST = 'localhost'
 PORT = 61557
@@ -12,34 +12,34 @@ ADDR = (HOST, PORT)
 udpCliSock = socket(AF_INET, SOCK_DGRAM)
 
 
-def initUDP():
+def init_UDP():
     try:
         udpCliSock.bind(ADDR)
     except error:
         sys.exit(0)
 
 
-def RecvData():
+def recv_data():
     while True:
         data, address = udpCliSock.recvfrom(BUFSIZ)
 
         if not data:
             break
         if data == 'Exit':
-            CloseUDP()
+            close_UDP()
             break
 
         print data, address
 
 
-def CloseUDP():
+def close_UDP():
     print 'DONE'
     udpCliSock.close()
 
 
 def main():
-    initUDP()
-    t = threading.Thread(target = RecvData, args=())
+    init_UDP()
+    t = threading.Thread(target=recv_data, args=None)
     t.start()
     t.join()
 

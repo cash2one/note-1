@@ -18,31 +18,31 @@ pack = pcap.pcap()
 pack.setfilter('udp')
 key = ''
 for recv_time, recv_data in pack:
-   recv_len = len(recv_data)
-   if recv_len == 102 and recv_data[42] == chr(02) and recv_data[101] == chr(03):
-      print struct.unpack('>I', recv_data[49:53])[0]
-      print '登陆了'
-   elif recv_len == 55:
-      print struct.unpack('>I',recv_data[49:53])[0]
-      print '登陆了'
+    recv_len = len(recv_data)
+    if recv_len == 102 and recv_data[42] == chr(02) and recv_data[101] == chr(03):
+        print struct.unpack('>I', recv_data[49:53])[0]
+        print '登陆了'
+    elif recv_len == 55:
+        print struct.unpack('>I',recv_data[49:53])[0]
+        print '登陆了'
 
+"""
+如果你在*nix下运行,请将# -*- coding: cp936 -*-更改为# -*- coding: utf-8 -*-
+好了，你可以运行你的python程序了，试着登陆你的QQ。看你的QQ号码是否被抓下来了。
+这里付上我的抓屏结果
+D:\socket-qq>;sniffer-QQ.py
+278333853
+12345
+1234567890
+1234567890
+1234567890
+278333853
+1234567890
+1234567890
+278333853
+278333853
 
-##如果你在*nix下运行,请将# -*- coding: cp936 -*-更改为# -*- coding: utf-8 -*-
-##好了，你可以运行你的python程序了，试着登陆你的QQ。看你的QQ号码是否被抓下来了。
-##这里付上我的抓屏结果
-##D:\socket-qq>;sniffer-QQ.py
-##278333853
-##12345
-##1234567890
-##1234567890
-##1234567890
-##278333853
-##1234567890
-##1234567890
-##278333853
-##278333853
-##
-##
-##利用的什么原理呢。
-##QQ使用udp协议来和服务器进行通讯，当数据包在传输的时候。udp报文被抓了下来。而登陆包是以0x02开头0x03为结尾的，我们先判断是否为正确的登陆包，当然，登陆包的长度都为102个字节。我们取出结构中特定的位置，就是你的QQ号码了。
-##如果还有什么疑问，请大家跟贴。
+利用的什么原理呢。
+QQ使用udp协议来和服务器进行通讯，当数据包在传输的时候。udp报文被抓了下来。而登陆包是以0x02开头0x03为结尾的，我们先判断是否为正确的登陆包，当然，登陆包的长度都为102个字节。我们取出结构中特定的位置，就是你的QQ号码了。
+如果还有什么疑问，请大家跟贴。
+"""

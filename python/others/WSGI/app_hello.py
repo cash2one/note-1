@@ -1,10 +1,4 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-'''Doc String'''
-
-__author__ = 'baixue'
-
 
 # environ：一个包含所有HTTP请求信息的dict对象
 # start_response():一个发送HTTP响应的函数

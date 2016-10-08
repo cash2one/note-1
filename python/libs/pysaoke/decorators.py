@@ -42,9 +42,8 @@ def trace_run(func):
 
 
 def async(f):
-    @functools.wraps(func)
+    @functools.wraps(f)
     def wrapper(*args, **kwargs):
         thr = Thread(target=f, args=args, kwargs=kwargs)
         thr.start()
     return wrapper
-

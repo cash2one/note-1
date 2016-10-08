@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-
-from threading import Thread
-import Queue
 import time
+import Queue
+from threading import Thread
 
 
 class TaskQueue(Queue.Queue):

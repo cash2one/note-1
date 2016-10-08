@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import socket
 import select 
 import Queue
@@ -80,7 +79,7 @@ while True:
                 print "sending %s to %s" % (next_msg , s.getpeername())
                 s.send(next_msg)
         elif flag & select.POLLERR:
-            #Any events with POLLERR cause the server to close the socket
+            # Any events with POLLERR cause the server to close the socket
             print "exception on", s.getpeername()
             poller.unregister(s)
             s.close()

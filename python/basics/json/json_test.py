@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-'''json test'''
-
 import json
 
 
@@ -47,4 +44,3 @@ print
 print
 print res
 print type(res)
-
