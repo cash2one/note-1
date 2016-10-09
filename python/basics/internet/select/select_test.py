@@ -6,10 +6,8 @@ import Queue
 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-server.setblocking(False)  # 非阻塞
-# set option reused
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server.setblocking(0)
 
 addr = ('', 5001)
 server.bind(addr)

@@ -7,23 +7,20 @@ import select
 EOL1 = b'\n\n'
 EOL2 = b'\n\r\n'
 response = b'HTTP/1.0 200 OK\r\nDate: Mon, 1 Jan 1996 01:01:01 GMT\r\n' \
-            b'Content-Type: text/plain\r\nContent-Length: 13\r\n\r\n' \
-            b'Hello, world!'
+           b'Content-Type: text/plain\r\nContent-Length: 13\r\n\r\n' \
+           b'Hello, world!'
 
 sock_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock_server.bind(("0.0.0.0", 5555))
+sock_server.bind(('0.0.0.0', 5555))
 sock_server.listen(5)
 sock_server.setblocking(0)
 
 epoll = select.epoll()
 epoll.register(sock_server.fileno(), select.EPOLLIN)
 
-connections = {}
-requests = {}
-responses = {}
-
 try:
+    connections = {}; requests = {}; responses = {}
     # #轮询注册的事件集合
     while True:
         events = epoll.poll(1)  # timeout = 1
