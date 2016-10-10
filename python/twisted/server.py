@@ -1,28 +1,52 @@
 # -*- coding: utf-8 -*-
-from time import ctime
+from twisted.internet.protocol import Factory
+from twisted.protocols.basic import LineReceiver
 from twisted.internet import reactor
-from twisted.internet.protocol import Protocol, Factory
 
 
-PORT = 5001
+class Chat(LineReceiver):
+    def __init__(self, users):
+        self.users = users
+        self.name = None
+        self.state = "GETNAME"
 
-
-class TSServerProtocol(Protocol):
     def connectionMade(self):
-        self.client = self.transport.getPeer().host
-        print 'Got connection from', self.client
+        self.sendLine("What's your name?")
 
-    def connectionLost(self, reason):
-        print self.transport, 'disconnected'
+    def connectionLost(self, reason=None):
+        if self.name in self.users:
+            del self.users[self.name]
 
-    def dataReceived(self, data):
-        self.transport.write('[%s] %s' % (ctime(), data))
+    def lineReceived(self, line):
+        if self.state == "GETNAME":
+            self.handle_GETNAME(line)
+        else:
+            self.handle_CHAT(line)
+
+    def handle_GETNAME(self, name):
+        if name in self.users:
+            self.sendLine("Name taken, please choose another.")
+            return
+        self.sendLine("Welcome, %s!" % (name,))
+        self.name = name
+        self.users[name] = self
+        self.state = "CHAT"
+
+    def handle_CHAT(self, message):
+        message = "<%s> %s" % (self.name, message)
+        for name, protocol in self.users.iteritems():
+            if protocol != self:
+                protocol.sendLine(message)
 
 
-factory = Factory()
-factory.protocol = TSServerProtocol
+class ChatFactory(Factory):
 
-print 'waiting for connection...'
+    def __init__(self):
+        self.users = {}  # maps user names to Chat instances
 
-reactor.listenTCP(PORT, factory)
+    def buildProtocol(self, addr):
+        return Chat(self.users)
+
+
+reactor.listenTCP(8123, ChatFactory())
 reactor.run()
