@@ -7,8 +7,8 @@ import Queue
 
 sock_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-sock_server.bind(("0.0.0.0", 8080))
-sock_server.listen(1)
+sock_server.bind(('', 8080))
+sock_server.listen(5)
 sock_server.setblocking(0)
 
 epoll = select.epoll()
@@ -18,14 +18,14 @@ message_queues = {}
 fd_to_socket = {sock_server.fileno(): sock_server}
 
 while True:
-    print "等待活动连接......"
-    # 轮询注册的事件集合
+    print "Waiting for event..."
     events = epoll.poll(1)
     if not events:
-        print "epoll超时无活动连接, 重新轮询......"
+        print "Timeout!"
         continue
 
     print "有", len(events), "个新事件, 开始处理......"
+
     for fd, event in events:
         socket = fd_to_socket[fd]
         # 可读事件

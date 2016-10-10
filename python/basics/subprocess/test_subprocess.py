@@ -16,11 +16,11 @@ sub = Popen(['ping crm.100credit.cn'], shell=True, stdout=PIPE, stderr=PIPE)
 
 
 for i in range(50):
-	print sub.stdout.read()
-	gevent.sleep(1)
+    print sub.stdout.read()
+    gevent.sleep(1)
 
 
-sub.send_signal(signal.SIGTERM) # 向子进程发送信号
+sub.send_signal(signal.SIGTERM)  # 向子进程发送信号
 sub.terminate()
 
 g.kill()

@@ -23,6 +23,7 @@ urls = [
     'http://bbs.tianya.cn/',
 ]
 
+
 def urlopen(url):
     return urllib2.urlopen(url).info()
 

@@ -1,12 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-'''Yaml Test'''
-
-__author__ = 'baixue'
-
-
-import os, sys
 import yaml
 
 
@@ -33,6 +26,3 @@ yaml.dump(data, f)
 f.close()
 
 raw_input('press enter...')
-
-if __name__ == "__main__":
-    pass

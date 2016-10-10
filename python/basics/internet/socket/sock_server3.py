@@ -16,7 +16,7 @@ class Handler(StreamRequestHandler):
             if data:
                 self.request.send('[%s] %s' % (time.ctime(), data))
             else:
-                # 客户端关闭连接后, 会收到一个空的消息(空字符串)
+                # 客户端关闭连接后, 会收到一个空字符串
                 break
 
     def finish(self):
@@ -25,5 +25,5 @@ class Handler(StreamRequestHandler):
 
 
 if __name__ == "__main__":
-    server = ThreadingTCPServer(('0.0.0.0', 5555), Handler)
+    server = ThreadingTCPServer(('', 5555), Handler)
     server.serve_forever()

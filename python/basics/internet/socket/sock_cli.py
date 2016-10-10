@@ -21,7 +21,7 @@ sock.send('msg-2')
 data = sock.recv(1024)
 print data
 
-for _ in range(10):
+for _ in range(5):
     print 'waiting...'
     time.sleep(1)
 
