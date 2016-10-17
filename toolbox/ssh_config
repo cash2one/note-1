@@ -1,0 +1,119 @@
+Host m162p103
+    HostName 192.168.162.103
+    Port 3222
+    User xue.bai
+	# xuebailove321
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p101
+    HostName 192.168.162.101
+    Port 3222
+    User xue.bai
+	# xuebailove321
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p108
+    HostName 192.168.162.108
+    Port 3222
+    User xue.bai
+    # xuebailove321
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p91
+    HostName 192.168.162.91
+    Port 3222
+    User xue.bai
+    # Bai.Xue_2016.05.13
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p113
+    HostName 192.168.162.113
+    Port 3222
+    User xue.bai
+    # xue.bai
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p114
+    HostName 192.168.162.114
+    Port 3222
+    User xue.bai
+    # xue.bai
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p115
+    HostName 192.168.162.115
+    Port 3222
+    User xue.bai
+    # xue.bai
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p181
+    HostName 192.168.162.181
+    Port 3222
+    User xue.bai
+    # Bai.Xue_2016.05.13
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p182
+    HostName 192.168.162.182
+    Port 3222
+    User xue.bai
+    # Bai.Xue_2016.05.13
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p183
+    HostName 192.168.162.183
+    Port 3222
+    User xue.bai
+    # Bai.Xue_2016.05.13
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p192
+	HostName 192.168.162.192
+	Port 3222
+	User xue.bai
+    # password xue.bai
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+Host m162p193
+	HostName 192.168.162.193
+	Port 3222
+	User xue.bai
+    # password xue.bai.2016.06.27
+    IdentityFile  ~/.ssh/id_rsa.pub
+    IdentitiesOnly yes
+
+host m23p108
+    hostname 192.168.23.108
+    port 3222
+    user xue.bai
+	# xuebailove321
+    identityfile  ~/.ssh/id_rsa.pub
+    identitiesonly yes
+
+host m22p28
+    hostname 192.168.22.28
+    port 3222
+    user xue.bai
+    # Bai&xuE@Br_2016.06.01
+    identityfile  ~/.ssh/id_rsa.pub
+    identitiesonly yes
+
+host m22p18
+    hostname 192.168.22.18
+    user xue.bai
+    # password 1qaz@WSX
+
+host prod
+    hostname m
