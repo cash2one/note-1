@@ -362,14 +362,14 @@ Except
 open()和file()内建函数
 file()和open()功能一样但file()更确切表明它是个工厂函数
 
-#生成器表达式----懒惰的列表解析
+# 生成器表达式----懒惰的列表解析
 (expr for iter_var in iterable if cond_expr)
 
 
 
 #-------------------------------错误和异常------------------------------
 
-#标准异常列表P279
+# 标准异常列表P279
 
 触发异常
 raise[someException [, args [, traceback]]]
@@ -377,9 +377,9 @@ raise[someException [, args [, traceback]]]
 
 try:
     suit
-except IOError, e:
+except IOError as e:
     suit
-except Exception, e:
+except Exception as e:
     suit
 else:
     suit ----try中的语句没有异常的执行完，才执行
@@ -404,7 +404,7 @@ finally:
     suit
 
 
-#上下文管理
+# 上下文管理
 with 语句----是用来简化代码的
 try--except和try--finally的一种特定的配合用法是保证共享资源的唯一分配，并在任务结束后释放它
 比如文件、线程资源，简单同步、数据库连接等等，with语句就是应用在这种场景
@@ -470,7 +470,7 @@ lambda [arg1,[,arg2,....argn]} : expression
 #---------------------------类------------------------------------
 
 class ClassName(base_class[es]):
-    "DocString"
+    """DocString"""
     static_member_declarations
     method_declarations
 
@@ -515,22 +515,22 @@ random----多种伪随机数生成器
 例如：打开一个URL来读取Web界面;
      在另一个独立的进程中执行一个命令进行通信;
 
-file_obj = open(file_name, access_mode='r', buffering=-1)
+f = open(file_name, access_mode='r', buffering=-1)
 file()
 一般建议使用open()
 
 
-file_obj.read(size=-1)----直接读取字节到字符串，最多读取给定数目个字节,默认-1读到末尾
-file_obj.readline(size=-1)----如果给定size参数，那么超过size的行会返回不完整行
-file_obj.readlines(sizhint)----它会返回所有剩余行
+f.read(size=-1)----直接读取字节到字符串，最多读取给定数目个字节,默认-1读到末尾
+f.readline(size=-1)----如果给定size参数，那么超过size的行会返回不完整行
+f.readlines(sizhint)----它会返回所有剩余行
 
-file_obj.write()
-file_obj.writelines()
-file_obj.flush----直接把内部缓冲区中的数据立即写入文件
-file_obj.truncate()----截取到最多size字节处
+f.write()
+f.writelines()
+f.flush----直接把内部缓冲区中的数据立即写入文件
+f.truncate()----截取到最多size字节处
 
-file_obj.seek(args)----在文件中移动文件指针,args:0,1,2==SEEK_SET,SEEK_CUR,SEEK_END
-file_obj.tell()----返回文件指针当前的位置
+f.seek(args)----在文件中移动文件指针,args:0,1,2==SEEK_SET,SEEK_CUR,SEEK_END
+f.tell()----返回文件指针当前的位置
 
 
 sys.argv----命令行参数的列表;sys.argv[0]是程序的名字
