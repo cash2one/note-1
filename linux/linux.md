@@ -429,17 +429,18 @@ scp /path/filename username@servername:/path
 #### nohup
 # nohup就是不挂断的意思( no hang up)
 
-<程序>&    # 后台运行
-普通进程用&符号放到后台运行,如果启动该程序的控制台logout,则该进程随即终止
+command &    # 后台运行
+普通进程用&符号放到后台运行, 如果启动该程序的控制台logout, 则该进程也会终止
 
-nohup Command [ Arg ... ] [　& ]
+nohup command [ Arg ... ] [ & ]
 nohup <程序> &
-则控制台logout后，进程仍然继续运行，起到守护进程的作用（虽然它不是严格意义上的守护进程）
-使用nohup命令后,如果不将 nohup 命令的输出重定向，输出将附加到当前目录的 nohup.out 文件中,起到了log的作用,实现了完整的守护进程功能.
+则控制台logout后, 进程仍然继续运行, 起到守护进程的作用（虽然它不是严格意义上的守护进程）
+使用nohup命令后, 如果不将 nohup 命令的输出重定向, 输出将附加到当前目录的 nohup.out 文件中, 起到了log的作用, 实现了完整的守护进程功能.
 
-可以使用tail -f nohup.out监控标准输出
+可以使用tail -f nohup.out监控输出
 
-# 当shell中提示了nohup成功后还需要按终端上键盘任意键退回到shell输入命令窗口，然后通过在shell中输入exit来退出终端；而我是每次在nohup执行成功后直接点关闭程序按钮关闭终端.。所以这时候会断掉该命令所对应的session，导致nohup对应的进程被通知需要一起shutdown。
+当shell中提示了nohup成功后还需要按终端上键盘任意键退回到shell输入命令窗口, 然后通过在shell中输入exit来退出终端; 
+而我是每次在nohup执行成功后直接点关闭程序按钮关闭终端. 所以这时候会断掉该命令所对应的session, 导致nohup对应的进程被通知需要一起shutdown.
 
 $ jobs        => 查看在后台运行的进程
 $ ctrl + z    => 暂停进程转移到后台
@@ -447,19 +448,27 @@ $ bg          => 后台进程继续运行
 $ fg %1       => 将后台进程移到前台
 $ fg %n　     => 关闭
 
-nohup启动的程序在进程执行完毕就退出，而常见的一些服务进程通常永久的运行在后台，不向屏幕输出结果。在Unix中这些永久的后台进程称为守护进程（daemon）。守护进程通常从系统启动时自动开始执行，系统关闭时才停止
+nohup启动的程序在进程执行完毕就退出, 而常见的一些服务进程通常永久的运行在后台, 不向屏幕输出结果.
+在Unix中这些永久的后台进程称为守护进程（daemon）. 守护进程通常从系统启动时自动开始执行, 系统关闭时才停止
+
 
 nohup command > myout.file 2>&1 &
-在上面的例子中, 0 – stdin (standard input), 1 – stdout (standard output), 2 – stderr (standard error);
+说明: 0 – stdin (standard input), 1 – stdout (standard output), 2 – stderr (standard error);
 2>&1是将标准错误（2）重定向到标准输出（&1）, 标准输出（&1）再被重定向输入到myout.file文件中.
 
 
+# 在程序运行中清空nohup.out文件
+cat /dev/null > nohup.out
+cp /dev/null nohup.out
+
+
 #### Linux中重定向命令行输出
-Linux环境中支持输入输出重定向，用符号<和>来表示。
+Linux环境中支持输入输出重定向, 用符号<和>来表示.
 0、1和2分别表示标准输入、标准输出和标准错误信息输出
-特殊的文件描述符/dev/null，它就像一个黑洞，所有重定向到它的信息都会消失得无影无踪。这一点非常有用，当我们不需要回显程序的所有信息时，就可以将输出重定向到/dev/null.
+特殊的文件描述符/dev/null, 它就像一个黑洞, 所有重定向到它的信息都会消失得无影无踪. 这一点非常有用,
+当我们不需要回显程序的所有信息时, 就可以将输出重定向到/dev/null
 $ ls 1>/dev/null 2>/dev/null  => 标准输出和标准错误都重定向到/dev/null
-$ ls >/dev/null 2>&1          => 将错误重定向到标准输出，然后再重定向到 /dev/null
+$ ls >/dev/null 2>&1          => 将错误重定向到标准输出, 然后再重定向到 /dev/null
 
 $ ls -l > lee.dat    => 将执行"ls -l"命令的结果写入文件 lee.dat 中
 
@@ -476,16 +485,16 @@ $ 命令>>& 文件   => 将命令执行时屏幕上所产生的任何信息附�
 cc lee.c >>& lee.dat 将编译 lee.c 文件时屏幕所产生的任何信息附加到文件 lee.dat 中
 
 
-linux文件描述符:可以理解为linux跟踪打开文件,而分配的一个数字,这个数字有点类似c语言操作文件时候的句柄,
+linux文件描述符:可以理解为linux跟踪打开文件, 而分配的一个数字,这个数字有点类似c语言操作文件时候的句柄,
 通过句柄就可以实现文件的读写操作.
 用户可以自定义文件描述符范围是:3-num,这个最大数字,跟用户的:ulimit –n 定义数字有关系,不能超过最大值
 
-linux启动后,会默认打开3个文件描述符,分别是:
-标准输入standard input 0;
-标准输出standard output 1;
-错误输出：error output 2;
+linux启动后, 会默认打开3个文件描述符, 分别是:
+标准输入 standard input 0;
+标准输出 standard output 1;
+错误输出 error output 2;
 
-以后打开文件后,新增文件绑定描述符可以依次增加,一条shell命令执行,都会继承父进程的文件描述符,因此,所有运行的shell命令,都会有默认3个文件描述符.
+以后打开文件后, 新增文件绑定描述符可以依次增加, 一条shell命令执行, 都会继承父进程的文件描述符, 因此, 所有运行的shell命令, 都会有默认3个文件描述符.
 
 输出重定向
 $ command-line1 [1-n] > file或文件操作符或设备
@@ -506,11 +515,16 @@ $ nohup ./program >/dev/null 2>&1 &     => 如果错误信息也不想要的话
 
 
 #### 源码编译安装软件
-源码的安装一般由3个步骤组成：配置(configure),编译(make),安装(make install).
-Configure是一个可执行脚本，它有很多选项，在待安装的源码路径下使用命令./configure –help输出详细的选项列表.
-其中--prefix选项是配置安装的路径,如果不配置该选项,安装后可执行文件默认放在/usr/local/bin,库文件默认放在/usr/local/lib,配置文件默认放在/usr/local/etc，其它的资源文件放在/usr/local/share，比较凌乱。
-如果配置--prefix，如：
+源码的安装一般由3个步骤组成: 配置(configure); 编译(make); 安装(make install).
+configure是一个可执行脚本, 它有很多选项, 在待安装的源码路径下使用命令./configure –help输出详细的选项列表.
+其中--prefix选项是配置安装的路径,如果不配置该选项, 安装:
+可执行文件默认放在/usr/local/bin;
+库文件默认放在/usr/local/lib;
+配置文件默认放在/usr/local/etc;
+其它的资源文件放在/usr/local/share; 比较凌乱.
+如果配置--prefix 如:
 ./configure --prefix=/usr/local/test
-可以把所有资源文件放在/usr/local/test的路径中,不会杂乱.
-用了—prefix选项的另一个好处是卸载软件或移植软件,当某个安装的软件不再需要时,只须简单的删除该安装目录,就可以把软件卸载得干干净净;移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）
-当然要卸载程序,也可以在原来的make目录下用一次make uninstall,但前提是make文件指定过uninstall。
+可以把所有资源文件放在/usr/local/test的路径中, 不会杂乱.
+用了—prefix选项的另一个好处是卸载软件或移植软件, 当某个安装的软件不再需要时,只须简单的删除该安装目录,
+就可以把软件卸载得干干净净;移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）
+当然要卸载程序, 也可以在原来的make目录下用一次make uninstall, 但前提是make文件指定过uninstall。
