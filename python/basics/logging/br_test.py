@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import logging
-
-import test_brlog
+import configlog
 
 
 logger = logging.getLogger('xxxx')
-
-
 
 
 logger.debug('debug')
