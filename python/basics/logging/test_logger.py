@@ -15,7 +15,7 @@ c2 = logging.getLogger('root.child2')
 # 如果省略了name参数, getLogger将返回日志对象层次关系中的根Logger(root)
 
 
-# Logger.setLevel(level)
+# logger.setLevel(level)
 
 
 try:
@@ -29,13 +29,13 @@ except Exception as e:
 # 获取/设置日志类型. 用户可以自定义日志类来代替系统提供的logging.Logger类
 
 
-# Logger.addFilter(filt)
-# Logger.removeFilter(filt)
+# Logger.addFilter(filter)
+# Logger.removeFilter(filter)
 # 添加/移除日志消息过滤器
 
 
-# Logger.addHandler(hdlr)
-# Logger.removeHandler(hdlr)
+# Logger.addHandler(handler)
+# Logger.removeHandler(handler)
 # 添加/移除日志消息处理器
 
 

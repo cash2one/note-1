@@ -3,15 +3,15 @@ import logging
 
 
 formatter = logging.Formatter(
-        fmt='%(asctime)s : %(levelname)s - %(message)s',
+        fmt='[%(asctime)s] %(levelname)s : %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
-)
+    )
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(formatter)
 
-file_handler = logging.FileHandler('root.log', mode='w')
+file_handler = logging.FileHandler('test.log', mode='w')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 

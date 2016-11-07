@@ -10,11 +10,11 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s : %(asctime)s - %(module)s - %(process)d - %(thread)d - %(message)s',
+            'format': '[%(asctime)s - %(levelname)-8s] %(name)s: %(message)s',
             'datefmt': '%Y-%m-%d %H:%M:%S',
         },
         'simple': {
-            'format': '%(levelname)s : %(asctime)s - %(message)s',
+            'format': '[%(asctime)s] %(levelname)-s: %(message)s',
             'datefmt': '%Y-%m-%d %H:%M:%S',
         },
     },
@@ -46,7 +46,7 @@ LOGGING = {
             # 'filters: ['require_debug_false'],
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'custom.log',                         # 日志文件
-            'maxBytes': 1024*1024*5,                          # 文件大小
+            'maxBytes': 1024*1024*5,                          # 文件大小5M
             'backupCount': 5,                                 # 备份份数
             'formatter': 'verbose',                           # 日志格式
         },
