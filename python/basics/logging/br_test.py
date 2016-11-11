@@ -4,7 +4,7 @@ import logging
 import configlog
 
 
-logger = logging.getLogger('xxxx')
+logger = logging.getLogger(__file__)
 
 
 logger.debug('debug')
