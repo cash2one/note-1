@@ -20,8 +20,8 @@ $ which  command  =>  查看命令的完整路径
 
 $ apt-get update
 $ sudo apt-get upgrade
-$ apt-cache search package_name   => apt搜索包
-$ sudo apt-get remove --purge package_name   => 连同配置信息一起卸载
+$ apt-cache search package-name   => apt搜索包
+$ sudo apt-get remove --purge package-name   => 连同配置信息一起卸载
 
 $ sudo nautilus     => 以root权限打开一个窗口, 来管理文件
 $ sudo      => 以系统管理者的身份执行指令
@@ -87,6 +87,7 @@ $ useradd/adduser  => 添加用户
     useradd -d /usr/sam -m sam  # -d 用户home目录, -m 用户名
 
 $ usermod  => 修改用户
+
 
 $ userdel  => 删除用户
     userdel -r sam  
@@ -154,9 +155,9 @@ $ cd
     cd ~/.local  # 表示用户主目录下有个.local的目录，"."表示这是个隐藏文件
 
 $ ll -h           => 大小易读,有单位
-$ cat filename   => 查看文件
-$ stat filename  => 查看文件状态
-$ more filename  => 分页查看 space下一页, b上一页
+$ cat filename    => 查看文件
+$ stat filename   => 查看文件状态
+$ more filename   => 分页查看 space下一页, b上一页
 
     ps ux|more
     ls|more
