@@ -235,6 +235,7 @@ $ find . -name "*.py" | xargs cat|grep -v ^$|wc -l  # 去除空行
 $ find ./ -size 0 -exec rm {} \; 或 rm -i 'find ./ -size 0'
 
 # 删除目录及其子目录下某类型的文件
+$ find . -name "*.txt" -delete
 $ find . -name "*.pyc" -type f -print -exec rm -rf {} \;
     .  # 表示在当前目录下,可以省略，默认就是当前目录
     -name "*.txt"  # 表示查找所有后缀为txt的文件
@@ -242,14 +243,17 @@ $ find . -name "*.pyc" -type f -print -exec rm -rf {} \;
     -print  # 表示将查询结果打印到屏幕上
     -exec command  # command为其他命令,-exec后可再接其他的命令来处理查找到的结果,{}表示由find命令查找到的结果
 
+# 删除除了某类型的文件外的所有文件
+$ find . -type f -not \( -name '*.zip' -or -name '*.iso' \) -delete
+
 # 为了用ls -l命令列出所匹配到的文件，可以把ls -l命令放在find命令的-exec选项中
-$ find . -type f -exec ls -l {  } \;
+$ find . -type f -exec ls -l {} \;
 
 # 在/logs目录中查找更改时间在5日以前的文件并删除它们
-$ find /logs -type f -mtime +5 -exec rm {  } \;
+$ find /logs -type f -mtime +5 -exec rm {} \;
 	-ok和-exec的作用相同,只不过以一种更为安全的模式来执行该参数所给出的shell命令,在执行每一个命令之前,都会给出提示,让用户来确定是否执行.
 # 在当前目录中查找所有文件名以.LOG结尾,更改时间在5日以上的文件,并删除它们,只不过在删除之前先给出提示
-$ find . -name "*.conf"  -mtime +5 -ok rm {  } \;
+$ find . -name "*.conf"  -mtime +5 -ok rm {} \;
 
 # find命令的常用选项及实例
 	-name 按照文件名查找文件
