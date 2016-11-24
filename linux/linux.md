@@ -170,6 +170,7 @@ $ grep          => 在指定文件中搜索特定内容--Global Regular Expressi
 
     grep [OPTIONS] PATTERN [FILE...]
     grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]
+	grep -r re -n  # 在当前文件夹中搜索包含该re的文件
 
 $ diff          => 分析两个文件的不同
 
