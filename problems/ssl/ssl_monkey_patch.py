@@ -4,10 +4,10 @@
 重载httplib中的HTTPSConnection, 解决https中ssl的bug
 """
 
-import httplib
-from httplib import HTTPConnection, HTTPS_PORT
 import ssl
 import socket
+import httplib
+from httplib import HTTPConnection, HTTPS_PORT
 
 
 class HTTPSConnection(HTTPConnection):
