@@ -1,9 +1,9 @@
 --
 -- SELECT
 --
-select * from products;
+SELECT * FROM products;
 
-select count(*) from products;
+SELECT COUNT(*) FROM products;
 
 SELECT name, price FROM products WHERE price < 1.0;
 SELECT name, quantity FROM products WHERE quantity <= 2000;
@@ -31,8 +31,8 @@ SELECT * FROM products WHERE productCode = NULL;  -- This is a common mistake. N
 --
 -- ORDER BY
 --
-select * from products order by price ASC;  -- 升序排序
-select * from products order by price DESC;  -- 降序排列
+SELECT * FROM products ORDER BY price ASC;  -- 升序排序
+SELECT * FROM products ORDER BY price DESC;  -- 降序排列
 SELECT * FROM products ORDER BY RAND();  -- 随机顺序
 
 --
@@ -68,7 +68,9 @@ SELECT * FROM products GROUP BY productCode;
 
 -- GROUP BY Aggregate Functions: COUNT, MAX, MIN, AVG, SUM, STD, GROUP_CONCAT
 SELECT COUNT(*) AS `Count` FROM products;
+
 SELECT productCode, COUNT(*) FROM products GROUP BY productCode;
+
 SELECT productCode, COUNT(*) AS count
        FROM products
        GROUP BY productCode
@@ -76,41 +78,51 @@ SELECT productCode, COUNT(*) AS count
 
 SELECT MAX(price), MIN(price), AVG(price), STD(price), SUM(quantity) FROM products;
 
-SELECT productCode, MAX(price) AS `Highest Price`, MIN(price) AS `Lowest Price`
-       FROM products
-       GROUP BY productCode;
+SELECT 
+    productCode,
+    MAX(price) AS `Highest Price`,
+    MIN(price) AS `Lowest Price`
+FROM
+    products
+GROUP BY productCode;
 
-SELECT productCode, MAX(price), MIN(price),
-              CAST(AVG(price) AS DECIMAL(7,2)) AS `Average`,
-              CAST(STD(price) AS DECIMAL(7,2)) AS `Std Dev`,
-              SUM(quantity)
-       FROM products
-       GROUP BY productCode;
+
+SELECT 
+    productCode,
+    MAX(price),
+    MIN(price),
+    CAST(AVG(price) AS DECIMAL (7 , 2 )) AS `Average`,
+    CAST(STD(price) AS DECIMAL (7 , 2 )) AS `Std Dev`,
+    SUM(quantity)
+FROM
+    products
+GROUP BY productCode;
 
 --
 -- HAVING
 --
-SELECT
-          productCode AS `Product Code`,
-          COUNT(*) AS `Count`,
-          CAST(AVG(price) AS DECIMAL(7,2)) AS `Average`
-       FROM products 
-       GROUP BY productCode
-       HAVING Count >=3;
-       -- CANNOT use WHERE count >= 3
+SELECT 
+    productCode AS `Product Code`,
+    COUNT(*) AS `Count`,
+    CAST(AVG(price) AS DECIMAL (7 , 2 )) AS `Average`
+FROM
+    products
+GROUP BY productCode
+HAVING Count >= 3;
+-- CANNOT use WHERE count >= 3
 
 --
 -- WITH ROLLUP
 --
 SELECT 
-          productCode, 
-          MAX(price), 
-          MIN(price), 
-          CAST(AVG(price) AS DECIMAL(7,2)) AS `Average`,
-          SUM(quantity)
-       FROM products
-       GROUP BY productCode
-       WITH ROLLUP;        -- Apply aggregate functions to all groups
+    productCode,
+    MAX(price),
+    MIN(price),
+    CAST(AVG(price) AS DECIMAL (7 , 2 )) AS `Average`,
+    SUM(quantity)
+FROM
+    products
+GROUP BY productCode WITH ROLLUP;  -- Apply aggregate functions to all groups
 
 --
 -- UPDATE
@@ -180,19 +192,33 @@ SELECT p.name AS `Product Name`, s.name AS `Supplier Name`
 -- One-to-one Relationship
 --
 CREATE TABLE product_details (
-          productID  INT UNSIGNED   NOT NULL,
-                     -- same data type as the parent table
-          comment    TEXT  NULL,
-                     -- up to 64KB
-          PRIMARY KEY (productID),
-          FOREIGN KEY (productID) REFERENCES products (productID)
-       );
+    productID INT UNSIGNED NOT NULL,
+    comment TEXT NULL,
+    PRIMARY KEY (productID),
+    FOREIGN KEY (productID)
+        REFERENCES products (productID)
+);
 
 
+SELECT 
+    crm_progress.id, progress, project_id
+FROM
+    crm_progress
+        JOIN
+    (SELECT 
+        MAX(id) AS max_id
+    FROM
+        crm_progress
+    GROUP BY project_id) b ON crm_progress.id = b.max_id;
 
-select crm_progress.id, progress, project_id from crm_progress join 
-    (select max(id) as max_id from crm_progress group by project_id) b 
-	on crm_progress.id=b.max_id;
-
-
-
+SELECT 
+    *
+FROM
+    app_progress
+        JOIN
+    (SELECT 
+        task_id, MAX(id) AS latest
+    FROM
+        app_progress
+    GROUP BY task_id) b ON (app_progress.id = b.latest
+        AND app_progress.state = 9);  
