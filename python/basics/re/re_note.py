@@ -232,7 +232,3 @@ re.subn('X', 'Mr. Smith', 'attn: X\n\nDear X,\n')
 
 
 # re.split()
-
-
-if __name__ == "__main__":
-    pass

@@ -75,3 +75,18 @@ if match:
 # 尽管findall()方法不返回分组对象, 它也可以使用分组.
 # 类似的,findall()方法将返回一个元组的集合, 其中每个元组中的第N个元素对应了正则表达式中的第N个分组
 print re.findall(r'(\w+), (\w+): (\S+)', contact_info)
+
+# 想要返回结果中包括整个匹配表达式, 就在整个reg外套上(),返回的就包括整个字符串
+# 例:
+processor_pattern=re.compile(r'(processor[ \t]+: \d+\n)')
+s = 'someothers\n' \
+    'processor : 12\n' \
+    'hahahaha12\n'
+
+print re.findall(processor_pattern, s)
+
+# 如果只要数字
+processor_pattern=re.compile(r'processor[ \t]+: (\d+)\n')
+
+print re.findall(processor_pattern, s)
+

@@ -33,6 +33,7 @@ print  reobj.subn('', s)
 
 
 print re.findall(r'\(\S+?\)', s)  # 匹配括号结果中包含括号
+
 print re.findall(r'(?<=\()\S+?(?=\))', s)   # 匹配括号结果中不包含括号
 
 uuid_val = re.findall(r'(?<=\()\S+?(?=\))', s)[-1]
