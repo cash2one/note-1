@@ -16,10 +16,8 @@ def restart_program():
 
 if __name__ == "__main__":
     print 'start...'
-#  answer = raw_input("Do you want to restart this program ? ")
-#  if answer.strip() in "y Y yes Yes YES".split():
-#    restart_program()
-    print "3秒后,程序将结束..."
+    print sys.argv
+    print "3秒后, 程序将结束..."
     time.sleep(3)
     restart_program()
 
