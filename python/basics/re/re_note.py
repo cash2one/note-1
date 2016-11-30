@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""re note"""
-
 import re
 
 
@@ -21,7 +18,7 @@ html = 'Hello <a href="http://pypix.com" title="pypix">Pypix</a>' \
 m = re.findall('<a.*>.*<\/a>', html)
 if m:
     print m
-    # 输出['<a href="http://pypix.com" title="pypix">Pypix</a>Hello <a href="http://example.com" title="example">Example</a>']
+    # ['<a href="http://pypix.com" title="pypix">Pypix</a>Hello <a href="http://example.com" title="example">Example</a>']
 
 
 # 当你加一个问号在后面时(.*?)它将变为"非贪婪的"
@@ -60,7 +57,7 @@ for string in strings:
     else:
         print 'False'
 
-# 后向界定符类似,但是它查看当前匹配的前面的模式.你可以使用 (?> 来表示肯定界定, (?<! 表示否定界定
+# 后向界定符类似, 但是它查看当前匹配的前面的模式, 你可以使用 (?> 来表示肯定界定, (?<! 表示否定界定
 
 # 下面的模式匹配一个不是跟在 foo 后面的 bar
 strings = [

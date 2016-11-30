@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""re test"""
-
 import re
 import uuid
+
 
 s = 'speed=210, angle=150'
 m = re.findall(r'(\w*[0-9]+)\w*', s)

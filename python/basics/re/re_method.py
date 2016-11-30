@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""re note"""
-
 import re
 
 
@@ -23,26 +20,26 @@ if match:
 
 
 # re.search – 匹配任意位置
-# search()方法和match()类似，不过search()方法不会限制我们只从字符串的开头查找匹配
+# search()方法和match()类似, 不过search()方法不会限制我们只从字符串的开头查找匹配
 
 match = re.search(r'cat', 'dog cat dog')  # 匹配成功
 print match.group(0)
 
 # search()方法会在它查找到一个匹配项之后停止继续查找
-# 因此在我们的示例字符串中用searc()方法查找"dog"只找到其首次出现的位置
+# 因此在我们的示例字符串中用search()方法查找"dog"只找到其首次出现的位置
 match = re.search(r'dog', 'dog cat dog')  # 匹配成功, 只匹配到第一个dog
 print match.group(0)
 
 
 # re.findall – 所有匹配对象
-# 当我们调用findall()方法，我们可以非常简单的得到一个所有匹配模式的列表，而不是得到match的对象
+# 当我们调用findall()方法, 我们可以非常简单的得到一个所有匹配模式的列表, 而不是得到match的对象
 print re.findall(r'dog', 'dog cat dog')
 
 
 # match.start 和 match.end 方法
-# search()和match()返回的"匹配对象",实际上是一个关于匹配子串的包装类
+# search()和match()返回的"匹配对象", 实际上是一个关于匹配子串的包装类
 # 先前你看到我可以通过调用group()方法得到匹配的子串
-# (我们将在下一个部分看到，事实上匹配对象在处理分组问题时非常有用),但是匹配对象还包含了更多关于匹配子串的信息
+# (我们将在下一个部分看到, 事实上匹配对象在处理分组问题时非常有用), 但是匹配对象还包含了更多关于匹配子串的信息
 
 # match对象可以告诉我们匹配的内容在原始字符串中的开始和结束位置
 match = re.search(r'cat', 'dog cat dog')
@@ -51,13 +48,13 @@ print match.end()
 
 
 # match.group() 通过数字分组
-# match对象在处理分组时非常得心应手,分组是对整个正则表达式的特定子串进行定位的能力
+# match对象在处理分组时非常得心应手, 分组是对整个正则表达式的特定子串进行定位的能力
 contact_info = 'Doe, John: 555-1212-white'
 match = re.search(r'\w+, \w+: \S+', contact_info)
 if match:
     print match.group(0)
 
-# 通过用圆括号来（字符'\'('和')'）包围正则表达式的特定部分,我们可以对内容进行分组然后对这些子组做单独处理
+# 通过用圆括号来（字符'\'('和')'）包围正则表达式的特定部分, 我们可以对内容进行分组然后对这些子组做单独处理
 match = re.search(r'(\w+), (\w+): (\S+)', contact_info)
 if match:
     print match.group(0)  # 所有匹配对象
@@ -75,6 +72,6 @@ if match:
     match.group('phone')
 
 
-# 尽管findall()方法不返回分组对象,它也可以使用分组.
-# 类似的,findall()方法将返回一个元组的集合,其中每个元组中的第N个元素对应了正则表达式中的第N个分组
+# 尽管findall()方法不返回分组对象, 它也可以使用分组.
+# 类似的,findall()方法将返回一个元组的集合, 其中每个元组中的第N个元素对应了正则表达式中的第N个分组
 print re.findall(r'(\w+), (\w+): (\S+)', contact_info)
