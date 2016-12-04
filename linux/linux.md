@@ -59,11 +59,14 @@ $ export HELLO='hello'  => 设置变量HELLO, 这是临时的变量, 在关闭sh
 
 #### 永久环境变量
 在/etc/profile文件中添加变量, 对所有用户生效
-用户目录下的.bash.profile文件中增加变量, 对单一用户生效
+
+用户目录下的.bash 和 .profile文件中增加变量, 对单一用户生效
 (ubuntu下为home目录下的.bashrc和.profile, /etc/profile; /etc/evnironment)
+
 export PATH=/opt/node/bin:$PATH
-(/etc/environment不需要使用export设置环境变量,其他profile文件需要)
-source ～/.bashrc  使新变量立即生效
+(/etc/environment不需要使用export设置环境变量, 其他profile文件需要)
+source ~/.bashrc  使新变量立即生效
+
 
 $ date    =>  显示日期
 $ uptime  =>  现在时间，系统开机运转到现在经过的时间，连线的使用者数量，最近的系统负载
@@ -71,31 +74,33 @@ $ cal     =>  显示一个日历
 $ bc      =>  一个简单计算器
 
 
-用户与权限
+用户, 组, 权限
 ========
 linux用户主要分为三类:
-第一类:root(超级管理员),UID为0,这个用户有极大的权限,可以直接无视很多的限制,包括读写执行的权限.
-第二类:系统用户,UID为1～499.一般是不会被登入的.
-第三类:就是普通用户,UID范围一般是500～65534.这类用户的权限会受到基本权限的限制,也会受到来自管理员的限制.
-不过要注意nobody这个特殊的帐号,UID为65534,这个用户的权限会进一步的受到限制,一般用于实现来宾帐号.
+1: root(超级管理员), UID为0, 这个用户有极大的权限, 可以直接无视很多的限制, 包括读写执行的权限.
+2: 系统用户, UID为1~499. 一般是不会被登入的.
+3: 就是普通用户, UID为500~65534. 这类用户的权限会受到基本权限的限制, 也会受到来自管理员的限制.
+不过要注意nobody这个特殊的帐号, UID为65534, 这个用户的权限会进一步的受到限制, 一般用于实现来宾帐号.
 
-/etc/group  # 文件包含所有组
+/etc/group   # 文件包含所有组
 /etc/passwd  # 用户(user)的配置文件
 /etc/shadow  # 用户user影子口令文件
 
 $ useradd/adduser  => 添加用户
+	# 一般用useradd即可, adduser会交互式的提示你创建用户信息
     useradd -d /usr/sam -m sam  # -d 用户home目录, -m 用户名
 
 $ usermod  => 修改用户
-
+	例:
+	usermod user -aG groups1,group2,group3  # 将user用户添加到group1, group2和group3组中
 
 $ userdel  => 删除用户
     userdel -r sam  
-    # 删除用户sam在系统文件(主要是/etc/passwd;/etc/shadow;/etc/group等)中的记录,同时删除用户的主目录.
+    # 删除用户sam在系统文件(主要是/etc/passwd;/etc/shadow;/etc/group等)中的记录, 同时删除用户的主目录.
 
 $ passwd
 
-$ groupadd / addgroup
+$ groupadd/addgroup
 
 $ groupmod
 
