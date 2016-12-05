@@ -350,6 +350,7 @@ $ tar        =>  压缩解压
 
 $ zip/unzip
     $ zip -r mydata.zip mydir  # 压缩mydir目录
+	   -x "test/*" # 排除某个文件
     $ unzip mydata.zip -d mydatabak
 
 $ tar -xf ***.tar.bz2  # 解压tar.bz2
