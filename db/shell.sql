@@ -222,3 +222,17 @@ FROM
         app_progress
     GROUP BY task_id) b ON (app_progress.id = b.latest
         AND app_progress.state = 9);  
+
+SELECT 
+	workflow_workflowhistory.workflowactivity_id, workflow_workflowhistory.state_id
+FROM
+	workflow_workflowhistory
+	INNER JOIN
+	(SELECT 
+		MAX(id) AS latest
+	FROM
+		workflow_workflowhistory
+	GROUP BY workflowactivity_id) b
+where 
+	workflow_workflowhistory.id = b.latest;
+
