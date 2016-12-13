@@ -24,3 +24,4 @@ sub.send_signal(signal.SIGTERM)  # 向子进程发送信号
 sub.terminate()
 
 g.kill()
+
