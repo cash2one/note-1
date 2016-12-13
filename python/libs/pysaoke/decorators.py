@@ -5,7 +5,7 @@
 import time
 import traceback
 import functools
-import threading import Thread
+from threading import Thread
 
 
 def clock(ms=True):

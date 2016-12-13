@@ -8,13 +8,13 @@
 import gevent
 import gevent.monkey; gevent.monkey.patch_socket()
 
-import urllib2
 import json
+import urllib2
 
 
 def fetch(pid):
-    response = urllib2.urlopen('http://json-time.appspot.com/time.json')
-    result = response.read()
+    resp = urllib2.urlopen('http://json-time.appspot.com/time.json')
+    result = resp.read()
     json_result = json.loads(result)
     datetime = json_result['datetime']
     print('Process %s: %s' % (pid, datetime))
