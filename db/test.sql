@@ -89,14 +89,3 @@ ALTER TABLE 表名 ADD unique('字段名')
 
 -- 移除字段唯一
 ALTER TABLE 表名 DROP INDEX field-name
-
-
-
-
-
-
-
-
-
-
-
