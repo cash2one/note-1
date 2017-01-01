@@ -12,6 +12,8 @@ func main() {
 	fmt.Printf("\rFibonacci(%d) = %d\n", n, fibN)
 }
 
+// 主函数返回时，所有的goroutine都会被直接打断，程序退出
+
 func spinner(delay time.Duration) {
 	for {
 		for _, r := range `-\|/` {
