@@ -1,20 +1,21 @@
+# -*- coding: utf-8 -*-
 
-'makeTextFile.py--create text file'
-
+"""
+create text file
+"""
 
 import os
 import sys
 
-ls = os.linesep
 
 print 'Input FileName Please', r'\n'
 
-fname = raw_input()
+filename = raw_input()
 
 # get filename
 while True:
-    if os.path.exists(fname):
-        print "ERROR: '%s' already exists" % fname
+    if os.path.exists(filename):
+        print "ERROR: '%s' already exists" % filename
         cmd = raw_input()
         if cmd == "done":
             sys.exit()
@@ -24,19 +25,20 @@ while True:
         break
 
 # get file content (text) lines
-all = []
+_all = []
 print "\nEnter lines('.' by itself to quit).\n"
 
-#loop until user terminates input
+
+# loop until user terminates input
 while True:
     entry = raw_input('>')
     if entry == '.':
         break
     else:
-        all.append(entry)
+        _all.append(entry)
 
 # write lines to file with proper line-ending
-fobj = open(fname, 'w')
-fobj.writelines('%s%s' % (x, ls) for x in all)
-fobj.close()
+fd = open(filename, 'w')
+fd.writelines('%s%s' % (x, os.linesep) for x in _all)
+fd.close()
 print 'DONE!'

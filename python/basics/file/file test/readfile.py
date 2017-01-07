@@ -1,20 +1,24 @@
-'readTestFlie.py--read and display text file'
+# -*- coding: utf-8 -*-
+
+"""
+read and display text file
+"""
 
 # get filename
-fname = raw_input('Enter filename:')
+filename = raw_input('Enter filename:')
 print
 
 # attempt to open file for reading
 try:
-    fobj = open(fname,'r')
-except IOError,e:
-    print "***file open error:",e
+    fd = open(filename, 'r')
+except IOError as e:
+    print "***file open error:", e
 else:
     # display contents to the screen
-    for eachline in fobj:
-        print eachline
+    for line in fd:
+        print line
 
-print "\n"
+print
 print "Done!"
-		
+
 raw_input()

@@ -17,10 +17,5 @@ while True:
     print config.b
     print config.c
     
-    if config.c==12:
+    if config.c == 12:
         break
-
-
-
-if __name__ == '__main__':
-    pass

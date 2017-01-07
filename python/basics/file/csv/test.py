@@ -1,4 +1,5 @@
-import csv, codecs
+import csv
+import codecs
 
 
 # csv.writer
@@ -26,7 +27,7 @@ csvfile.close()
 
 # csv.DictReader
 for d in csv.DictReader(open('my.csv', 'rb')):
-	print d
+    print d
 
 
 # csv.DictWriter
@@ -34,7 +35,7 @@ fobj = open('my1.csv', 'wb')
 fobj.write(codecs.BOM_UTF8)
 FIELDS = ['Column1', 'Column2', 'Column3']
 writer = csv.DictWriter(fobj, fieldnames=FIELDS)
-lines = [dict(zip(FIELDS, range(3))) for i in range(5)]
+lines = [dict(zip(FIELDS, xrange(3))) for _ in xrange(5)]
 
 lines.insert(0, dict(zip(FIELDS, FIELDS)))
 
