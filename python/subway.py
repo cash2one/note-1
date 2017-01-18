@@ -72,32 +72,22 @@ line15 = [
 ]
 
 
-class Station(object):
-    def __init__(self, name):
-        self.name = name
-
-
 class Edge(object):
     def __init__(self, start, end):
         self.start = start
         self.end = end
 
-    def has(self, station):
-        return station == self.start or station == self.end
-
-    def to_tuple(self):
-        return (self.start, self.end)
-
     def __unicode__(self):
         return self.start + ' --> ' + self.end
 
 
-class Line(object):
-    def __init__(self, name):
-        self.name = name
+class Path(set):
+
+    def get_transfer_stations(self):
+        self
 
 
-def get_edges(line, circle=False):
+def gen_edges(line, circle=False):
     edges = []
     z = [iter(line[i:]) for i in range(2)]
     for ab in zip(*z):
@@ -110,8 +100,8 @@ def get_edges(line, circle=False):
 def make_graph(**lines):
     _all_edges = set()
     for line, circle in lines.values():
-        _all_edges.update(set(get_edges(line, circle=circle)))
-        _all_edges.update(set(get_edges(line[::-1], circle=circle)))
+        _all_edges.update(set(gen_edges(line, circle=circle)))
+        _all_edges.update(set(gen_edges(line[::-1], circle=circle)))
     return _all_edges
 
 
@@ -119,41 +109,49 @@ def get_paths(edges, src, dst):
     if src == dst:
         return unicode(Edge(src, dst))
 
-    def get_edges_by_station(station):
-        return [e for e in edges if e.start == station]
-
     start_edges = [e for e in edges if e.start == src]  # 以src为起始点的edge
 
     paths = [[e] for e in start_edges]
     while True:
-        explored = set()
-
-        # print '*************************************************'
-        # for ps in paths:
-        #     print '-----------------------------------------------'
-        #     for p in ps:
-        #         print unicode(p)
-        #     print '-----------------------------------------------'
+        history = set()
+        history_s = set()
+        length = None
 
         temp_path_list = []
         for path in paths:
-            if path[-1] and path[-1].end != dst:
-                temp_paths = []
-                for e in edges:
-                    if e not in explored:
-                        if path[-1].end == e.start and path[-1].start != e.end:
-                            temp_paths.append(e)
-                            explored.add(e)
+            if length is not None:
+                len(path) > length
+                temp_path_list.append(path + [''])
+                continue
 
-                if not temp_paths:
-                    temp_path_list.append(path + [''])
-                    continue
-
-                for t in temp_paths:
-                    temp_path_list.append(path + [t])
-
-            else:
+            if not path[-1]:
                 temp_path_list.append(path)
+                continue
+
+            if path[-1].end == dst:
+                length = len(path)
+                temp_path_list.append(path)
+                continue
+
+            temp_paths = []
+            for e in edges:
+                if e not in history:
+                    if path[-1].end == e.start and path[-1].start != e.end:
+                        temp_paths.append(e)
+                        history.add(e)
+
+            if not temp_paths:
+                temp_path_list.append(path + [''])
+                continue
+
+            _all_stations = set()
+            for ps in paths:
+                for p in ps:
+                    _all_stations.add(p.start)
+                    _all_stations.add(p.end)
+
+            for t in temp_paths:
+                temp_path_list.append(path + [t])
 
         paths = temp_path_list
 
@@ -164,10 +162,20 @@ def get_paths(edges, src, dst):
             else:
                 flags.append(True)
 
-        # time.sleep(0.1)
-
         if all(flags):
             return paths
+
+
+def get_transfer_stations(edges):
+    stations = set()
+    for e in edges:
+        stations.add(e.start)
+
+    transfer_stations = set()
+    for s in stations:
+        if len([e for e in edges if e.start == s]) > 2:
+            transfer_stations.add(s)
+    return transfer_stations
 
 
 if __name__ == "__main__":
@@ -177,7 +185,13 @@ if __name__ == "__main__":
                        line10=(line10, True),
                        line13=(line13, False))
 
-    for ps in get_paths(graph, '八宝山', '公主坟'):
-        print '**************************************'
-        for p in ps:
-            print unicode(p)
+    transfer_stations = get_transfer_stations(graph)
+
+    # src = '八宝山'
+    # dst = '知春路'
+    #
+    # for ps in get_paths(graph, src, dst):
+    #     if ps[-1] and ps[-1].end == dst:
+    #         print '**************************************'
+    #         for p in ps:
+    #             print unicode(p)
