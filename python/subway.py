@@ -81,37 +81,61 @@ class Edge(object):
         return self.start + ' --> ' + self.end
 
 
-class Path(set):
+class Path(list):
 
-    def get_transfer_stations(self):
-        self
+    def stations(self):
+        end = self[-1].end
+        return [e.start for e in self] + [end]
 
-
-def gen_edges(line, circle=False):
-    edges = []
-    z = [iter(line[i:]) for i in range(2)]
-    for ab in zip(*z):
-        edges.append(Edge(*ab))
-    if circle:
-        edges.append(Edge(line[-1], line[0]))
-    return edges
+    def __unicode__(self):
+        return reduce(lambda x, y: x + ' --> ' + y, self.stations())
 
 
-def make_graph(**lines):
-    _all_edges = set()
-    for line, circle in lines.values():
-        _all_edges.update(set(gen_edges(line, circle=circle)))
-        _all_edges.update(set(gen_edges(line[::-1], circle=circle)))
-    return _all_edges
+class Graph(object):
+    lines = {
+        'line1': (line1, False),
+        'line2': (line2, True),
+        'line4': (line4, False),
+        'line10': (line10, True),
+        'line13': (line13, False),
+    }
+
+    def __init__(self):
+        self._all_edges = self._make_graph()
+
+        self.stations = set()
+        for e in self._all_edges:
+            self.stations.add(e.start)
+
+        self._transfer_stations = set()
+        for s in self.stations:
+            if len([e for e in self._all_edges if e.start == s]) > 2:
+                self._transfer_stations.add(s)
+
+    @staticmethod
+    def gen_edges(line, circle=False):
+        edges = []
+        z = [iter(line[i:]) for i in range(2)]
+        for ab in zip(*z):
+            edges.append(Edge(*ab))
+        if circle:
+            edges.append(Edge(line[-1], line[0]))
+        return edges
+
+    def _make_graph(self):
+        _all_edges = set()
+        for line, circle in self.lines.values():
+            _all_edges.update(set(self.gen_edges(line, circle=circle)))
+            _all_edges.update(set(self.gen_edges(line[::-1], circle=circle)))
+        return _all_edges
 
 
 def get_paths(edges, src, dst):
     if src == dst:
         return unicode(Edge(src, dst))
 
-    start_edges = [e for e in edges if e.start == src]  # 以src为起始点的edge
+    paths = [Path(e) for e in edges if e.start == src]  # 以src为起始点的edge
 
-    paths = [[e] for e in start_edges]
     while True:
         history = set()
         history_s = set()
@@ -164,18 +188,6 @@ def get_paths(edges, src, dst):
 
         if all(flags):
             return paths
-
-
-def get_transfer_stations(edges):
-    stations = set()
-    for e in edges:
-        stations.add(e.start)
-
-    transfer_stations = set()
-    for s in stations:
-        if len([e for e in edges if e.start == s]) > 2:
-            transfer_stations.add(s)
-    return transfer_stations
 
 
 if __name__ == "__main__":

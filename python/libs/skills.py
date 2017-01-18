@@ -301,6 +301,8 @@ m = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 
 
 # 命名元组
+import collections
+
 Point = collections.namedtuple('Point', ['x', 'y'])
 p = Point(x=1.0, y=2.0)
 p  # Point(x=1.0, y=2.0)
@@ -419,6 +421,8 @@ value_to_numeric_map['a']  # 0
 value_to_numeric_map['b']  # 1
 value_to_numeric_map['c']  # 2
 
+import random
+import heapq
 
 # 最大和最小的几个列表元素
 a = [random.randint(0, 100) for __ in xrange(100)]
@@ -429,6 +433,7 @@ heapq.nlargest(5, a)
 
 # 两个列表的笛卡尔积
 for p in itertools.product([1, 2, 3], [4, 5]):
+    pass
 
 for p in itertools.product([0, 1], repeat=4):
     print ''.join(str(x) for x in p)
