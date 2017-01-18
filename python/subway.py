@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import time
+import collections
+
 
 line1 = [
     '苹果园', '古城路', '八角游乐园', '八宝山', '玉泉路', '五棵松',
@@ -72,17 +74,26 @@ line15 = [
 ]
 
 
-class Edge(object):
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
+Segment = collections.namedtuple('Segment', ['start', 'end'])
 
+
+class Edge(Segment):
     def __unicode__(self):
         return self.start + ' --> ' + self.end
 
 
-class Path(list):
+# class Edge(object):
+#     __slots__ = ['start', 'end']
+#
+#     def __init__(self, start, end):
+#         self.start = start
+#         self.end = end
+#
+#     def __unicode__(self):
+#         return self.start + ' --> ' + self.end
 
+
+class Path(list):
     def stations(self):
         end = self[-1].end
         return [e.start for e in self] + [end]
@@ -129,65 +140,70 @@ class Graph(object):
             _all_edges.update(set(self.gen_edges(line[::-1], circle=circle)))
         return _all_edges
 
+    def _get_edges_by_station(self, station):
+        """获取给定station的所有的edge"""
+        return [e for e in self._all_edges if e.start == station]
 
-def get_paths(edges, src, dst):
-    if src == dst:
-        return unicode(Edge(src, dst))
+    def get_paths(self, src, dst):
+        if src == dst:
+            return unicode(Edge(src, dst))
 
-    paths = [Path(e) for e in edges if e.start == src]  # 以src为起始点的edge
+        paths = []
+        for e in self._get_edges_by_station(src):
+            paths.append(Path([e]))
 
-    while True:
-        history = set()
-        history_s = set()
-        length = None
+        while True:
+            history = set()
+            history_s = set()
+            length = None
 
-        temp_path_list = []
-        for path in paths:
-            if length is not None:
-                len(path) > length
-                temp_path_list.append(path + [''])
-                continue
+            temp_path_list = []
+            for path in paths:
+                if length is not None:
+                    len(path) > length
+                    temp_path_list.append(path + [''])
+                    continue
 
-            if not path[-1]:
-                temp_path_list.append(path)
-                continue
+                if not path[-1]:
+                    temp_path_list.append(path)
+                    continue
 
-            if path[-1].end == dst:
-                length = len(path)
-                temp_path_list.append(path)
-                continue
+                if path[-1].end == dst:
+                    length = len(path)
+                    temp_path_list.append(path)
+                    continue
 
-            temp_paths = []
-            for e in edges:
-                if e not in history:
-                    if path[-1].end == e.start and path[-1].start != e.end:
-                        temp_paths.append(e)
-                        history.add(e)
+                temp_paths = []
+                for e in edges:
+                    if e not in history:
+                        if path[-1].end == e.start and path[-1].start != e.end:
+                            temp_paths.append(e)
+                            history.add(e)
 
-            if not temp_paths:
-                temp_path_list.append(path + [''])
-                continue
+                if not temp_paths:
+                    temp_path_list.append(path + [''])
+                    continue
 
-            _all_stations = set()
-            for ps in paths:
-                for p in ps:
-                    _all_stations.add(p.start)
-                    _all_stations.add(p.end)
+                _all_stations = set()
+                for ps in paths:
+                    for p in ps:
+                        _all_stations.add(p.start)
+                        _all_stations.add(p.end)
 
-            for t in temp_paths:
-                temp_path_list.append(path + [t])
+                for t in temp_paths:
+                    temp_path_list.append(path + [t])
 
-        paths = temp_path_list
+            paths = temp_path_list
 
-        flags = []
-        for p in paths:
-            if p[-1]:
-                flags.append(p[-1].end == dst)
-            else:
-                flags.append(True)
+            flags = []
+            for p in paths:
+                if p[-1]:
+                    flags.append(p[-1].end == dst)
+                else:
+                    flags.append(True)
 
-        if all(flags):
-            return paths
+            if all(flags):
+                return paths
 
 
 if __name__ == "__main__":
