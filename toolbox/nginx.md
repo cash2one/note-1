@@ -1,3 +1,12 @@
+安装:
+
+依赖pcre; zlib; openssl
+
+./configure --prefix=/opt/nginx --user=nginx --group=nginx --with-http_ssl_module
+make
+sudo make install
+
+
 nginx 这个轻量级、高性能的 web server 主要可以干两件事情：
 
 >直接作为http server(代替apache，对PHP需要FastCGI处理器支持)；
