@@ -6,6 +6,9 @@
 make
 sudo make install
 
+添加nginx用户和组
+sudo adduser --system --no-create-home --disabled-password --group nginx
+
 
 nginx 这个轻量级、高性能的 web server 主要可以干两件事情：
 
