@@ -401,8 +401,9 @@ $ kill -l  # 列出所有的信号
 # STOP   19   暂停（同 Ctrl + Z）
 
 $ kill  => 杀进程
-    kill -s INT 【PID】  # -s 9 制定了传递给进程的信号是９,即强制、尽快终止进程
+    kill -s INT 【PID】  # -s 9 制定了传递给进程的信号是９, 即强制, 尽快终止进程
     kill -9 【PID】
+	kill -HUP 【PID】 # 重启
 	
 $ pkill   # pkill = pgrep + kill	
 $ pkill -９ firefox
