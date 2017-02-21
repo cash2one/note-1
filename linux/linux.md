@@ -80,15 +80,24 @@ linux用户主要分为三类:
 1: root(超级管理员), UID为0, 这个用户有极大的权限, 可以直接无视很多的限制, 包括读写执行的权限.
 2: 系统用户, UID为1~499. 一般是不会被登入的.
 3: 就是普通用户, UID为500~65534. 这类用户的权限会受到基本权限的限制, 也会受到来自管理员的限制.
-不过要注意nobody这个特殊的帐号, UID为65534, 这个用户的权限会进一步的受到限制, 一般用于实现来宾帐号.
+   不过要注意nobody这个特殊的帐号, UID为65534, 这个用户的权限会进一步的受到限制, 一般用于实现来宾帐号.
 
 /etc/group   # 文件包含所有组
 /etc/passwd  # 用户(user)的配置文件
+例: baixue:x:1000:1000:baixue,,,:/home/baixue:/bin/bash
+用户名:口令:UID:GID:用户描述:home目录:用户使用的shell
+
+密码项中: x 表示密码经过加密放到/etc/shadow文件中了
+  		  * 表示该账号被查封了，系统不允许持有该账号的用户登录
+shell项中: /usr/sbin/nologin 表示账号无法登录
+           /bin/false 不给该用户正常的SHELL，不允许该用户登录
+
 /etc/shadow  # 用户user影子口令文件
+/etc/sudoers # sudo用户配置
 
 $ useradd/adduser  => 添加用户
 	# 一般用useradd即可, adduser会交互式的提示你创建用户信息
-    useradd -d /usr/sam -m sam  # -d 用户home目录, -m 用户名
+    useradd -d /usr/sam -m sam -g sam  # -d 用户home目录, -m 用户名 -g 组
 
 $ usermod  => 修改用户
 	例:
@@ -96,9 +105,9 @@ $ usermod  => 修改用户
 
 $ userdel  => 删除用户
     userdel -r sam  
-    # 删除用户sam在系统文件(主要是/etc/passwd;/etc/shadow;/etc/group等)中的记录, 同时删除用户的主目录.
+    # 删除用户sam在系统文件(主要是/etc/passwd; /etc/shadow; /etc/group等)中的记录, 同时删除用户的主目录.
 
-$ passwd
+$ passwd  # 修改密码
 
 $ groupadd/addgroup
 
