@@ -63,6 +63,7 @@ $ sudo apt-get install oracle-java8-set-default
 
 
 9、sublime text3
+sudo apt-get install libgtk2.0-dev
 
 
 10、openvpn
