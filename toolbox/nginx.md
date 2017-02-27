@@ -112,3 +112,104 @@ upstream myCluster {
 
 　实际应用中，server1和server2上分别保留相同的app程序和数据，需要考虑两者的数据同步。
 
+
+# 样例 https 转发
+server {
+    listen       210.14.133.231:80;
+    server_name  xxx.host.com;
+    # rewrite ^(.*)$ https://xxx.host.com break;
+
+    if ($request_method !~* GET|POST|HEAD) {
+         return 403;
+    }
+
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options nosniff;
+    add_header  Strict-Transport-Security  "max-age=31536000";
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://xxx.100credit.com; img-src 'self' data: https://xxx.100credit.com; style-src 'self' 'unsafe-inline'; frame-src https://xxx.100credit.com";
+    proxy_cookie_path / "/; secure; HttpOnly";
+    rewrite ^(.*)$  https://$host$1 permanent;
+    access_log logs/xxx.http.access.log;
+    error_log  logs/xxx.http.error.log;
+    # rewrite_log on;
+}
+
+server {
+    listen       443 ssl;
+    server_name  dts.100credit.com;
+
+    ssl_certificate      /opt/nginx/conf/ssl/xxx.com.crt;
+    ssl_certificate_key  /opt/nginx/conf/ssl/xxx.com.key;
+
+    # ssl_session_cache shared:SSL:1m;
+    # ssl_session_timeout  5m;
+
+    # ssl_ciphers  HIGH:!aNULL:!MD5; 
+    # ssl_prefer_server_ciphers   on;
+
+    if ($request_method !~* GET|POST|HEAD) {
+         return 403;
+    }
+
+    ssl_protocols  SSLv3 TLSv1;
+    ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+
+    access_log logs/example.https.access.log;
+    error_log  logs/example.https.error.log;
+
+    location /
+    {
+        proxy_set_header        Host  $host;
+        proxy_set_header        X-Real-IP  $remote_addr;
+        proxy_set_header        REMOTE-HOST $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_cookie_path       /.*/ /;
+        #rewrite_log            on;
+        add_header X-Frame-Options SAMEORIGIN;
+        add_header X-XSS-Protection "1; mode=block";
+        add_header X-Content-Type-Options nosniff;
+        add_header  Strict-Transport-Security  "max-age=31536000";
+add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://example.host.com; img-src 'self' data: https://example.host.com; style-src 'self' 'unsafe-inline'; frame-src https://example.host.com";
+        proxy_cookie_path / "/; secure; HttpOnly";
+        proxy_pass              http://192.168.1.1:8100;
+    }
+}
+
+# 接收的nginx
+upstream django {
+    # server 127.0.0.1:8001;  # for a web port socket (we'll use this first)
+    server unix:///opt/xxx/mysite.sock;
+}
+
+# configuration of the server
+server {
+    listen      192.168.0.0:8001;
+    # the domain name it will serve for
+    server_name xxx.host.cn; # substitute your machine's IP address or FQDN
+    charset     utf-8;
+    add_header P3P 'policyref="/w3c/p3p.xml", CP="ALL DSP COR CURa OUR IND COM NAV CNT"';
+
+    # max upload size
+    client_max_body_size 100m;   # adjust to taste
+
+    access_log logs/xxx.access.log;
+    error_log  logs/xxx.error.log;
+
+    # Django media
+    location /protected  {
+        internal;
+        alias /media;  # your Django project's media files - amend as required
+    }
+
+    location /static {
+        alias /opt/xxx/static;  # your Django project's static files - amend as required
+    }
+
+    # Finally, send all non-media requests to the Django server.
+    location / {
+        uwsgi_pass django;
+        include     uwsgi_params;  # the uwsgi_params file you installed
+    }
+}
+
