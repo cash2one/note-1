@@ -213,3 +213,16 @@ server {
     }
 }
 
+# websocket 配置
+upstream wsbackend {
+    server 127.0.0.1:9503;
+}
+
+# 访问 ws://im.swoole.com/chat/ 下的内容将被反向代理到wsbackend
+location /chat/ {
+    proxy_pass http://wsbackend;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+
