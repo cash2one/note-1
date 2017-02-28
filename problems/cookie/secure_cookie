@@ -1,0 +1,8 @@
+# 问题描述
+如果cookie中设置了secure选项
+那么该cookie只能在HTTPS通道下被写入浏览器, http的网站该cookie无效
+
+HTTP Cookie      设置了secure，   该cookie只能在HTTPS通道下被写入浏览器。
+HTTPS Cookie     设置了secure，   该cookie只能在HTTPS通道下被写入浏览器。
+HTTP Cookie      未设置了secure， 该cookie既可以在HTTPS也可以在HTTP通道下被写入浏览器。
+HTTPS Cookie     未设置了secure， 该cookie既可以在HTTPS也可以在HTTP通道下被写入浏览器(可能会泄露信息安全)。
