@@ -6,8 +6,6 @@ python2 中文字符
 
 import os
 import sys
-import codecs
-
 
 """
 前言:
