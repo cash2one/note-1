@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-
-"""
-create text file
-"""
-
 import os
 import sys
 
@@ -12,7 +7,6 @@ print 'Input FileName Please', r'\n'
 
 filename = raw_input()
 
-# get filename
 while True:
     if os.path.exists(filename):
         print "ERROR: '%s' already exists" % filename
