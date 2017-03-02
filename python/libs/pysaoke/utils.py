@@ -142,7 +142,22 @@ def group_generator(data, chunksize):
         yield chunk
 
 
+def read_in_chunks(fd, chunk_size=1024):
+    """Lazy function (generator) to read a file piece by piece.
+    Default chunk size: 1k."""
+    while True:
+        data = fd.read(chunk_size)
+        if not data:
+            break
+        yield data
+
+
+def group_generator1(fd, chunk_size=1000):
+    chunk = [x for x in itertools.islice(fd, chunk_size)]
+    if chunk:
+        yield chunk
+
+
 if __name__ == '__main__':
     url = 'crm.100credit.cn?a=1'
-    print add_qs(url, params={'a':1,'b':3}, c='c', d='ddd')
-
+    print add_qs(url, params={'a': 1, 'b': 3}, c='c', d='ddd')
