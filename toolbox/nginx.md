@@ -213,6 +213,26 @@ server {
     }
 }
 
+
+# 代理配置
+server {
+    listen       192.168.22.28:80;
+    server_name  marmot.100credit.cn;
+    access_log   logs/marmot.100credit.cn.access.log;
+    error_log    logs/marmot.100credit.cn.error.log;
+
+    location /
+    {
+        proxy_set_header        Host  $host;
+        proxy_set_header        X-Real-IP  $remote_addr;
+        proxy_set_header        REMOTE-HOST $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        #rewrite_log             on;
+        proxy_pass              http://192.168.23.115:8100;
+    }
+}
+
+
 # websocket 配置
 upstream wsbackend {
     server 127.0.0.1:9503;
