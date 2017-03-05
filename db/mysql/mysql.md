@@ -10,6 +10,7 @@ MySQL笔记
 ```
 $ /etc/init.d/mysql start(stop, restart)
 $ service mysql start(stop, restart)
+$ systemctl stop(start, restart) mysql.service
 ```
 #### 2. 登录MySQL
 ```
