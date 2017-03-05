@@ -1,7 +1,7 @@
 MySQL Note
-=========
+==========
 ####　导语:
-> 与其他的大型数据库例如 Oracle、DB2、SQL Server等相比, MySQL自有它的不足之处,
+> 与其他的大型数据库例如 Oracle, DB2, SQL Server等相比, MySQL自有它的不足之处,
 但是这丝毫也没有减少它受欢迎的程度. 对于一般的个人使用者和中小型企业来说, MySQL提供的功能已经绰绰有余,
 而且由于MySQL是开放源码软件, 因此可以大大降低总体拥有成本.
 
@@ -15,14 +15,14 @@ $ systemctl stop(start, restart) mysql.service
 ```
 #### 2. 登录MySQL
 ```
-$ mysql -h hostname -u username -p passwd -P 端口;
+$ mysql -h hostname -u username -p passwd -P port;
 ```
 #### 3. 查看数据库基本信息
 ```
 $ mysql> \s;
 $ mysql> status;
 ```
-#### 3. 查看数据库基本信息
+#### 4. 查看help
 ```
 $ mysql> \h;
 $ mysql> help;
@@ -30,11 +30,11 @@ $ mysql> help cmd;
 ```
 #### 4. 创建用户
 ```
-$ mysql> CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+$ mysql> CREATE USER 'username'@'host' IDENTIFIED BY 'passwd';
 ```
 > * username -> 创建的用户名
 > * host -> 指定该用户在哪个主机上可以登陆(localhost:本地; %:任意主机)
-> * password -> 密码, 为空代表无密码
+> * passwd -> 密码, 为空代表无密码
 
 例:
 
@@ -49,11 +49,11 @@ $ mysql> DROP USER 'username'@'host';
 ```
 #### 5. 授权
 ```
-$ mysql> GRANT privileges ON databasename.tablename TO 'username'@'host';
+$ mysql> GRANT privileges ON db.table TO 'username'@'host';
 ```
-> * privileges -> 用户操作权限,如:select, insert, update等.所有权限可以使用all;
-> * databasename -> 数据库名;
-> * tablename -> 表名;
+> * privileges -> 用户操作权限, 如: SELECT, INSERT, UPDATE等, 所有权限可以使用ALL;
+> * db -> 数据库名;
+> * table -> 表名;
 > * 如果要授予该用户对所有数据库和表的相应操作权限则可用\*表示, 如\*.\*.
 
 例:
@@ -61,9 +61,9 @@ $ mysql> GRANT privileges ON databasename.tablename TO 'username'@'host';
     $ mysql> GRANT select, insert ON school.* TO 'lin'@'%';
     $ mysql> GRANT ALL ON *.* TO 'pig'@'%';
 
-注意: 用以上命令授权的用户不能给其它用户授权,如果想让该用户可以授权,用以下命令:
+> 注意: 用以上命令授权的用户不能给其它用户授权, 如果想让该用户可以授权, 用以下命令:
 
-    $ mysql> GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
+    $ mysql> GRANT privileges ON db.table TO 'username'@'host' WITH GRANT OPTION;
 
 #### 6. 设置与更改用户密码
 ```
@@ -73,7 +73,7 @@ $ mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'xxxx';  (修改别人的�
 ```
 #### 7. 撤销用户权限
 ```
-* $ mysql> REVOKE privileges ON databasename.tablename FROM 'username'@'host';
+* $ mysql> REVOKE privileges ON db.table FROM 'username'@'host';
 ```
 例:
 
@@ -94,25 +94,25 @@ $ mysql> SHOW GRANTS FOR 'pig'@'%';
 ```
 #### 9. 查看所有的数据库名字
 ```
-$ mysql> show databases;
+$ mysql> SHOW DATABASES;
 ```
 #### 10. 设置创建的数据库的编码
 ```
-$ mysql> alter database 数据库名 character set utf8;
+$ mysql> ALTER DATABASE 数据库名 CHARACTER SET utf8;
 ```
 #### 11. 查看数据库编码
 ```
-$ mysql> show create database 数据库名;
-$ mysql> show variables like 'character%';
+$ mysql> SHOW CREATE DATABASE 数据库名;
+$ mysql> SHOW variables LIKE 'character%';
 ```
 #### 12. 选择一个数据库操作
 ```
-$ mysql> use 数据库名;
-$ mysql> select database();  # 查看当前数据库
+$ mysql> USE 数据库名;
+$ mysql> SELECT database();  # 查看当前数据库
 ```
 #### 13. 查看当前数据库下所有的表名
 ```
-$ mysql> show tables;
+$ mysql> SHOW TABLES;
 ```
 #### 14. 创建一个数据库
 ```
@@ -126,14 +126,14 @@ $ mysql> DROP DATABASE IF EXISTS 数据库名
 ```
 #### 16. 查看表结构
 ```
-$ mysql> show columns FROM 表名;
-$ mysql> desc 表名;
-$ mysql> show create table 表名;
+$ mysql> SHOW COLUMNS FROM 表名;
+$ mysql> DESC 表名;
+$ mysql> SHOW CREATE TABLE 表名;
 ```
 
 ----
 #### 8.创建一个表
-* $ mysql> CREATE TABLE 表名( uid bigint(20) not null, uname varchar(20) not null);
+* $ mysql> CREATE TABLE 表名( uid BIGINT(20) NOT NULL, uname VARCHAR(20) NOT NULL);
 
 例:
 ```sql
@@ -165,11 +165,14 @@ mysql> TRUNCATE TABLE 表名;  --不记录mysql日志, 无法恢复数据
 * $ 删除表中的某些数据
 ```
 mysql> DELETE FROM 表名 WHERE 表达式;
-mysql> DELETE FROM MyClass WHERE id=1;
+mysql> DELETE FROM 表名 WHERE id=1;
 ```
 #### 14.查看表里的数据
 ```
-mysql> SELECT * FROM RePhone LIMIT 10 offset 101200;  # 倒数10条
+mysql> SELECT * FROM 表名 LIMIT 10 OFFSET (SELECT COUNT(*) FROM 表明);  # 倒数10条
+mysql> SELECT * FROM 表名 LIMIT (SELECT COUNT(*) FROM 表明), 10;  # 倒数10条
+mysql> SELECT * FROM 表名 ORDER BY id DESC LIMIT 10;  # 倒数10条
+
 ```
 #### 15. 修改表的列与表名
 * 给列更名
@@ -182,51 +185,51 @@ $ mysql> ALTER TABLE 旧表名 RENAME 新表名;
 ```
 * 修改某个表的字段类型及指定为空或非空
 ```
-$ mysql> alter table 表名 change 字段名 字段类型 [是否允许非空];
-$ mysql> alter table 表名 modify 字段名 字段类型 [是否允许非空];
+$ mysql> ALTER TABLE 表名 CHANGE 字段名 字段类型 [是否允许非空];
+$ mysql> ALTER TABLE 表名 MODIFY 字段名 字段类型 [是否允许非空];
 ```
 * 修改某个表的字段名称及指定为空或非空
 ```
-$ mysql> alter table 表名 change 字段原名称 字段新名称 字段类型 [是否允许非空];
+$ mysql> ALTER TABLE 表名 CHANGE 字段原名称 字段新名称 字段类型 [是否允许非空];
 ```
 * 例: 修改表expert_info中的字段birth,允许其为空
 ```
-$ mysql> alter table expert_info change birth birth varchar(20) null;
+$ mysql> ALTER TABLE expert_info CHANGE birth birth varchar(20) null;
 ```
 #### 16. 修改表中的数据
 * 增加一个字段(一列)
 ```
-$ mysql> alter table 表名 add column column_name type default value;字段mi字段名字段字段
+$ mysql> ALTER TABLE 表名 ADD COLUMN column_name type default value; 字段mi字段名字段字段
 ```
 > (type指该字段的类型,value指该字段的默认值)
 
 * 更改一个字段名字(也可以改变类型和默认值)
 ```sql
-alter table table_name change sorce_col_name dest_col_name type default value;
+ALTER TABLE table_name CHANGE sorce_col_name dest_col_name type default value;
 ```
 > (source_col_name指原来的字段名称,dest_col_name)
 
 例:
 ```sql
-alter table Board_Info change IsMobile IsTelphone int(3) unsigned default1;
+ALTER TABLE Board_Info CHANGE IsMobile IsTelphone int(3) unsigned default1;
 -- 改变一个字段的默认值
-alter table table_name alter column_name set default value;
+ALTER TABLE table_name ALTER column_name SET DEFAULT value;
 ```
 例:
 ```sql
-alter table book alter flag set default '0′;
+ALTER TABLE book ALTER flag SET DEFAULT '0′;
 -- 改变一个字段的数据类型
-alter table table_name change column column_name column_name type;
+ALTER TABLE table_name CHANGE COLUMN column_name column_name type;
 ```
 例:
 ```sql
-alter table userinfo change column username username varchar(20);
+ALTER TABLE userinfo CHANGE COLUMN username username VARCHAR(20);
 -- 向一个表中增加一个列做为主键
-alter table table_name add column column_name type auto_increment PRIMARYKEY;
+ALTER TABLE table_name add COLUMN column_name type AUTO_INCREMENT PRIMARYKEY;
 ```
 例:
 ```sql
-alter table book add column id int(10) auto_increment PRIMARY KEY;
+ALTER TABLE book ADD COLUMN id INT(10) AUTO_INCREMENT PRIMARY KEY;
 ```
 #### 12.表复制及备份还原
 * 复制表结构
@@ -265,7 +268,7 @@ $ mysqldump -u root -p database_name table_name > bak_file_name
 ```
 例:
 
-    $ mysqldump -u root -p f_info user_info > user_info.dat
+    $ mysqldump -hhostname -uroot -ppasswd 库名 表名 > user_info.dat
 
 #### 18. 导出数据
 ```
@@ -287,11 +290,11 @@ load data infile "file_name" into table table_name;
 
 例: 下面的例子说明将t1表中的com2和t2表中的com1字段的值拼接后插入到tx表对应的字段里.
 
-    $ mysql> insert into tx select t1.com1,concat(t1.com2,t2.com1) from t1,t2;
+    $ mysql> INSERT INTO tx SELECT t1.com1, concat(t1.com2,t2.com1) FROM t1,t2;
 
 #### 21. 删除字段
 ```
-$ mysql> alter table form1 drop column 列名;
+$ mysql> ALTER TABLE 表名 DROP COLUMN 列名;
 ```
 
 #### 22. 字段唯一
@@ -320,15 +323,15 @@ SELECT * FROM tb_name WHERE sum > 100;
 
 #### 2. 查询字符串
 ```sql
-SELECT * FROM tb_stu WHERE sname='小刘';
-SELECT * FROM tb_stu WHERE sname like '刘%';
-SELECT * FROM tb_stu WHERE sname like '%程序员';
-SELECT * FROM tb_stu WHERE sname like '%PHP%';
+SELECT * FROM student WHERE name='小刘';
+SELECT * FROM student WHERE name like '刘%';
+SELECT * FROM student WHERE name like '%程序员';
+SELECT * FROM student WHERE name like '%PHP%';
 ```
 
 #### 3. 查询日期型数据
 ```sql
-SELECT * FROM tb_stu WHERE date='2011-04-08';
+SELECT * FROM tb_name WHERE date='2011-04-08';
 ```
 > 注: 不同数据库对日期型数据存在差异
 ```
@@ -342,11 +345,11 @@ Access: SELECT * from tb_name WHERE birthday = #2011-04-08#
 SELECT * FROM tb_name WHERE type='T';
 SELECT * FROM tb_name WHERE type='F';
 ```
-> 逻辑运算符: and or not
+> 逻辑运算符: AND OR NOT
 
 #### 5. 查询非空数据
 ```sql
-SELECT * FROM tb_name WHERE address <>'' order by addtime desc;
+SELECT * FROM tb_name WHERE address <>'' ORDER BY addtime DESC;
 ```
 > 注: <>相当于PHP中的!=
 
@@ -371,12 +374,12 @@ SELECT * FROM tb_name LIMIT 0, $N;
 
 #### 9. 查询后n条记录
 ```sql
-SELECT * FROM tb_stu ORDER BY id ASC LIMIT $n;
+SELECT * FROM tb_name ORDER BY id ASC LIMIT $n;
 ```
 
 #### 10. 查询从指定位置开始的n条记录
 ```sql
-SELECT * FROM tb_stu ORDER BY id ASC LIMIT $_POST[begin], $n;
+SELECT * FROM tb_name ORDER BY id ASC LIMIT [begin], $n;
 ```
 > 注: 数据的id是从0开始的
 
@@ -388,12 +391,12 @@ SELECT * , (yw+sx+wy) AS total FROM tb_score ORDER BY (yw+sx+wy) DESC LIMIT 0, $
 #### 12. 查询指定时间段的数据
 ```sql
 SELECT 字段 FROM 表名 WHERE 字段名 BETWEEN 初始值 AND 终止值;
-SELECT * FROM tb_stu WHERE age BETWEEN 0 AND 18;
+SELECT * FROM student WHERE age BETWEEN 0 AND 18;
 ```
 
 #### 13. 按月查询统计数据
 ```sql
-SELECT * FROM tb_stu WHERE month(date) = '$_POST[date]' ORDER BY date;
+SELECT * FROM student WHERE month(date) = '[date]' ORDER BY date;
 ```
 > 注: SQL语言中提供了如下函数, 利用这些函数可以很方便地实现按年、月、日进行查询
 ```
@@ -404,7 +407,7 @@ day(data): 返回data表达式中的日期所对应的数值
 
 #### 14. 查询大于指定条件的记录
 ```sql
-SELECT * FROM tb_stu WHERE age>$_POST[age] ORDER BY age;
+SELECT * FROM student WHERE age > [age] ORDER BY age;
 ```
 
 #### 15. 查询结果不显示重复记录
@@ -422,18 +425,18 @@ SELECT DISTINCT 字段名 FROM 表名 WHERE 查询条件
 
 #### 17. 显示数据表中重复的记录和记录条数
 ```sql
-SELECT name, age, count(*), age FROM tb_stu WHERE age='19' group by date
+SELECT name, age, count(*), age FROM student WHERE age='19' group by date
 ```
 #### 18. 对数据进行降序/升序查询
 ```sql
-SELECT 字段名 FROM tb_stu WHERE 条件 ORDER BY 字段 DESC 降序
-SELECT 字段名 FROM tb_stu WHERE 条件 ORDER BY 字段 ASC 升序
+SELECT 字段名 FROM student WHERE 条件 ORDER BY 字段 DESC 降序
+SELECT 字段名 FROM student WHERE 条件 ORDER BY 字段 ASC 升序
 ```
 > 注: 对字段进行排序时若不指定排序方式，则默认为ASC升序
 
 #### 19. 对数据进行多条件查询
 ```sql
-SELECT 字段名 FROM tb_stu WHERE 条件 ORDER BY 字段1 ASC 字段2 DESC …
+SELECT 字段名 FROM student WHERE 条件 ORDER BY 字段1 ASC 字段2 DESC …
 ```
 > 注: 对查询信息进行多条件排序是为了共同限制记录的输出，一般情况下，由于不是单一条件限制，所以在输出效果上有一些差别。
 
@@ -441,7 +444,7 @@ SELECT 字段名 FROM tb_stu WHERE 条件 ORDER BY 字段1 ASC 字段2 DESC …
 * 函数SUM([ALL]字段名) 或 SUM([DISTINCT]字段名),可实现对字段的求和,函数中为ALL时为所有该字段所有记录求和,若为DISTINCT则为该字段所有不重复记录的字段求和
 ```sql
 SELECT name, SUM(price) AS sumprice FROM tb_price GROUP BY name
-SELECT * FROM tb_name ORDER BY mount DESC,price ASC
+SELECT * FROM tb_name ORDER BY mount DESC, price ASC
 ```
 #### 21. 单列数据分组统计
 ```sql
