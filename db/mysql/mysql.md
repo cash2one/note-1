@@ -1,8 +1,9 @@
-MySQL笔记
+MySQL Note
 =========
 ####　导语:
-> 与其他的大型数据库例如 Oracle、DB2、SQL Server等相比,MySQL自有它的不足之处,但是这丝毫也没有减少它受欢迎的程度.
-对于一般的个人使用者和中小型企业来说,MySQL提供的功能已经绰绰有余,而且由于MySQL是开放源码软件,因此可以大大降低总体拥有成本
+> 与其他的大型数据库例如 Oracle、DB2、SQL Server等相比, MySQL自有它的不足之处,
+但是这丝毫也没有减少它受欢迎的程度. 对于一般的个人使用者和中小型企业来说, MySQL提供的功能已经绰绰有余,
+而且由于MySQL是开放源码软件, 因此可以大大降低总体拥有成本.
 
 ## 数据库管理
 
@@ -14,13 +15,18 @@ $ systemctl stop(start, restart) mysql.service
 ```
 #### 2. 登录MySQL
 ```
-$ mysql -h hostname -u username -p;
-enter password...
+$ mysql -h hostname -u username -p passwd -P 端口;
 ```
 #### 3. 查看数据库基本信息
 ```
 $ mysql> \s;
 $ mysql> status;
+```
+#### 3. 查看数据库基本信息
+```
+$ mysql> \h;
+$ mysql> help;
+$ mysql> help cmd;
 ```
 #### 4. 创建用户
 ```
@@ -96,7 +102,7 @@ $ mysql> alter database 数据库名 character set utf8;
 ```
 #### 11. 查看数据库编码
 ```
-$ mysql> show create database crm;
+$ mysql> show create database 数据库名;
 $ mysql> show variables like 'character%';
 ```
 #### 12. 选择一个数据库操作
@@ -120,7 +126,7 @@ $ mysql> DROP DATABASE IF EXISTS 数据库名
 ```
 #### 16. 查看表结构
 ```
-$ mysql> show columns from 表名;
+$ mysql> show columns FROM 表名;
 $ mysql> desc 表名;
 $ mysql> show create table 表名;
 ```
