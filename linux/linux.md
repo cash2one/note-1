@@ -560,17 +560,6 @@ configure是一个可执行脚本, 它有很多选项, 在待安装的源码路�
 
 #### 开机启动
 ```
-# 删除启动项(移除了rc[1-6].d目录里的启动脚本链接)
-sudo update-rc.d -f apache2 remove
-sudo update-rc.d -f nginx remove
-  
-# 禁止mysql开机启动
-$ sudo update-rc.d mysql disable [runlevel]
-  
-# 直接修改/etc/rc0.d ~ /etc/rc6.d和/etc/rcS.d下的脚本
-# S开头的表示启动，K开头的表示不启动, S/K后边的数字表示优先级[0-99].
-# sudo mv /etc/rc2.d/S20mysql /etc/rc2.d/K20mysql
-
 # 查看当前系统的运行级别
 $ who -r 
 $ runlevel
@@ -579,23 +568,34 @@ $ runlevel
 
 # Ubuntu开机启动顺序
 init --> rcS.d下的脚本 --> rcN.d下的脚本 --> rc.local
-
+  
 # sysv-rc-conf 管理开机启动
 $ sudo apt-get install sysv-rc-conf
 $ sudo sysv-rc-conf
-
+  
+# 直接修改/etc/rc0.d ~ /etc/rc6.d和/etc/rcS.d下的脚本
+# S开头的表示启动，K开头的表示不启动, S/K后边的数字表示优先级[0-99].
+$ sudo mv /etc/rc2.d/S20mysql /etc/rc2.d/K20mysql
+  
 # update-rc.d 管理开机启动
 # update-rc.d <service name> start|stop| <order number> <run levels>
 $ sudo update-rc.d rinetd start 20 2
 $ sudo update-rc.d rinetd stop 20 0
-
+  
 # update-rc.d <service name> enable|disable  <runlevels>
 $ sudo update-rc.d rinetd disable 2 在runlevel2中暂时禁止该服务
-
+  
 # update-rc.d <service name> default [NN | SS KK]
 $ sudo update-rc.d rinetd default 80 80
 # default 表示在2 3 4 5 中添加80(the first 80)顺序的Start，在0 6 中添加80(the second 80)顺序的Kill服务
-
+  
+# 删除启动项(移除了rc[1-6].d目录里的启动脚本链接)
+sudo update-rc.d -f apache2 remove
+sudo update-rc.d -f nginx remove
+  
+# 禁止mysql开机启动
+$ sudo update-rc.d mysql disable [runlevel]
+  
 # debian的runlevel
 0 – Halt，关机模式
 1 – Single，单用户模式
@@ -613,9 +613,9 @@ $ sudo update-rc.d rinetd default 80 80
 4 - 未定义.
 5 - 图形界面的多用户模式.
 6 - 重启. 不能将系统缺省运行级别设置为0，否则会一直重启.
-
+  
 # S 全都有
-
+  
 # 可以在不重新启动操作系统的前提下，切换操作系统的RunLevel
 $ sudo init <num>
 ```
