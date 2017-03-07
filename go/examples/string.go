@@ -6,14 +6,25 @@ import (
 	"strings"
 )
 
+// 字符串不能被索引赋值, 会编译错误
 func main() {
-	s := "hello world"
+	s := "hello 白雪"
+	ss := []rune(s)
 
 	fmt.Println(len(s))
+	fmt.Println(len(ss))
 
-	fmt.Println(s[1])
+	fmt.Println(s[0])
+	fmt.Printf("%c\n", s[0])
 
-	fmt.Printf("%c\n", s[1])
+	fmt.Println(s[6])
+	fmt.Printf("%c\n", s[6])
+
+	fmt.Println(ss[0])
+	fmt.Printf("%c\n", ss[0])
+
+	fmt.Println(ss[6])
+	fmt.Printf("%c\n", ss[6])
 
 	fmt.Println(s[0:5]) // "hello"
 
