@@ -22,3 +22,4 @@ channel.basic_publish(exchange='',
 print(" [x] Sent 'Hello World!'")
 
 connection.close()
+
