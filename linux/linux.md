@@ -78,9 +78,9 @@ $ bc      =>  一个简单计算器
 #### 用户, 组, 权限
 ```
 linux用户主要分为三类:
-1: root(超级管理员), UID为0, 这个用户有极大的权限, 可以直接无视很多的限制, 包括读写执行的权限.
-2: 系统用户, UID为1~499. 一般是不会被登入的.
-3: 就是普通用户, UID为500~65534. 这类用户的权限会受到基本权限的限制, 也会受到来自管理员的限制.
+* root(超级管理员), UID为0, 这个用户有极大的权限, 可以直接无视很多的限制, 包括读写执行的权限.
+* 系统用户, UID为1~499. 一般是不会被登入的.
+* 就是普通用户, UID为500~65534. 这类用户的权限会受到基本权限的限制, 也会受到来自管理员的限制.
    不过要注意nobody这个特殊的帐号, UID为65534, 这个用户的权限会进一步的受到限制, 一般用于实现来宾帐号.
   
 /etc/group   # 文件包含所有组
@@ -141,6 +141,7 @@ $ sudo chmod +x nginx  # 添加可执行权限
 $ sudo chmod -x nginx  # 取消可执行权限
 $ sudo chmod +w file   # 添加可写权限
 $ sudo chmod -w file   # 取消可写权限
+$ sudo chmod +s /bin/netstat   # 让用户免root运行
 
   
 $ lsblk    => 查看硬盘和分区分布
@@ -413,6 +414,7 @@ $ kill  => 杀进程
 	kill -HUP 【PID】 # 重启
   
 $ pkill   # pkill = pgrep + kill	
+$ pkill -9 -f `celery worker`
 $ pkill -９ firefox
 # pkill或者pgrep只要给出进程名的一部分就可以终止进程。
 # killall和pkill是相似的,不过如果给出的进程名不完整，killall会报错 
