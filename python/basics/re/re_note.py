@@ -1,12 +1,13 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import re
 
 
-"""贪婪和非贪婪"""
+"""
+贪婪和非贪婪
+"""
 
 html = 'Hello <a href="http://pypix.com" title="pypix">Pypix</a>'
-m = re.findall('<a.*>.*<\/a>', html)
+m = re.findall(r'<a.*>.*</a>', html)
 if m:
     print m  # ['<a href="http://pypix.com" title="pypix">Pypix</a>']
 
@@ -15,20 +16,21 @@ if m:
 # 当处于贪婪模式时, 量词(比如 * 和 +)匹配尽可能多的字符
 html = 'Hello <a href="http://pypix.com" title="pypix">Pypix</a>' \
        'Hello <a href="http://example.com" title="example">Example</a>'
-m = re.findall('<a.*>.*<\/a>', html)
+m = re.findall(r'<a.*>.*</a>', html)
 if m:
     print m
     # ['<a href="http://pypix.com" title="pypix">Pypix</a>Hello <a href="http://example.com" title="example">Example</a>']
 
 
 # 当你加一个问号在后面时(.*?)它将变为"非贪婪的"
-m = re.findall('<a.*?>.*?<\/a>', html)
+m = re.findall(r'<a.*?>.*?</a>', html)
 if m:
     print m  # 正确输出
 
 
-"""前向界定符和后向界定符"""
-
+"""
+前向界定符和后向界定符
+"""
 
 strings = [
     "hello foo",     # returns False
@@ -74,10 +76,11 @@ for string in strings:
         print 'False'
 
 
+"""
+条件(IF-Then-Else)模式
+"""
 
-"""条件(IF-Then-Else)模式"""
-
-# 正则表达式提供了条件检测的功能,格式如下:
+# 正则表达式提供了条件检测的功能, 格式如下:
 # (?(?=regex)then|else)
 
 # 比如我们可以用这个正则表达式来检测打开和闭合的尖括号:
@@ -127,8 +130,9 @@ print "b* => {0}".format(pattern.group(2))
 # prints b* => bar
 
 
-"""命名组"""
-
+"""
+命名组
+"""
 
 string = 'Hello foobar'
 pattern = re.search(r'(?P<fstar>f.*)(?P<bstar>b.*)', string)
@@ -166,7 +170,7 @@ dic = {
     "store_manager_name": "DoeJohn",     
 }
 
-result = re.compile(r'<p style="text-align:center;"><span class="MathJax_Preview">\[(.*)\]</span><script type="math/tex;  mode=display">(.*)</script></p>')          
+result = re.compile(r'<p style="text-align:center;"><span class="MathJax_Preview">\[(.*)\]</span><script type="math/tex; mode=display">(.*)</script></p>')
 print result.sub('John', template, count=1)
 
 
@@ -193,14 +197,12 @@ dic = {
 }
 
 def multiple_replace(dic, text):
-    pattern = "|".join(map(lambda key : re.escape("["+key+"]"), dic.keys()))
+    pattern = "|".join(map(lambda key: re.escape("["+key+"]"), dic.keys()))
     return re.sub(pattern, lambda m: dic[m.group()[1:-1]], text)
 
 print multiple_replace(dic, template)
 
 
-
-#
 m = re.search('^The', 'The end.')
 if m:
     m.group()

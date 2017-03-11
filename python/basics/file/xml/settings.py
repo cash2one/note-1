@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
-# File: settings.py
-# Created: 11/12/2013 11:27:26
-# Author: baixue
-# Purpose:
-#-------------------------------------------------------------------------------
 
 from xml.etree import ElementTree as ET
 import os
@@ -123,17 +117,4 @@ def writeSettings():
 
 if __name__ == '__main__':
     createSettingsFile()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
