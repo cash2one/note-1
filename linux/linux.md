@@ -424,6 +424,7 @@ $ killall
   
 $ ps -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs kill -s 9	
 $ pgrep firefox | xargs kill -s 9  # 上一行的改进
+$ pgrep -f "celery worker"
 说明:
 “grep firefox”的输出结果是，所有含有关键字“firefox”的进程
 “grep -v grep”是在列出的进程中去除含有关键字“grep”的进程
